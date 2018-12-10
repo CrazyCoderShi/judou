@@ -9,12 +9,19 @@ class IndexPage extends StatefulWidget {
 
 class _IndexPageState extends State<IndexPage> {
 
-  void _toDetailPage() {
-    Navigator.of(context).push(new MaterialPageRoute(
-        builder: (BuildContext context) {
-          return new DetailPage();
-        })
+  void detailPageDispose() {
+
+  }
+
+  void _toDetailPage() async {
+    final result = await Navigator.push(context,
+        MaterialPageRoute(
+            builder: (context) => DetailPage(onDispose: detailPageDispose))
     );
+
+    Scaffold.of(context)
+        ..removeCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text('$result')));
   }
 
   @override

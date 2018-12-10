@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:judou/profile/shopping_list_item.dart';
+import 'FavoriteWidget.dart';
 
 class ProfilePage extends StatefulWidget {
 
@@ -14,15 +15,15 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   Set<Product> _shoppingCart = Set<Product>();
 
-  void _handleCartChanged(Product product, bool inCart) {
-    setState(() {
-      if (inCart) {
-        _shoppingCart.add(product);
-      } else {
-        _shoppingCart.remove(product);
-      }
-    });
-  }
+//  void _handleCartChanged(Product product, bool inCart) {
+//    setState(() {
+//      if (inCart) {
+//        _shoppingCart.add(product);
+//      } else {
+//        _shoppingCart.remove(product);
+//      }
+//    });
+//  }
 
 //  @override
 //  Widget build(BuildContext context) {
@@ -64,8 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ],
           ),
         ),
-        Icon(Icons.star, color: Colors.red[500]),
-        Text('41')
+        FavoriteWidget()
       ],
     ),
   );
@@ -114,6 +114,21 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return titleSection();
+    return Scaffold(
+      appBar: AppBar(title: Text('Hopes')),
+      body: ListView(
+        children: <Widget>[
+          Image.asset(
+              'lib/assets/shine_bg.jpg',
+              width: MediaQuery.of(context).size.width,
+              height: 240,
+              fit: BoxFit.cover
+          ),
+          titleSection(),
+          buttonSection(),
+          textSection()
+        ],
+      ),
+    );
   }
 }

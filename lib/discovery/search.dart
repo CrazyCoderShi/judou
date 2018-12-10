@@ -1,31 +1,27 @@
 import 'package:flutter/material.dart';
-import 'counter.dart';
+import 'DetailScreen.dart';
 
 class DiscoveryPage extends StatefulWidget {
   @override
-  _DiscoveryPageeState createState() => _DiscoveryPageeState();
+  _DiscoveryPageState createState() => _DiscoveryPageState();
 }
 
-class _DiscoveryPageeState extends State<DiscoveryPage>
-    with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-  }
-
+class _DiscoveryPageState extends State<DiscoveryPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Counter()
+      child: Scaffold(
+        appBar: AppBar(title: Text('Animating')),
+        body: Center(child: GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreen()));
+            },
+            child: Hero(
+                tag: 'imageHero',
+                child: Image.network('https://raw.githubusercontent.com/flutter/website/master/src/_includes/code/layout/lakes/images/lake.jpg')
+            )
+        ),)
+      )
     );
   }
 }
