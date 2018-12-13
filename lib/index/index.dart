@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'detail_page.dart';
-import 'package:judou/widgets/custom_appbar.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -31,27 +30,10 @@ class _IndexPageState extends State<IndexPage> {
         title: Text('Home', style: TextStyle(color: Colors.white)),
         iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.add_a_photo, color: Colors.white,), onPressed: null),
+        leading: Text('句读', textAlign: TextAlign.center),
         actions: <Widget>[new IconButton(icon: Icon(Icons.today), onPressed: _toDetailPage)]
       ),
       body: Center(child: Text('Index Body'))
     );
   }
-
-//  @override
-//  Widget build(BuildContext context) {
-//    return Material(
-//      child: Column(
-//        children: <Widget>[
-//          CustomAppBar(
-//            title: Text('CustomAppBar', style: TextStyle(color: Colors.white, fontSize: 18), textAlign: TextAlign.center),
-//            onPress: _toDetailPage,
-//          ),
-//          Expanded(
-//            child: Center(child: Text('Hello World!'))
-//          )
-//        ]
-//      )
-//    );
-//  }
 }

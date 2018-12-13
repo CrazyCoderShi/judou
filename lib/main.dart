@@ -7,30 +7,30 @@ import 'package:judou/profile/shopping_list_item.dart';
 
 void main() {
 //  debugPaintSizeEnabled = true;
-  runApp(MyApp());
+  runApp(JuDouApp());
 }
 
-class MyApp extends StatelessWidget {
+class JuDouApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home: HomePage(),
       theme: ThemeData(
-        primarySwatch: Colors.orange
+        primaryColor: Colors.white
       ),
-      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final _widgetOptions = [
     IndexPage(),
@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  void didUpdateWidget(MyHomePage oldWidget) {
+  void didUpdateWidget(HomePage oldWidget) {
     super.didUpdateWidget(oldWidget);
   }
 
