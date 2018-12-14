@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'detail_page.dart';
+import 'package:judou/widgets/button_subscript.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -27,13 +28,26 @@ class _IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home', style: TextStyle(color: Colors.white)),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.black54),
         centerTitle: true,
-        leading: Text('句读', textAlign: TextAlign.center),
-        actions: <Widget>[new IconButton(icon: Icon(Icons.today), onPressed: _toDetailPage)]
+        leading: Container(
+          alignment: Alignment.center,
+          child: Text('句子', style: TextStyle(fontSize: 22.0, fontFamily: 'LiSung')),
+        ),
+        actions: <Widget>[
+          SubscriptButton(icon: Icon(Icons.message), subscript: '95'),
+          SubscriptButton(icon: Icon(Icons.favorite_border), subscript: '1k'),
+          IconButton(icon: Icon(Icons.share, color: Theme.of(context).accentColor), onPressed: _toDetailPage)
+        ]
       ),
-      body: Center(child: Text('Index Body'))
+      body: Stack(
+        children: <Widget>[
+          SizedBox(
+            child: Image.network('https://raw.githubusercontent.com/flutter/website/master/src/_includes/code/layout/lakes/images/lake.jpg'),
+          ),
+          Positioned(child: Text('戊戌年', style: TextStyle(color: Colors.grey[100]), textAlign: TextAlign.center,), top: 20, right: 20),
+        ],
+      )
     );
   }
 }

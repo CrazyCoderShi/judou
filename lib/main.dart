@@ -17,7 +17,8 @@ class JuDouApp extends StatelessWidget {
     return MaterialApp(
       home: HomePage(),
       theme: ThemeData(
-        primaryColor: Colors.white
+        primaryColor: Colors.white,
+        accentColor: Colors.black54
       ),
     );
   }
@@ -60,13 +61,14 @@ class _HomePageState extends State<HomePage> {
         body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.refresh), title: Text('Home')),
-            BottomNavigationBarItem(icon: Icon(Icons.public), title: Text('Descovery')),
-            BottomNavigationBarItem(icon: Icon(Icons.person), title: Text('Profile'))
+            BottomNavigationBarItem(icon: Icon(Icons.home), title: Text(''), activeIcon: Icon(Icons.autorenew)),
+            BottomNavigationBarItem(icon: Icon(Icons.public), title: Text(''), activeIcon: Icon(Icons.explore)),
+            BottomNavigationBarItem(icon: Icon(Icons.person_outline), title: Text(''), activeIcon: Icon(Icons.person))
           ],
           currentIndex: _selectedIndex,
-          fixedColor: Colors.orange,
+          fixedColor: Theme.of(context).accentColor,
           onTap: _onItemTapped,
+          type: BottomNavigationBarType.fixed
         )
       );
     }

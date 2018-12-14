@@ -69,3 +69,8 @@ flutter:
 
   assets:
     - lib/assets/
+
+  fonts:
+    - family: LiSung
+      fonts:
+        - asset: lib/fonts/Apple-LiSung-Light.ttf
