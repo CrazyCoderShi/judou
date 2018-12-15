@@ -74,3 +74,6 @@ flutter:
     - family: LiSung
       fonts:
         - asset: lib/fonts/Apple-LiSung-Light.ttf
+    - family: PingFang
+      fonts:
+        - asset: lib/fonts/PingFang-SC-Regular.ttf
