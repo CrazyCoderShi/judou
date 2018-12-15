@@ -47,7 +47,6 @@ class _IndexPageState extends State<IndexPage> {
               SizedBox(
                 child: Image.network('https://raw.githubusercontent.com/flutter/website/master/src/_includes/code/layout/lakes/images/lake.jpg'),
               ),
-              Positioned(child: Text('戊戌年', style: TextStyle(color: Colors.white), textAlign: TextAlign.center,), bottom: -10, right: 20),
               Positioned(child: Text('14', style: TextStyle(fontSize: 99, color: Colors.white)), bottom: -43, left: 20)
             ],
           ),
