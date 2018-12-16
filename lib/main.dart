@@ -36,11 +36,7 @@ class _HomePageState extends State<HomePage> {
   final _widgetOptions = [
     IndexPage(),
     DiscoveryPage(),
-    ProfilePage(products: <Product>[
-      Product(name: 'Eggs'),
-      Product(name: 'Flour'),
-      Product(name: 'Chocolate chips')
-    ])
+    ProfilePage()
   ];
 
   void _onItemTapped (int index) {

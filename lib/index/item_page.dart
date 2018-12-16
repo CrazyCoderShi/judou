@@ -28,7 +28,7 @@ class _IndexPageItemState extends State<IndexPageItem> {
       SizedBox(
         child: Image.network('https://file.juzimi.com/weibopic/jrzami2.jpg'),
       ),
-      Positioned(child: Text('14', style: TextStyle(fontSize: 99, color: Colors.white)), bottom: -43, left: 20)
+      Positioned(child: Text('15', style: TextStyle(fontSize: 99, color: Colors.white)), bottom: -43, left: 20)
     ],
   );
 
@@ -41,12 +41,15 @@ class _IndexPageItemState extends State<IndexPageItem> {
           Text('曾静在某一瞬间, 我们都以为自己长大了。'
               '但是有一天，我们终于发现，长大的含义除了欲望还有勇气、责任、坚强以及某种必须的牺牲。'
               '在生活面前们还都是孩子们，其实我们从未长大，还不懂爱和被爱。',
-              style: textStyle(16, true)
+              style: textStyle(17, true)
           ),
           Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Text('与青春有关的日子', style: textStyle(16, true))
+                Container(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Text('与青春有关的日子', style: textStyle(17, true))
+                )
               ]
           )
         ],
@@ -63,7 +66,7 @@ class _IndexPageItemState extends State<IndexPageItem> {
           Expanded(child: Stack(
             children: <Widget>[
               SizedBox(child: contentView()),
-              Positioned(child: Text('14', style: TextStyle(fontSize: 99, color: Colors.black)), top: -75, left: 20),
+              Positioned(child: Text('15', style: TextStyle(fontSize: 99, color: Colors.black)), top: -75, left: 20),
               Positioned(child: Text('2018.12 星期六', style: textStyle(12, false)), right: 20, top: 5)
             ],
           ))
