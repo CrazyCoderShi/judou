@@ -15,7 +15,8 @@ class ListCell extends StatelessWidget {
     return GestureDetector(
       child: Column(children: <Widget>[
         Container(
-            padding: EdgeInsets.only(top: 8),
+            padding: EdgeInsets.only(top:10, bottom: 10),
+            color: Colors.white,
             child: Row(children: <Widget>[
               Row(
                 children: <Widget>[
@@ -27,7 +28,7 @@ class ListCell extends StatelessWidget {
               Container(
                   child: Icon(this.trailing, color: Theme.of(context).dividerColor, size: 16), padding: EdgeInsets.only(left: 15, right: 15))
             ], mainAxisAlignment: MainAxisAlignment.spaceBetween)),
-        Divider(color: this.isDivider ? Theme.of(context).dividerColor : Colors.transparent, indent: 54)
+        Divider(color: this.isDivider ? Theme.of(context).dividerColor : Colors.transparent, indent: 54, height: 1,)
       ]),
       onTap: this.onTap,
     );
