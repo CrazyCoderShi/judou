@@ -26,9 +26,9 @@ class _IndexPageItemState extends State<IndexPageItem> {
   Stack headerView() => Stack(
     children: <Widget>[
       SizedBox(
-        child: Image.network('https://file.juzimi.com/weibopic/jrzami2.jpg'),
+        child: Image.network('https://file.juzimi.com/weibopic/jxzxmu5.jpg', fit: BoxFit.cover, width: MediaQuery.of(context).size.width, height: 300,),
       ),
-      Positioned(child: Text('15', style: TextStyle(fontSize: 99, color: Colors.white)), bottom: -43, left: 20)
+      Positioned(child: Text('16', style: TextStyle(fontSize: 99, color: Colors.white)), bottom: -52, left: 20)
     ],
   );
 
@@ -66,7 +66,7 @@ class _IndexPageItemState extends State<IndexPageItem> {
           Expanded(child: Stack(
             children: <Widget>[
               SizedBox(child: contentView()),
-              Positioned(child: Text('15', style: TextStyle(fontSize: 99, color: Colors.black)), top: -75, left: 20),
+              Positioned(child: Text('16', style: TextStyle(fontSize: 99, color: Colors.black)), top: -85, left: 20),
               Positioned(child: Text('2018.12 星期六', style: textStyle(12, false)), right: 20, top: 5)
             ],
           ))

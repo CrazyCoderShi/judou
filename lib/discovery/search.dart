@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class DiscoveryPage extends StatefulWidget {
   @override
@@ -30,13 +31,7 @@ class _DiscoveryPageState extends State<DiscoveryPage> with SingleTickerProvider
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: TextField(
-            textInputAction: TextInputAction.search,
-            textAlign: TextAlign.center,
-            decoration: InputDecoration(
-                hintText: '🔍 搜索你喜欢的内容'
-            )
-          ),
+          title: CupertinoTextField(placeholder: '搜索你喜欢的内容', textAlign: TextAlign.center),
           bottom: TabBar(
               controller: _tabController,
               tabs: myTabs,

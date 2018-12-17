@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class ListCell extends StatelessWidget {
   ListCell({Key key, this.leading, this.title, this.trailing, this.onTap, this.isDivider = false}) : super(key: key);
@@ -19,14 +20,14 @@ class ListCell extends StatelessWidget {
               Row(
                 children: <Widget>[
                   Container(
-                      child: Icon(this.leading, color: Colors.black54), padding: EdgeInsets.only(left: 15, right: 15)),
+                      child: Icon(this.leading, color: Theme.of(context).accentColor), padding: EdgeInsets.only(left: 15, right: 15)),
                   Text(this.title, style: TextStyle(fontSize: 16)),
                 ],
               ),
               Container(
-                  child: Icon(this.trailing, color: Colors.black26, size: 16), padding: EdgeInsets.only(left: 15, right: 15))
+                  child: Icon(this.trailing, color: Theme.of(context).dividerColor, size: 16), padding: EdgeInsets.only(left: 15, right: 15))
             ], mainAxisAlignment: MainAxisAlignment.spaceBetween)),
-        Divider(color: this.isDivider ? Colors.grey[80] : Colors.transparent, indent: 54)
+        Divider(color: this.isDivider ? Theme.of(context).dividerColor : Colors.transparent, indent: 54)
       ]),
       onTap: this.onTap,
     );

@@ -32,7 +32,7 @@ class _SubscriptButtonState extends State<SubscriptButton> {
         ),
         Positioned(
           top: 12,
-          child: Text(widget.subscript, style: TextStyle(fontSize: 12, color: widget.color, fontFamily: 'PingFangSC'))
+          child: Text(widget.subscript, style: TextStyle(fontSize: 12, color: widget.color, fontFamily: 'PingFang'))
         )
       ],
     );

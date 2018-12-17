@@ -36,7 +36,7 @@ class _IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            iconTheme: IconThemeData(color: Colors.black54),
+            iconTheme: Theme.of(context).iconTheme,
             centerTitle: true,
             leading: Container(
               alignment: Alignment.center,
