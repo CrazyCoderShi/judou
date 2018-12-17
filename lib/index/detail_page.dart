@@ -12,22 +12,15 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailStateful extends State<DetailPage> {
-  @override
-  void dispose() {
-    super.dispose();
-    debugPrint('已经死了');
-  }
-
-  void onPressBtn() {
-    widget.onDispose();
-    Navigator.pop(context, '回来的数据');
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('DetailPage'), centerTitle: true),
-      body: Center(child: IconButton(icon: Icon(Icons.arrow_back), onPressed: onPressBtn))
+      appBar: AppBar(title: Text('详情'), centerTitle: true),
+      body: Container(
+        padding: EdgeInsets.all(10),
+        child: ListView(),
+      )
     );
   }
 }

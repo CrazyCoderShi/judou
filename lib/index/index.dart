@@ -17,9 +17,9 @@ class _IndexPageState extends State<IndexPage> {
     final result = await Navigator.push(
         context, MaterialPageRoute(builder: (context) => DetailPage(onDispose: detailPageDispose)));
 
-    Scaffold.of(context)
-      ..removeCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text('$result')));
+//    Scaffold.of(context)
+//      ..removeCurrentSnackBar()
+//      ..showSnackBar(SnackBar(content: Text('$result')));
   }
 
   void _handlePageScroll(ScrollNotification notification) {
