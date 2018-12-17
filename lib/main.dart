@@ -56,8 +56,8 @@ class _HomePageState extends State<HomePage> {
         body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
         bottomNavigationBar: BottomNavigationBar(
           items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), title: Text(''), activeIcon: Icon(Icons.autorenew)),
-            BottomNavigationBarItem(icon: Icon(Icons.public), title: Text(''), activeIcon: Icon(Icons.explore)),
+            BottomNavigationBarItem(icon: ImageIcon(AssetImage('lib/assets/home.png')), title: Text(''), activeIcon: Icon(Icons.autorenew)),
+            BottomNavigationBarItem(icon: ImageIcon(AssetImage('lib/assets/descovery.png')), title: Text(''), activeIcon: Icon(Icons.explore)),
             BottomNavigationBarItem(icon: Icon(Icons.person_outline), title: Text(''), activeIcon: Icon(Icons.person))
           ],
           currentIndex: _selectedIndex,
