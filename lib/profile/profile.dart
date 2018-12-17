@@ -23,7 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
               isDivider: true,
               onTap: () => debugPrint('点击'),
             )
-            
+
           ],
         ));
   }

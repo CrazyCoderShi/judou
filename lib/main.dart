@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'package:judou/index/index.dart';
 import 'package:judou/discovery/search.dart';
 import 'package:judou/profile/profile.dart';
-import 'package:judou/profile/shopping_list_item.dart';
 
 void main() {
 //  debugPaintSizeEnabled = true;
