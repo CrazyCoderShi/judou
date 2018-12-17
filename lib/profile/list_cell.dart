@@ -16,11 +16,15 @@ class ListCell extends StatelessWidget {
         Container(
             padding: EdgeInsets.only(top: 8),
             child: Row(children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Container(
+                      child: Icon(this.leading, color: Colors.black54), padding: EdgeInsets.only(left: 15, right: 15)),
+                  Text(this.title, style: TextStyle(fontSize: 16)),
+                ],
+              ),
               Container(
-                  child: Icon(this.leading, color: Colors.black54), padding: EdgeInsets.only(left: 15, right: 25)),
-              Text(this.title, style: TextStyle(fontSize: 16)),
-              Container(
-                  child: Icon(this.trailing, color: Colors.black54), padding: EdgeInsets.only(left: 15, right: 15))
+                  child: Icon(this.trailing, color: Colors.black26, size: 16), padding: EdgeInsets.only(left: 15, right: 15))
             ], mainAxisAlignment: MainAxisAlignment.spaceBetween)),
         Divider(color: this.isDivider ? Colors.grey[80] : Colors.transparent, indent: 54)
       ]),
