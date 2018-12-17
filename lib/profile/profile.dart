@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'list_cell.dart';
+import 'package:judou/widgets/list_cell.dart';
+import 'message.dart';
+import 'package:judou/widgets/blank.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key key}) : super(key: key);
@@ -27,15 +29,6 @@ class _ProfilePageState extends State<ProfilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
         )
       ]));
-
-  // 留白
-  Widget blank(double height) => SizedBox(
-    width: MediaQuery.of(context).size.width,
-    height: height,
-    child: Container(
-      color: Colors.grey[100]
-    ),
-  );
 
   // 订阅-句子-喜欢
   Widget subscribe() => Container(
@@ -67,13 +60,13 @@ class _ProfilePageState extends State<ProfilePage> {
             child: ListView(children: <Widget>[
               header(),
               subscribe(),
-              blank(10),
+              Blank(),
               ListCell(
                 title: '我的消息',
                 leading: Icons.add_alert,
                 trailing: Icons.arrow_forward_ios,
                 isDivider: true,
-                onTap: () => debugPrint('点击'),
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MessagePage())),
               ),
               ListCell(
                 title: '我的收藏夹',
@@ -88,7 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 trailing: Icons.arrow_forward_ios,
                 onTap: () => debugPrint('点击'),
               ),
-              blank(10),
+              Blank(),
               ListCell(
                 title: '常见问题',
                 leading: Icons.assistant_photo,
@@ -109,14 +102,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 trailing: Icons.arrow_forward_ios,
                 onTap: () => debugPrint('点击'),
               ),
-              blank(10),
+              Blank(),
               ListCell(
                 title: '设置',
                 leading: Icons.settings,
                 trailing: Icons.arrow_forward_ios,
                 onTap: () => debugPrint('点击'),
               ),
-              blank(10)
+              Blank()
             ]),
             top: true
         )

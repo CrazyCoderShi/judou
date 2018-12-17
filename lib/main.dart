@@ -9,24 +9,19 @@ void main() {
   runApp(JuDouApp());
 }
 
+/// TODO： List
+/// 网络请求: dio -> https://github.com/flutterchina/dio
 class JuDouApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
-      theme: ThemeData(
-        primaryColor: Colors.white,
-        accentColor: Colors.black54,
-        dividerColor: Colors.grey[80],
-        iconTheme: IconThemeData(
-          color: Colors.black54
-        ),
-        textTheme: TextTheme(
-          title: TextStyle(fontSize: 20, fontFamily: 'PingFang')
-        )
-      )
-    );
+        home: HomePage(),
+        theme: ThemeData(
+            primaryColor: Colors.white,
+            accentColor: Colors.black54,
+            dividerColor: Colors.grey[80],
+            iconTheme: IconThemeData(color: Colors.black54),
+            textTheme: TextTheme(title: TextStyle(fontSize: 20, fontFamily: 'PingFang'))));
   }
 }
 
@@ -39,13 +34,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-  final _widgetOptions = [
-    IndexPage(),
-    DiscoveryPage(),
-    ProfilePage()
-  ];
+  final _widgetOptions = [IndexPage(), DiscoveryPage(), ProfilePage()];
 
-  void _onItemTapped (int index) {
+  void _onItemTapped(int index) {
     debugPrint('$index');
     setState(() {
       _selectedIndex = index;
@@ -58,20 +49,24 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-    Widget build(BuildContext context) {
-      return Scaffold(
+  Widget build(BuildContext context) {
+    return Scaffold(
         body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
         bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: ImageIcon(AssetImage('lib/assets/home.png')), title: Text(''), activeIcon: Icon(Icons.autorenew)),
-            BottomNavigationBarItem(icon: ImageIcon(AssetImage('lib/assets/descovery.png')), title: Text(''), activeIcon: Icon(Icons.explore)),
-            BottomNavigationBarItem(icon: Icon(Icons.person_outline), title: Text(''), activeIcon: Icon(Icons.person))
-          ],
-          currentIndex: _selectedIndex,
-          fixedColor: Theme.of(context).accentColor,
-          onTap: _onItemTapped,
-          type: BottomNavigationBarType.fixed
-        )
-      );
-    }
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage('lib/assets/home.png')),
+                  title: Text(''),
+                  activeIcon: Icon(Icons.autorenew)),
+              BottomNavigationBarItem(
+                  icon: ImageIcon(AssetImage('lib/assets/descovery.png')),
+                  title: Text(''),
+                  activeIcon: Icon(Icons.explore)),
+              BottomNavigationBarItem(icon: Icon(Icons.person_outline), title: Text(''), activeIcon: Icon(Icons.person))
+            ],
+            currentIndex: _selectedIndex,
+            fixedColor: Theme.of(context).accentColor,
+            onTap: _onItemTapped,
+            type: BottomNavigationBarType.fixed));
+  }
 }
