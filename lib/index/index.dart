@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'item_page.dart';
 import 'detail_page.dart';
 import 'package:judou/widgets/button_subscript.dart';
+import 'dart:convert';
+import 'dart:io';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -10,6 +12,14 @@ class IndexPage extends StatefulWidget {
 
 class _IndexPageState extends State<IndexPage> {
   final PageController _pageController = PageController();
+
+  @override
+  void initState() {
+//    final Map<String, dynamic> data = file
+//    String jsonString = File('lib/json/daily.json').readAsStringSync();
+//    print(jsonString);
+    super.initState();
+  }
 
   void detailPageDispose() {}
 

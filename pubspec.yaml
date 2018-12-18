@@ -68,12 +68,14 @@ flutter:
   # see https://flutter.io/custom-fonts/#from-packages
 
   assets:
-    - lib/assets/
+    - assets/home.png
+    - assets/descovery.png
+    - json/daily.json
 
   fonts:
     - family: LiSung
       fonts:
-        - asset: lib/fonts/Apple-LiSung-Light.ttf
+        - asset: fonts/Apple-LiSung-Light.ttf
     - family: PingFang
       fonts:
-        - asset: lib/fonts/PingFang-SC-Regular.ttf
+        - asset: fonts/PingFang-SC-Regular.ttf
