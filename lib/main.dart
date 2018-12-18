@@ -55,11 +55,11 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: BottomNavigationBar(
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                  icon: ImageIcon(AssetImage('lib/assets/home.png')),
+                  icon: ImageIcon(AssetImage('assets/home.png')),
                   title: Text(''),
                   activeIcon: Icon(Icons.autorenew)),
               BottomNavigationBarItem(
-                  icon: ImageIcon(AssetImage('lib/assets/descovery.png')),
+                  icon: ImageIcon(AssetImage('assets/descovery.png')),
                   title: Text(''),
                   activeIcon: Icon(Icons.explore)),
               BottomNavigationBarItem(icon: Icon(Icons.person_outline), title: Text(''), activeIcon: Icon(Icons.person))

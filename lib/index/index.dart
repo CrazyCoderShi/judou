@@ -15,9 +15,6 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   void initState() {
-//    final Map<String, dynamic> data = file
-//    String jsonString = File('lib/json/daily.json').readAsStringSync();
-//    print(jsonString);
     super.initState();
   }
 
@@ -57,18 +54,25 @@ class _IndexPageState extends State<IndexPage> {
               SubscriptButton(icon: Icon(Icons.favorite_border), subscript: '1k'),
               IconButton(icon: Icon(Icons.share, color: Theme.of(context).accentColor), onPressed: _toDetailPage)
             ]),
-        body: NotificationListener<ScrollNotification>(
-          child: PageView.builder(
-            itemBuilder: (context, index) {
-              return IndexPageItem(onTap: _toDetailPage);
-            },
-            itemCount: 3,
-            controller: this._pageController,
-            onPageChanged: (index) => this._onPageChanged(index)
-          ),
-          onNotification: (ScrollNotification notification) {
-            _handlePageScroll(notification);
-          },
+        body: FutureBuilder(
+          future: DefaultAssetBundle.of(context).loadString('json/daily.json'),
+          builder: (context, snapshot) {
+            Map<String, dynamic> data = jsonDecode(snapshot.data.toString());
+            print(data['page']);
+            return NotificationListener<ScrollNotification>(
+              child: PageView.builder(
+                  itemBuilder: (context, index) {
+                    return IndexPageItem(onTap: _toDetailPage);
+                  },
+                  itemCount: 3,
+                  controller: this._pageController,
+                  onPageChanged: (index) => this._onPageChanged(index)
+              ),
+              onNotification: (ScrollNotification notification) {
+                _handlePageScroll(notification);
+              },
+            );
+          }
         ));
   }
 }
