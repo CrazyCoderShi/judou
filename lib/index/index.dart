@@ -44,9 +44,11 @@ class _IndexPageState extends State<IndexPage> {
   // 初始化每一页的数据
   void _initialPageData(int like, int comment) {
     setState(() {
-      print('-->$like-$comment');
-      _likeNum = (like/1000 > 1) ? '$like'.substring(0, 2) : '$like';
-      _commentNum = (comment/1000 > 1) ? '$comment'.substring(0, 2) : '$comment';
+      double l = like/1000;
+      double c = comment/1000;
+      print('-->$l-$c');
+      _likeNum = (l > 1) ? l.toStringAsFixed(1) + 'k' : '$like';
+      _commentNum = (c > 1) ? c.toStringAsFixed(1) : '$comment';
     });
   }
 
@@ -57,6 +59,7 @@ class _IndexPageState extends State<IndexPage> {
   // 页面滚动时调用
   void _onPageChanged(index) {
     Map<String, dynamic> map = _listData[index];
+    print(map);
     int like = map['like_count'];
     int comment = map['comment_count'];
     _initialPageData(like, comment);

@@ -26,13 +26,13 @@ class _SubscriptButtonState extends State<SubscriptButton> {
       children: <Widget>[
         SizedBox(
           child: Container(
-            padding: EdgeInsets.only(top: 5, right: 6),
+            padding: EdgeInsets.only(top: 5, right: 5),
             child: IconButton(icon: widget.icon, onPressed: widget.onPressed, color: widget.color)
           )
         ),
         Positioned(
           top: 12,
-          child: Text(widget.subscript, style: TextStyle(fontSize: 12, color: widget.color, fontFamily: 'PingFang'))
+          child: Text(widget.subscript, style: TextStyle(fontSize: 10, color: widget.color, fontFamily: 'PingFang'), textAlign: TextAlign.left)
         )
       ],
     );
