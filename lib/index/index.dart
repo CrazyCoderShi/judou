@@ -3,7 +3,6 @@ import 'item_page.dart';
 import 'detail_page.dart';
 import 'package:judou/widgets/button_subscript.dart';
 import 'dart:convert';
-import 'dart:io';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -12,10 +11,55 @@ class IndexPage extends StatefulWidget {
 
 class _IndexPageState extends State<IndexPage> {
   final PageController _pageController = PageController();
+  List _listData = List();
+  String _likeNum = '';
+  String _commentNum = '';
 
   @override
   void initState() {
+    // 读取本地json
+    _readDailyJson().then((data) {
+      if (data != null) {
+        Map<String, dynamic> map = jsonDecode(data);
+        setState(() {
+          _listData = map['data'];
+          _onPageChanged(0); // 初始化第一页
+        });
+      }
+    });
     super.initState();
+  }
+
+  // 读取json数据
+  Future<String> _readDailyJson() async {
+    String contents;
+    try {
+      contents = await DefaultAssetBundle.of(context).loadString('json/daily.json');
+    } catch (e) {
+      print(e);
+    }
+
+    return contents;
+  }
+  // 初始化每一页的数据
+  void _initialPageData(int like, int comment) {
+    setState(() {
+      print('-->$like-$comment');
+      _likeNum = (like/1000 > 1) ? '$like'.substring(0, 2) : '$like';
+      _commentNum = (comment/1000 > 1) ? '$comment'.substring(0, 2) : '$comment';
+    });
+  }
+
+  void _handlePageScroll(ScrollNotification notification) {
+    if (notification.depth == 0 && notification is ScrollUpdateNotification) {}
+  }
+
+  // 页面滚动时调用
+  void _onPageChanged(index) {
+    Map<String, dynamic> map = _listData[index];
+    int like = map['like_count'];
+    int comment = map['comment_count'];
+    _initialPageData(like, comment);
   }
 
   void detailPageDispose() {}
@@ -29,16 +73,6 @@ class _IndexPageState extends State<IndexPage> {
 //      ..showSnackBar(SnackBar(content: Text('$result')));
   }
 
-  void _handlePageScroll(ScrollNotification notification) {
-    if (notification.depth == 0 && notification is ScrollUpdateNotification) {
-
-    }
-  }
-
-  void _onPageChanged(index) {
-    print(index);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,29 +84,21 @@ class _IndexPageState extends State<IndexPage> {
               child: Text('句子', style: TextStyle(fontSize: 22.0, fontFamily: 'LiSung')),
             ),
             actions: <Widget>[
-              SubscriptButton(icon: Icon(Icons.message), subscript: '95'),
-              SubscriptButton(icon: Icon(Icons.favorite_border), subscript: '1k'),
+              SubscriptButton(icon: Icon(Icons.message), subscript: _commentNum),
+              SubscriptButton(icon: Icon(Icons.favorite_border), subscript: _likeNum),
               IconButton(icon: Icon(Icons.share, color: Theme.of(context).accentColor), onPressed: _toDetailPage)
             ]),
-        body: FutureBuilder(
-          future: DefaultAssetBundle.of(context).loadString('json/daily.json'),
-          builder: (context, snapshot) {
-            Map<String, dynamic> data = jsonDecode(snapshot.data.toString());
-            print(data['page']);
-            return NotificationListener<ScrollNotification>(
-              child: PageView.builder(
-                  itemBuilder: (context, index) {
-                    return IndexPageItem(onTap: _toDetailPage);
-                  },
-                  itemCount: 3,
-                  controller: this._pageController,
-                  onPageChanged: (index) => this._onPageChanged(index)
-              ),
-              onNotification: (ScrollNotification notification) {
-                _handlePageScroll(notification);
+        body: NotificationListener<ScrollNotification>(
+          child: PageView.builder(
+              itemBuilder: (context, index) {
+                return IndexPageItem(onTap: _toDetailPage);
               },
-            );
-          }
+              itemCount: _listData.length,
+              controller: this._pageController,
+              onPageChanged: (index) => this._onPageChanged(index)),
+          onNotification: (ScrollNotification notification) {
+            _handlePageScroll(notification);
+          },
         ));
   }
 }
