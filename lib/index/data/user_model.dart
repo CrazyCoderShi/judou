@@ -8,9 +8,9 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      nickname: json['nickname'],
-      avatar: json['avatar'],
-      uid: json['uid']
+      nickname: json['nickname'] as String,
+      avatar: json['avatar'] as String,
+      uid: json['uid'] as String
     );
   }
 }

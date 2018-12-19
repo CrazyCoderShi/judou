@@ -14,7 +14,7 @@ class JuDouModel {
   final UserModel user;
   final ImageModel image;
   final bool isCollected;
-  final double likeCount;
+  final int likeCount;
   final bool isUsedByWeibo;
   final String shareUrl;
   final String maskColor;
@@ -60,31 +60,31 @@ class JuDouModel {
 
   factory JuDouModel.fromJson(Map<String, dynamic> json) {
     return JuDouModel(
-        isPrivate: json['is_private'],
-        dailyDate: json['daily_date'],
-        publishedDate: json['published_at'],
-        isAd: json['is_ad'],
-        isUsedByWechat: json['is_used_by_wechat'],
-        isEditable: json['is_editable'],
-        author: json['author'],
-        isOriginal: json['is_original'],
-        user: json['user'],
-        image: json['image'],
-        isCollected: json['is_collected'],
-        likeCount: json['like_count'],
-        isUsedByWeibo: json['is_used_by_weibo'],
-        shareUrl: json['share_url'],
-        maskColor: json['mask_color'],
-        pictures: json['pictures'],
-        isLiked: json['is_liked'],
-        isRandomable: json['is_randomable'],
-        content: json['content'],
-        commentCount: json['comment_count'],
-        isDisabledComment: json['is_disabled_comment'],
-        maskTransparent: json['mask_transparent'],
-        weiboUsedAt: json['weibo_used_at'],
-        uuid: json['uuid'],
-        subHeading: json['subheading'],
-        isUgc: json['is_ugc']);
+        isPrivate: json['is_private'] as bool,
+        dailyDate: json['daily_date'] as String,
+        publishedDate: json['published_at'] as String,
+        isAd: json['is_ad'] as bool,
+        isUsedByWechat: json['is_used_by_wechat'] as bool,
+        isEditable: json['is_editable'] as bool,
+        author: json['author'] as AuthorModel,
+        isOriginal: json['is_original'] as bool,
+        user: json['user'] as UserModel,
+        image: json['image'] as ImageModel,
+        isCollected: json['is_collected'] as bool,
+        likeCount: json['like_count'] as int,
+        isUsedByWeibo: json['is_used_by_weibo'] as bool,
+        shareUrl: json['share_url'] as String,
+        maskColor: json['mask_color'] as String,
+        pictures: json['pictures'] as List<ImageModel>,
+        isLiked: json['is_liked'] as bool,
+        isRandomable: json['is_randomable'] as bool,
+        content: json['content'] as String,
+        commentCount: json['comment_count'] as int,
+        isDisabledComment: json['is_disabled_comment'] as bool,
+        maskTransparent: json['mask_transparent'] as String,
+        weiboUsedAt: json['weibo_used_at'] as String,
+        uuid: json['uuid'] as String,
+        subHeading: json['subheading'] as String,
+        isUgc: json['is_ugc'] as bool);
   }
 }

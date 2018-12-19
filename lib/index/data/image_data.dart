@@ -9,10 +9,10 @@ class ImageModel {
 
   factory ImageModel.fromJson(Map<String, dynamic> json) {
     return ImageModel(
-      url: json['url'],
-      copyRight: json['copyright'],
-      color: json['color'],
-      id: json['id']
+      url: json['url'] as String,
+      copyRight: json['copyright'] as String,
+      color: json['color'] as String,
+      id: json['id'] as String
     );
   }
 }

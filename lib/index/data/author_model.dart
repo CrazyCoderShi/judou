@@ -26,16 +26,16 @@ class AuthorModel {
 
   factory AuthorModel.fromJson(Map<String, dynamic> json) {
     return AuthorModel(
-      isVerified: json['is_verified'],
-      createDate: json['created_at'],
-      id: json['id'],
-      name: json['name'],
-      sentencesCount: json['sentences_count'],
-      isLocked: json['is_locked'],
-      forbidDate: json['forbided_at'],
-      description: json['description'],
-      type: json['type'],
-      coverUrl: json['cover']
+      isVerified: json['is_verified'] as bool,
+      createDate: json['created_at'] as String,
+      id: json['id'] as String,
+      name: json['name'] as String,
+      sentencesCount: json['sentences_count'] as int,
+      isLocked: json['is_locked'] as bool,
+      forbidDate: json['forbided_at'] as String,
+      description: json['description'] as String,
+      type: json['type'] as String,
+      coverUrl: json['cover'] as String
     );
   }
 }
