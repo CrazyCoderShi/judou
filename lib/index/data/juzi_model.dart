@@ -49,7 +49,7 @@ class JuDouModel {
       this.shareUrl,
       this.maskColor,
       this.pictures,
-      this.isLiked,
+      this.isLiked = false,
       this.isRandomable,
       this.content,
       this.commentCount,
@@ -73,6 +73,8 @@ class JuDouModel {
     var dayList = ['一', '二', '三', '四', '五', '六', '日'];
     var weekday = dayList[date.weekday-1];
     String dayString = '$date'.substring(8, 10);
+    print('---->');
+    print(json['is_liked']);
 
     return JuDouModel(
         isPrivate: json['is_private'] as bool,
@@ -92,7 +94,7 @@ class JuDouModel {
         shareUrl: json['share_url'] as String,
         maskColor: json['mask_color'] as String,
         pictures: imageList,
-        isLiked: json['is_liked'] as bool,
+        isLiked: json['is_liked'] ?? false,
         isRandomable: json['is_randomable'] as bool,
         content: json['content'] as String,
         commentCount: json['comment_count'] as int,

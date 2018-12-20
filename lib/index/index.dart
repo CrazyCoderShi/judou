@@ -92,7 +92,7 @@ class _IndexPageState extends State<IndexPage> {
             ),
             actions: <Widget>[
               SubscriptButton(icon: Icon(Icons.message), subscript: _commentNum),
-              SubscriptButton(icon: Icon(Icons.favorite_border), subscript: _likeNum),
+              SubscriptButton(icon: Icon(Icons.favorite_border, color: _dataModel.isLiked ? Colors.redAccent : Colors.black54), subscript: _likeNum),
               IconButton(icon: Icon(Icons.share, color: Theme.of(context).accentColor), onPressed: _toDetailPage)
             ]),
         body: NotificationListener<ScrollNotification>(
