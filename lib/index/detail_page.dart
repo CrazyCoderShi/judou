@@ -19,7 +19,6 @@ class _DetailStateful extends State<DetailPage> {
     return Scaffold(
         appBar: AppBarUtils.appBar('详情', context),
         body: Container(
-            padding: EdgeInsets.all(10),
             child: ListView.builder(
                 itemBuilder: (context, index) {
                   switch (index) {
