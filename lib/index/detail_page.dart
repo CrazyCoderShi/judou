@@ -1,9 +1,11 @@
-
 import 'package:flutter/material.dart';
+import 'package:judou/widgets/ui_util.dart';
 
 class DetailPage extends StatefulWidget {
   DetailPage({Key key, @required this.onDispose});
   final VoidCallback onDispose;
+
+  final items = List<String>.generate(100, (i) => 'item $i');
 
   @override
   State<StatefulWidget> createState() {
@@ -12,15 +14,29 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailStateful extends State<DetailPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('详情'), centerTitle: true),
-      body: Container(
-        padding: EdgeInsets.all(10),
-        child: ListView(),
-      )
+        appBar: AppBarUtils.appBar('详情', context),
+        body: Container(
+            padding: EdgeInsets.all(10),
+            child: ListView.builder(
+                itemBuilder: (context, index) {
+                  switch (index) {
+                    case 0:
+                      return Text('第0个', style: TextStyle(color: Colors.red));
+                    default :
+                      return Column(children: <Widget>[
+                        ListTile(
+                            title: Text(widget.items[index]),
+                            leading: Icon(Icons.access_alarms),
+                            trailing: Icon(Icons.arrow_forward_ios)),
+                        Divider(indent: 24)
+                      ]);
+                  }
+                },
+                itemCount: widget.items.length)
+        )
     );
   }
 }

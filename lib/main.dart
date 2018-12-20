@@ -18,9 +18,9 @@ class JuDouApp extends StatelessWidget {
         home: HomePage(),
         theme: ThemeData(
             primaryColor: Colors.white,
-            accentColor: Colors.black54,
+            accentColor: Color.fromARGB(255, 45, 45, 45),
             dividerColor: Colors.grey[80],
-            iconTheme: IconThemeData(color: Colors.black54),
+            iconTheme: IconThemeData(color: Colors.black38),
             textTheme: TextTheme(title: TextStyle(fontSize: 20, fontFamily: 'PingFang'))));
   }
 }

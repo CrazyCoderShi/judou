@@ -14,7 +14,11 @@ class IndexPageItem extends StatefulWidget {
 class _IndexPageItemState extends State<IndexPageItem> {
   // 字体设置
   TextStyle textStyle(double fontSize, bool isSpace) => TextStyle(
-      fontSize: fontSize, fontFamily: 'PingFang', fontWeight: FontWeight.w200, letterSpacing: isSpace ? 1 : 0);
+        fontSize: fontSize,
+        fontFamily: 'PingFang',
+        fontWeight: FontWeight.w300,
+        letterSpacing: isSpace ? 1 : 0,
+      );
 
   // 顶部大图部分
   Stack headerView() => Stack(
@@ -23,7 +27,8 @@ class _IndexPageItemState extends State<IndexPageItem> {
             child: Image.network(widget.model.pictures[0].url,
                 fit: BoxFit.cover, width: MediaQuery.of(context).size.width, height: 260, gaplessPlayback: true),
           ),
-          Positioned(child: Text(widget.model.day, style: TextStyle(fontSize: 99, color: Colors.white)), bottom: -50, left: 20)
+          Positioned(
+              child: Text(widget.model.day, style: TextStyle(fontSize: 99, color: Colors.white)), bottom: -50, left: 20)
         ],
       );
 
@@ -53,9 +58,14 @@ class _IndexPageItemState extends State<IndexPageItem> {
               child: Stack(
             children: <Widget>[
               SizedBox(child: contentView()),
-              Positioned(child: Text(widget.model.day, style: TextStyle(fontSize: 99, color: Colors.black)), top: -70, left: 20),
               Positioned(
-                  child: Text(widget.model.dailyDate, style: textStyle(12, false), textAlign: TextAlign.end), right: 20, top: 5)
+                  child: Text(widget.model.day, style: TextStyle(fontSize: 99, color: Colors.black)),
+                  top: -70,
+                  left: 20),
+              Positioned(
+                  child: Text(widget.model.dailyDate, style: textStyle(12, false), textAlign: TextAlign.end),
+                  right: 20,
+                  top: 5)
             ],
           ))
         ],
