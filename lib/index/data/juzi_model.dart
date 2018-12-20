@@ -5,6 +5,7 @@ import 'user_model.dart';
 class JuDouModel {
   final bool isPrivate;
   final String dailyDate;
+  final String day;
   final String publishedDate;
   final bool isAd;
   final bool isUsedByWechat;
@@ -33,6 +34,7 @@ class JuDouModel {
   JuDouModel(
       {this.isPrivate,
       this.dailyDate,
+        this.day,
       this.publishedDate,
       this.isAd,
       this.isUsedByWechat,
@@ -59,23 +61,37 @@ class JuDouModel {
       this.isUgc});
 
   factory JuDouModel.fromJson(Map<String, dynamic> json) {
+    var list = json['pictures'] as List;
+    List<ImageModel> imageList;
+    if (list != null) {
+      imageList =list.map((i) => ImageModel.fromJson(i)).toList();
+    }
+
+    // 日期转换
+    String dailyString = json['daily_date'].toString().substring(0, 7).replaceAll(RegExp(r'-'), '.');
+    var date = DateTime.parse(json['daily_date']);
+    var dayList = ['一', '二', '三', '四', '五', '六', '日'];
+    var weekday = dayList[date.weekday-1];
+    String dayString = '$date'.substring(8, 10);
+
     return JuDouModel(
         isPrivate: json['is_private'] as bool,
-        dailyDate: json['daily_date'] as String,
+        dailyDate: dailyString + '星期' + '$weekday',
+        day: dayString,
         publishedDate: json['published_at'] as String,
         isAd: json['is_ad'] as bool,
         isUsedByWechat: json['is_used_by_wechat'] as bool,
         isEditable: json['is_editable'] as bool,
-        author: json['author'] as AuthorModel,
+        author: AuthorModel.fromJson(json['author'] ?? Map()),
         isOriginal: json['is_original'] as bool,
-        user: json['user'] as UserModel,
-        image: json['image'] as ImageModel,
+        user: UserModel.fromJson(json['user'] ?? Map()),
+        image: ImageModel.fromJson(json['image'] ?? Map()),
         isCollected: json['is_collected'] as bool,
         likeCount: json['like_count'] as int,
         isUsedByWeibo: json['is_used_by_weibo'] as bool,
         shareUrl: json['share_url'] as String,
         maskColor: json['mask_color'] as String,
-        pictures: json['pictures'] as List<ImageModel>,
+        pictures: imageList,
         isLiked: json['is_liked'] as bool,
         isRandomable: json['is_randomable'] as bool,
         content: json['content'] as String,

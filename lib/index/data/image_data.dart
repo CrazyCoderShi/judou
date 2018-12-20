@@ -3,7 +3,7 @@ class ImageModel {
   final String url;
   final String copyRight;
   final String color;
-  final String id;
+  final int id;
 
   ImageModel({this.url, this.copyRight, this.color, this.id});
 
@@ -12,7 +12,7 @@ class ImageModel {
       url: json['url'] as String,
       copyRight: json['copyright'] as String,
       color: json['color'] as String,
-      id: json['id'] as String
+      id: json['id'] as int
     );
   }
 }

@@ -3,6 +3,7 @@ import 'item_page.dart';
 import 'detail_page.dart';
 import 'package:judou/widgets/button_subscript.dart';
 import 'dart:convert';
+import 'data/juzi_model.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -11,18 +12,25 @@ class IndexPage extends StatefulWidget {
 
 class _IndexPageState extends State<IndexPage> {
   final PageController _pageController = PageController();
-  List _listData = List();
+  List<JuDouModel> _listData = List();
   String _likeNum = '';
   String _commentNum = '';
+  JuDouModel _dataModel;
 
   @override
   void initState() {
+
     // 读取本地json
     _readDailyJson().then((data) {
       if (data != null) {
         Map<String, dynamic> map = jsonDecode(data);
+        List temp = map['data'];
+        for (var i in temp) {
+          if (i['comment_count'] != 0) {
+            _listData.add(JuDouModel.fromJson(i));
+          }
+        }
         setState(() {
-          _listData = map['data'];
           _onPageChanged(0); // 初始化第一页
         });
       }
@@ -44,9 +52,8 @@ class _IndexPageState extends State<IndexPage> {
   // 初始化每一页的数据
   void _initialPageData(int like, int comment) {
     setState(() {
-      double l = like/1000;
-      double c = comment/1000;
-      print('-->$l-$c');
+      double l = _dataModel.likeCount/1000;
+      double c = _dataModel.commentCount/1000;
       _likeNum = (l > 1) ? l.toStringAsFixed(1) + 'k' : '$like';
       _commentNum = (c > 1) ? c.toStringAsFixed(1) : '$comment';
     });
@@ -58,11 +65,8 @@ class _IndexPageState extends State<IndexPage> {
 
   // 页面滚动时调用
   void _onPageChanged(index) {
-    Map<String, dynamic> map = _listData[index];
-    print(map);
-    int like = map['like_count'];
-    int comment = map['comment_count'];
-    _initialPageData(like, comment);
+    _dataModel = _listData[index];
+    _initialPageData(_dataModel.likeCount, _dataModel.commentCount);
   }
 
   void detailPageDispose() {}
@@ -94,7 +98,7 @@ class _IndexPageState extends State<IndexPage> {
         body: NotificationListener<ScrollNotification>(
           child: PageView.builder(
               itemBuilder: (context, index) {
-                return IndexPageItem(onTap: _toDetailPage);
+                return IndexPageItem(onTap: _toDetailPage, model: _dataModel);
               },
               itemCount: _listData.length,
               controller: this._pageController,

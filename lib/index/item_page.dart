@@ -1,36 +1,31 @@
 import 'package:flutter/material.dart';
+import 'data/juzi_model.dart';
 
 class IndexPageItem extends StatefulWidget {
-  IndexPageItem({Key key, this.onTap}) : super(key: key);
+  IndexPageItem({Key key, this.onTap, this.model}) : super(key: key);
 
-//  final String content;
-//  final String author;
-//  final String date;
-//  final String imageUrl;
   final VoidCallback onTap;
+  final JuDouModel model;
 
   @override
   _IndexPageItemState createState() => _IndexPageItemState();
 }
 
 class _IndexPageItemState extends State<IndexPageItem> {
-
+  // 字体设置
   TextStyle textStyle(double fontSize, bool isSpace) => TextStyle(
-      fontSize: fontSize,
-      fontFamily: 'PingFang',
-      fontWeight: FontWeight.w200,
-      letterSpacing: isSpace ? 1 : 0
-  );
+      fontSize: fontSize, fontFamily: 'PingFang', fontWeight: FontWeight.w200, letterSpacing: isSpace ? 1 : 0);
 
   // 顶部大图部分
   Stack headerView() => Stack(
-    children: <Widget>[
-      SizedBox(
-        child: Image.network('https://file.juzimi.com/weibopic/jxzxmu5.jpg', fit: BoxFit.cover, width: MediaQuery.of(context).size.width, height: 300),
-      ),
-      Positioned(child: Text('18', style: TextStyle(fontSize: 99, color: Colors.white)), bottom: -50, left: 20)
-    ],
-  );
+        children: <Widget>[
+          SizedBox(
+            child: Image.network(widget.model.pictures[0].url,
+                fit: BoxFit.cover, width: MediaQuery.of(context).size.width, height: 260, gaplessPlayback: true),
+          ),
+          Positioned(child: Text(widget.model.day, style: TextStyle(fontSize: 99, color: Colors.white)), bottom: -50, left: 20)
+        ],
+      );
 
   // 文章和作者部分
   Container contentView() => Container(
@@ -38,23 +33,14 @@ class _IndexPageItemState extends State<IndexPageItem> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text('曾静在某一瞬间, 我们都以为自己长大了。'
-              '但是有一天，我们终于发现，长大的含义除了欲望还有勇气、责任、坚强以及某种必须的牺牲。'
-              '在生活面前们还都是孩子们，其实我们从未长大，还不懂爱和被爱。',
-              style: textStyle(17, true)
-          ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.only(top: 10),
-                  child: Text('与青春有关的日子', style: textStyle(17, true))
-                )
-              ]
-          )
+          Text(widget.model.content, style: textStyle(17, true), textAlign: TextAlign.start),
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+            Container(
+                padding: EdgeInsets.only(top: 10),
+                child: Text(widget.model.subHeading, style: textStyle(17, true), textAlign: TextAlign.end))
+          ])
         ],
-      )
-  );
+      ));
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +49,13 @@ class _IndexPageItemState extends State<IndexPageItem> {
       child: Column(
         children: <Widget>[
           headerView(),
-          Expanded(child: Stack(
+          Expanded(
+              child: Stack(
             children: <Widget>[
               SizedBox(child: contentView()),
-              Positioned(child: Text('18', style: TextStyle(fontSize: 99, color: Colors.black)), top: -70, left: 20),
-              Positioned(child: Text('2018.12 星期六', style: textStyle(12, false)), right: 20, top: 5)
+              Positioned(child: Text(widget.model.day, style: TextStyle(fontSize: 99, color: Colors.black)), top: -70, left: 20),
+              Positioned(
+                  child: Text(widget.model.dailyDate, style: textStyle(12, false), textAlign: TextAlign.end), right: 20, top: 5)
             ],
           ))
         ],

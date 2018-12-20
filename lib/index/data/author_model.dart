@@ -2,7 +2,7 @@
 class AuthorModel {
   final bool isVerified;
   final String createDate;
-  final String id;
+  final int id;
   final String name;
   final int sentencesCount;
   final bool isLocked;
@@ -28,7 +28,7 @@ class AuthorModel {
     return AuthorModel(
       isVerified: json['is_verified'] as bool,
       createDate: json['created_at'] as String,
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
       sentencesCount: json['sentences_count'] as int,
       isLocked: json['is_locked'] as bool,
