@@ -73,8 +73,6 @@ class JuDouModel {
     var dayList = ['一', '二', '三', '四', '五', '六', '日'];
     var weekday = dayList[date.weekday-1];
     String dayString = '$date'.substring(8, 10);
-    print('---->');
-    print(json['is_liked']);
 
     return JuDouModel(
         isPrivate: json['is_private'] as bool,

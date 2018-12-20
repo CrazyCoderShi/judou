@@ -15,7 +15,7 @@ class _IndexPageState extends State<IndexPage> {
   List<JuDouModel> _listData = List();
   String _likeNum = '';
   String _commentNum = '';
-  JuDouModel _dataModel;
+  JuDouModel _dataModel = JuDouModel();
 
   @override
   void initState() {
