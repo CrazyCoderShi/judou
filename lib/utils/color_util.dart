@@ -4,6 +4,7 @@ class ColorUtils {
 
   /// icon颜色
   static const Color iconColor = Colors.black54;
+
   /// 分割线颜色
   static const Color dividerColor = Color(0xFFEEEEEE);
 
