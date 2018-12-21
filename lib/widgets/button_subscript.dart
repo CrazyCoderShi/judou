@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'color_util.dart';
+import 'package:judou/utils/color_util.dart';
 
 class SubscriptButton extends StatefulWidget {
   SubscriptButton({

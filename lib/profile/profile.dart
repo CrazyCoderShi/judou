@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:judou/widgets/list_cell.dart';
 import 'message.dart';
 import 'package:judou/widgets/blank.dart';
-import 'package:judou/widgets/color_util.dart';
+import 'package:judou/utils/color_util.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key key}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:judou/widgets/ui_util.dart';
+import 'package:judou/utils/ui_util.dart';
 import 'detail_header.dart';
 
 class DetailPage extends StatefulWidget {

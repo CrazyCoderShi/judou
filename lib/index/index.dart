@@ -4,7 +4,7 @@ import 'package:judou/index/detail_page/detail_page.dart';
 import 'package:judou/widgets/button_subscript.dart';
 import 'dart:convert';
 import 'data/juzi_model.dart';
-import 'package:judou/widgets/color_util.dart';
+import 'package:judou/utils/color_util.dart';
 
 class IndexPage extends StatefulWidget {
   @override

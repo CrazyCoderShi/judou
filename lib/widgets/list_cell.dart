@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:judou/widgets/color_util.dart';
+import 'package:judou/utils/color_util.dart';
 
 class ListCell extends StatelessWidget {
   ListCell({Key key, this.leading, this.title, this.trailing, this.onTap, this.isDivider = false}) : super(key: key);

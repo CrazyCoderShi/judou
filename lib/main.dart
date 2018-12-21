@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:judou/index/index.dart';
 import 'package:judou/discovery/search.dart';
 import 'package:judou/profile/profile.dart';
-import 'package:judou/widgets/color_util.dart';
+import 'package:judou/utils/color_util.dart';
 
 void main() {
 //  debugPaintSizeEnabled = true;
