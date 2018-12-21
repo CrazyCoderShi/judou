@@ -86,9 +86,9 @@ class DetailHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         btn(Icons.favorite_border, () => print('11111'), '10'),
-        btn(Icons.favorite_border, null, '20'),
-        btn(Icons.favorite_border, null),
-        btn(Icons.favorite_border, null)
+        btn(Icons.insert_comment, null, '20'),
+        btn(Icons.bookmark_border, null),
+        btn(Icons.share, null)
       ],
     );
   }
