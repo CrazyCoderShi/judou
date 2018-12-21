@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'color_util.dart';
 
 class SubscriptButton extends StatefulWidget {
   SubscriptButton({
     Key key,
     @required this.icon,
-    this.color = Colors.black54,
+    this.color = ColorUtils.iconColor,
     @required this.subscript,
     this.onPressed
   }) : super(key: key);

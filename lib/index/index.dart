@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'item_page.dart';
-import 'detail_page.dart';
+import 'package:judou/index/detail_page/detail_page.dart';
 import 'package:judou/widgets/button_subscript.dart';
 import 'dart:convert';
 import 'data/juzi_model.dart';
+import 'package:judou/widgets/color_util.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -84,7 +85,7 @@ class _IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            iconTheme: Theme.of(context).iconTheme,
+            iconTheme: IconThemeData(color: ColorUtils.iconColor),
             centerTitle: true,
             leading: Container(
               alignment: Alignment.center,
@@ -92,8 +93,8 @@ class _IndexPageState extends State<IndexPage> {
             ),
             actions: <Widget>[
               SubscriptButton(icon: Icon(Icons.message), subscript: _commentNum),
-              SubscriptButton(icon: Icon(Icons.favorite_border, color: _dataModel.isLiked ? Colors.redAccent : Colors.black54), subscript: _likeNum),
-              IconButton(icon: Icon(Icons.share, color: Theme.of(context).accentColor), onPressed: _toDetailPage)
+              SubscriptButton(icon: Icon(Icons.favorite_border, color: _dataModel.isLiked ? Colors.redAccent : ColorUtils.iconColor), subscript: _likeNum),
+              IconButton(icon: Icon(Icons.share, color: ColorUtils.iconColor), onPressed: _toDetailPage)
             ]),
         body: NotificationListener<ScrollNotification>(
           child: PageView.builder(

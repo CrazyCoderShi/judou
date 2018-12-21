@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:judou/widgets/list_cell.dart';
 import 'message.dart';
 import 'package:judou/widgets/blank.dart';
+import 'package:judou/widgets/color_util.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key key}) : super(key: key);
@@ -22,9 +23,9 @@ class _ProfilePageState extends State<ProfilePage> {
           children: <Widget>[
             Text(
               '庸者的救赎',
-              style: Theme.of(context).textTheme.title,
+              style: TextStyle(fontSize: 20, fontFamily: 'PingFang'),
             ),
-            GestureDetector(child: Text('点击查看个人主页', style: TextStyle(fontSize: 14, color: Colors.black26)))
+            GestureDetector(child: Text('点击查看个人主页', style: TextStyle(fontSize: 14, color: ColorUtils.textGreyColor)))
           ],
           crossAxisAlignment: CrossAxisAlignment.start,
         )
@@ -37,9 +38,9 @@ class _ProfilePageState extends State<ProfilePage> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         columnText('订阅'),
-        SizedBox(width: 1, height: 25, child: Container(color: Theme.of(context).dividerColor)),
+        SizedBox(width: 1, height: 25, child: Container(color: ColorUtils.dividerColor)),
         columnText('句子'),
-        SizedBox(width: 1, height: 25, child: Container(color: Theme.of(context).dividerColor)),
+        SizedBox(width: 1, height: 25, child: Container(color: ColorUtils.dividerColor)),
         columnText('喜欢'),
       ],
     ),
@@ -48,7 +49,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget columnText(String title) => Column(
     children: <Widget>[
       Text('0', style: TextStyle(fontSize: 16)),
-      Text(title, style: TextStyle(fontSize: 14, color: Colors.black26))
+      Text(title, style: TextStyle(fontSize: 14, color: ColorUtils.textGreyColor))
     ],
   );
 

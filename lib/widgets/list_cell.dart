@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:judou/widgets/color_util.dart';
 
 class ListCell extends StatelessWidget {
   ListCell({Key key, this.leading, this.title, this.trailing, this.onTap, this.isDivider = false}) : super(key: key);
@@ -22,16 +23,16 @@ class ListCell extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Container(
-                          child: Icon(this.leading, color: Theme.of(context).accentColor),
+                          child: Icon(this.leading, color: ColorUtils.iconColor),
                           padding: EdgeInsets.only(left: 15, right: 15)),
                       Text(this.title, style: TextStyle(fontSize: 16)),
                     ],
                   ),
                   Container(
-                      child: Icon(this.trailing, color: Theme.of(context).dividerColor, size: 16),
+                      child: Icon(this.trailing, color: ColorUtils.dividerColor, size: 16),
                       padding: EdgeInsets.only(left: 15, right: 15))
                 ], mainAxisAlignment: MainAxisAlignment.spaceBetween)),
-            Divider(color: this.isDivider ? Theme.of(context).dividerColor : Colors.transparent, indent: 54, height: 1)
+            Divider(color: this.isDivider ? ColorUtils.dividerColor : Colors.transparent, indent: 54, height: 1)
           ]),
           color: Colors.white),
       onTap: this.onTap,

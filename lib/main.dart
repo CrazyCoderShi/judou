@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:judou/index/index.dart';
 import 'package:judou/discovery/search.dart';
 import 'package:judou/profile/profile.dart';
+import 'package:judou/widgets/color_util.dart';
 
 void main() {
 //  debugPaintSizeEnabled = true;
@@ -15,13 +16,9 @@ class JuDouApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: HomePage(),
-        theme: ThemeData(
-            primaryColor: Colors.white,
-            accentColor: Color.fromARGB(255, 45, 45, 45),
-            dividerColor: Colors.grey[80],
-            iconTheme: IconThemeData(color: Colors.black38),
-            textTheme: TextTheme(title: TextStyle(fontSize: 20, fontFamily: 'PingFang'))));
+      home: HomePage(),
+      theme: ThemeData(primaryColor: Colors.white)
+    );
   }
 }
 
@@ -55,9 +52,7 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: BottomNavigationBar(
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                  icon: ImageIcon(AssetImage('assets/home.png')),
-                  title: Text(''),
-                  activeIcon: Icon(Icons.autorenew)),
+                  icon: ImageIcon(AssetImage('assets/home.png')), title: Text(''), activeIcon: Icon(Icons.autorenew)),
               BottomNavigationBarItem(
                   icon: ImageIcon(AssetImage('assets/descovery.png')),
                   title: Text(''),
@@ -65,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               BottomNavigationBarItem(icon: Icon(Icons.person_outline), title: Text(''), activeIcon: Icon(Icons.person))
             ],
             currentIndex: _selectedIndex,
-            fixedColor: Theme.of(context).accentColor,
+            fixedColor: ColorUtils.textPrimaryColor,
             onTap: _onItemTapped,
             type: BottomNavigationBarType.fixed));
   }

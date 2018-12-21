@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'color_util.dart';
 
 class AppBarUtils {
   static AppBar appBar(String title, BuildContext context, [Widget leading, List<Widget> actions]) {
@@ -15,7 +16,8 @@ class AppBarUtils {
                 fontFamily: 'PingFang')),
         centerTitle: true,
         leading: leading ??
-            IconButton(icon: Icon(Icons.arrow_back_ios, color: Colors.black54, size: 20), onPressed: backAction),
+            IconButton(
+                icon: Icon(Icons.arrow_back_ios, color: ColorUtils.iconColor, size: 20), onPressed: backAction),
         actions: actions);
   }
 }
