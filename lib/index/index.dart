@@ -105,7 +105,7 @@ class _IndexPageState extends State<IndexPage> {
               onPageChanged: (index) => this._onPageChanged(index)),
           onNotification: (ScrollNotification notification) {
             _handlePageScroll(notification);
-          },
+          }
         ));
   }
 }
