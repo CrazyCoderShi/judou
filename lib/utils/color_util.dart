@@ -11,4 +11,6 @@ class ColorUtils {
   static const Color textPrimaryColor = Color(0xFF333333);
   /// 灰色文字颜色
   static const Color textGreyColor = Color(0x42000000);
+  /// 用户信息的用户名颜色
+  static const Color textUserNameColor = Color(0x73000000);
 }

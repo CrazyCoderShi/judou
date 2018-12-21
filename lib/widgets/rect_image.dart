@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Avatar extends StatelessWidget {
-  Avatar({Key key, this.padding, this.radius, this.imageUrl, this.width, this.height}) : super(key: key);
+class RectImage extends StatelessWidget {
+  RectImage({Key key, this.radius, this.imageUrl, this.width, this.height}) : super(key: key);
 
-  final EdgeInsetsGeometry padding;
   final double radius;
   final String imageUrl;
   final double width;
@@ -13,7 +12,7 @@ class Avatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(this.radius)),
-      child: Image.network(this.imageUrl, width: this.width, height: this.height)
+      child: Image.network(this.imageUrl, width: this.width, height: this.height, fit: BoxFit.cover)
     );
   }
 }

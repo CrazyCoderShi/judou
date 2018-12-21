@@ -16,7 +16,7 @@ class _IndexPageItemState extends State<IndexPageItem> {
   TextStyle textStyle(double fontSize, bool isSpace) => TextStyle(
         fontSize: fontSize,
         fontFamily: 'PingFang',
-        fontWeight: FontWeight.w300,
+        fontWeight: FontWeight.w200,
         letterSpacing: isSpace ? 1 : 0,
       );
 
