@@ -21,3 +21,4 @@ class AppBarUtils {
         actions: actions);
   }
 }
+
