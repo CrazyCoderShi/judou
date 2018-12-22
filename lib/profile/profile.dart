@@ -25,7 +25,10 @@ class _ProfilePageState extends State<ProfilePage> {
               '庸者的救赎',
               style: TextStyle(fontSize: 20, fontFamily: 'PingFang'),
             ),
-            GestureDetector(child: Text('点击查看个人主页', style: TextStyle(fontSize: 14, color: ColorUtils.textGreyColor)))
+            GestureDetector(
+                child: Text('点击查看个人主页',
+                    style: TextStyle(
+                        fontSize: 14, color: ColorUtils.textGreyColor)))
           ],
           crossAxisAlignment: CrossAxisAlignment.start,
         )
@@ -33,25 +36,28 @@ class _ProfilePageState extends State<ProfilePage> {
 
   // 订阅-句子-喜欢
   Widget subscribe() => Container(
-    padding: EdgeInsets.only(bottom: 15, left: 15, right: 15),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[
-        columnText('订阅'),
-        SizedBox(width: 1, height: 25, child: Container(color: ColorUtils.dividerColor)),
-        columnText('句子'),
-        SizedBox(width: 1, height: 25, child: Container(color: ColorUtils.dividerColor)),
-        columnText('喜欢'),
-      ],
-    ),
-  );
+      padding: EdgeInsets.only(bottom: 15, left: 15, right: 15),
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            columnText('订阅'),
+            SizedBox(
+                width: 1,
+                height: 25,
+                child: Container(color: ColorUtils.dividerColor)),
+            columnText('句子'),
+            SizedBox(
+                width: 1,
+                height: 25,
+                child: Container(color: ColorUtils.dividerColor)),
+            columnText('喜欢'),
+          ]));
 
-  Widget columnText(String title) => Column(
-    children: <Widget>[
-      Text('0', style: TextStyle(fontSize: 16)),
-      Text(title, style: TextStyle(fontSize: 14, color: ColorUtils.textGreyColor))
-    ],
-  );
+  Widget columnText(String title) => Column(children: <Widget>[
+        Text('0', style: TextStyle(fontSize: 16)),
+        Text(title,
+            style: TextStyle(fontSize: 14, color: ColorUtils.textGreyColor))
+      ]);
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +73,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 leading: Icons.add_alert,
                 trailing: Icons.arrow_forward_ios,
                 isDivider: true,
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MessagePage())),
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MessagePage())),
               ),
               ListCell(
                 title: '我的收藏夹',
@@ -112,8 +119,6 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               Blank()
             ]),
-            top: true
-        )
-    );
+            top: true));
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:judou/utils/ui_util.dart';
 import 'detail_header.dart';
+import 'detail_label.dart';
 
 class DetailPage extends StatefulWidget {
   DetailPage({Key key, @required this.onDispose});
@@ -25,6 +26,8 @@ class _DetailStateful extends State<DetailPage> {
                   switch (index) {
                     case 0:
                       return DetailHeader();
+                    case 1:
+                      return DetailLabel();
                     default :
                       return Column(children: <Widget>[
                         ListTile(

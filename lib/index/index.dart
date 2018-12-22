@@ -20,7 +20,6 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   void initState() {
-
     // 读取本地json
     _readDailyJson().then((data) {
       if (data != null) {
@@ -43,18 +42,20 @@ class _IndexPageState extends State<IndexPage> {
   Future<String> _readDailyJson() async {
     String contents;
     try {
-      contents = await DefaultAssetBundle.of(context).loadString('json/daily.json');
+      contents =
+          await DefaultAssetBundle.of(context).loadString('json/daily.json');
     } catch (e) {
       print(e);
     }
 
     return contents;
   }
+
   // 初始化每一页的数据
   void _initialPageData(int like, int comment) {
     setState(() {
-      double l = _dataModel.likeCount/1000;
-      double c = _dataModel.commentCount/1000;
+      double l = _dataModel.likeCount / 1000;
+      double c = _dataModel.commentCount / 1000;
       _likeNum = (l > 1) ? l.toStringAsFixed(1) + 'k' : '$like';
       _commentNum = (c > 1) ? c.toStringAsFixed(1) : '$comment';
     });
@@ -74,7 +75,9 @@ class _IndexPageState extends State<IndexPage> {
 
   void _toDetailPage() async {
     final result = await Navigator.push(
-        context, MaterialPageRoute(builder: (context) => DetailPage(onDispose: detailPageDispose)));
+        context,
+        MaterialPageRoute(
+            builder: (context) => DetailPage(onDispose: detailPageDispose)));
 
 //    Scaffold.of(context)
 //      ..removeCurrentSnackBar()
@@ -89,24 +92,32 @@ class _IndexPageState extends State<IndexPage> {
             centerTitle: true,
             leading: Container(
               alignment: Alignment.center,
-              child: Text('句子', style: TextStyle(fontSize: 22.0, fontFamily: 'LiSung')),
+              child: Text('句子',
+                  style: TextStyle(fontSize: 22.0, fontFamily: 'LiSung')),
             ),
             actions: <Widget>[
-              SubscriptButton(icon: Icon(Icons.message), subscript: _commentNum),
-              SubscriptButton(icon: Icon(Icons.favorite_border, color: _dataModel.isLiked ? Colors.redAccent : ColorUtils.iconColor), subscript: _likeNum),
-              IconButton(icon: Icon(Icons.share, color: ColorUtils.iconColor), onPressed: _toDetailPage)
+              SubscriptButton(
+                  icon: Icon(Icons.message), subscript: _commentNum),
+              SubscriptButton(
+                  icon: Icon(Icons.favorite_border,
+                      color: _dataModel.isLiked
+                          ? Colors.redAccent
+                          : ColorUtils.iconColor),
+                  subscript: _likeNum),
+              IconButton(
+                  icon: Icon(Icons.share, color: ColorUtils.iconColor),
+                  onPressed: _toDetailPage)
             ]),
         body: NotificationListener<ScrollNotification>(
-          child: PageView.builder(
-              itemBuilder: (context, index) {
-                return IndexPageItem(onTap: _toDetailPage, model: _dataModel);
-              },
-              itemCount: _listData.length,
-              controller: this._pageController,
-              onPageChanged: (index) => this._onPageChanged(index)),
-          onNotification: (ScrollNotification notification) {
-            _handlePageScroll(notification);
-          }
-        ));
+            child: PageView.builder(
+                itemBuilder: (context, index) {
+                  return IndexPageItem(onTap: _toDetailPage, model: _dataModel);
+                },
+                itemCount: _listData.length,
+                controller: this._pageController,
+                onPageChanged: (index) => this._onPageChanged(index)),
+            onNotification: (ScrollNotification notification) {
+              _handlePageScroll(notification);
+            }));
   }
 }
