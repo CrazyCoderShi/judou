@@ -17,7 +17,7 @@ class DetailHeader extends StatelessWidget {
   }
 
   // 顶部作者信息
-  Widget autorInfo() => Row(
+  Widget authorInfo() => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
@@ -82,14 +82,24 @@ class DetailHeader extends StatelessWidget {
       onTap: onTap
     );
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        btn(Icons.favorite_border, () => print('11111'), '10'),
-        btn(Icons.insert_comment, null, '20'),
-        btn(Icons.bookmark_border, null),
-        btn(Icons.share, null)
-      ],
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                btn(Icons.favorite_border, () => print('11111'), '10'),
+                btn(Icons.insert_comment, null, '20'),
+                btn(Icons.bookmark_border, null),
+                btn(Icons.share, null)
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -99,7 +109,7 @@ class DetailHeader extends StatelessWidget {
       padding: EdgeInsets.only(top: 15, bottom: 10, left: 15, right: 15),
       child: Column(
         children: <Widget>[
-          autorInfo(),
+          authorInfo(),
           Text(
             '生气的人是一个复杂的动物，发出极度矛盾的信息，哀求着救助与关注，然而当这一切到来的时，却又拒绝，希望无须语言就可以得到理解',
             style: TextStyle(color: ColorUtils.textPrimaryColor, fontSize: 14, height: 1.2),
