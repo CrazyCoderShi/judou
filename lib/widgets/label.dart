@@ -7,30 +7,33 @@ class Label extends StatelessWidget {
       this.title,
       @required this.width,
       @required this.height,
-      this.padding,
-      this.radius})
+      this.radius,
+      this.onTap})
       : super(key: key);
 
   final double width;
   final double height;
   final double radius;
   final String title;
-  final EdgeInsetsGeometry padding;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        width: this.width,
-        height: this.height,
-        child: Container(
-            padding: this.padding ?? EdgeInsets.all(0),
-            decoration: BoxDecoration(
-                border: Border.all(color: ColorUtils.dividerColor),
-                borderRadius:
-                    BorderRadius.all(Radius.circular(this.radius ?? 0)),
-                shape: BoxShape.rectangle),
-            child: Text('爱情',
-                style:
-                    TextStyle(color: ColorUtils.textGreyColor, fontSize: 14))));
+    return GestureDetector(
+      child: SizedBox(
+          width: this.width,
+          height: this.height,
+          child: Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: ColorUtils.textGreyColor),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(this.radius ?? 0)),
+                  shape: BoxShape.rectangle),
+              child: Center(
+                child: Text(this.title,
+                    style: TextStyle(color: Colors.black45, fontSize: 12)),
+              ))),
+      onTap: this.onTap ?? () => {},
+    );
   }
 }
