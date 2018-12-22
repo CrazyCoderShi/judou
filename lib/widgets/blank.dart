@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:judou/utils/color_util.dart';
 
 class Blank extends StatelessWidget {
   Blank({Key key, this.height = 10}) : super(key: key);
@@ -8,6 +9,9 @@ class Blank extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: MediaQuery.of(context).size.width, height: height, child: Container(color: Colors.grey[100]));
+      width: MediaQuery.of(context).size.width,
+      height: height,
+      child: Container(color: ColorUtils.blankColor),
+    );
   }
 }
