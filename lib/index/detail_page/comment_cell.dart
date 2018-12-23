@@ -3,9 +3,9 @@ import 'package:judou/widgets/image_avatar.dart';
 import 'package:judou/utils/color_util.dart';
 
 class CommentCell extends StatelessWidget {
-  CommentCell({Key key, @required this.isDivider}) : super(key: key);
+  CommentCell({Key key, @required this.divider}) : super(key: key);
 
-  final bool isDivider;
+  final Widget divider;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +93,7 @@ class CommentCell extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
             child: Column(
               children: <Widget>[
                 userInfo(),
@@ -106,7 +106,7 @@ class CommentCell extends StatelessWidget {
               ],
             ),
           ),
-          isDivider ? Divider(indent: 50) : Container()
+          divider
         ],
       ),
     );

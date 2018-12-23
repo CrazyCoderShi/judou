@@ -31,7 +31,7 @@ class _DetailStateful extends State<DetailPage> {
                 child: Text('热门评论'),
               ),
               Divider(),
-              CommentCell(isDivider: false),
+              CommentCell(divider: Container()),
               Blank()
             ],
           ),
@@ -61,11 +61,11 @@ class _DetailStateful extends State<DetailPage> {
               case 2:
                 return hotCommnets();
               case 98:
-                return CommentCell(isDivider: false);
+                return CommentCell(divider: Container());
               case 99:
                 return endline();
               default:
-                return CommentCell(isDivider: true);
+                return CommentCell(divider: Divider(indent: 50));
             }
           },
           itemCount: widget.items.length,
