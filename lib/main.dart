@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:judou/index/index.dart';
-import 'package:judou/discovery/search.dart';
+import 'package:judou/discovery/discovery.dart';
 import 'package:judou/profile/profile.dart';
 import 'package:judou/utils/color_util.dart';
 
