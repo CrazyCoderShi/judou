@@ -1,10 +1,10 @@
+import 'detail_label.dart';
 import 'package:flutter/material.dart';
 import 'package:judou/utils/ui_util.dart';
 import 'package:judou/widgets/blank.dart';
 import 'package:judou/utils/color_util.dart';
-import 'judou_cell.dart';
-import 'detail_label.dart';
-import 'comment_cell.dart';
+import 'package:judou/widgets/judou_cell.dart';
+import 'package:judou/widgets/comment_cell.dart';
 
 class DetailPage extends StatefulWidget {
   DetailPage({Key key});

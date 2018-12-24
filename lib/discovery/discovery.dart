@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:judou/utils/color_util.dart';
 import 'package:judou/widgets/blank.dart';
-import 'package:judou/index/detail_page/judou_cell.dart';
+import 'package:judou/widgets/judou_cell.dart';
 import 'package:judou/index/detail_page/detail_page.dart';
 
 class DiscoveryPage extends StatefulWidget {
