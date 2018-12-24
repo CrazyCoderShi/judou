@@ -34,7 +34,7 @@ class _DiscoveryPageState extends State<DiscoveryPage>
     return Scaffold(
       appBar: AppBar(
         title: CupertinoTextField(
-          placeholder: '搜索你喜欢的内容',
+          placeholder: '🔍搜索你喜欢的内容',
           textAlign: TextAlign.center,
           decoration: BoxDecoration(
             color: ColorUtils.dividerColor,
@@ -42,7 +42,8 @@ class _DiscoveryPageState extends State<DiscoveryPage>
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(20.0),
           ),
-          style: TextStyle(height: 0.5, fontSize: 16),
+          style: TextStyle(
+              height: 1, fontSize: 16, color: ColorUtils.textGreyColor),
         ),
         bottom: TabBar(
           controller: _tabController,

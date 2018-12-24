@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:judou/widgets/image_avatar.dart';
 import 'package:judou/utils/color_util.dart';
 import 'package:judou/widgets/image_preview.dart';
-import 'package:judou/widgets/blank.dart';
 
-class DetailHeader extends StatelessWidget {
-  DetailHeader({Key key}) : super(key: key);
+class JuZiCell extends StatelessWidget {
+  JuZiCell({Key key, this.divider}) : super(key: key);
+
+  final Widget divider;
 
   // 大图预览
   void toImagePreview(BuildContext context) {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (_) => ImagePreview(
-                imageUrl:
-                    'http://judou.b0.upaiyun.com/image/crawler/2017/12/02/86df66633a544a1b850d19333d4a4721.jpg')));
+      context,
+      MaterialPageRoute(
+        builder: (_) => ImagePreview(
+            imageUrl:
+                'http://judou.b0.upaiyun.com/image/crawler/2017/12/02/86df66633a544a1b850d19333d4a4721.jpg'),
+      ),
+    );
   }
 
   // 顶部作者信息
@@ -38,8 +41,9 @@ class DetailHeader extends StatelessWidget {
                             fontWeight: FontWeight.w300,
                             color: ColorUtils.textUserNameColor))),
                 Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Icon(Icons.beenhere, size: 15))
+                  padding: EdgeInsets.only(left: 10),
+                  child: Icon(Icons.beenhere, size: 15),
+                ),
               ],
             ),
           ),
@@ -62,22 +66,26 @@ class DetailHeader extends StatelessWidget {
       );
 
   // 收录者信息
-  Widget referenceAuthorInfo() => Row(children: <Widget>[
-        ImageAvatar(
-            imageUrl:
-                'http://judou.b0.upaiyun.com/uploads/authors/2017/03/923474e8-d751-4d67-9f83-dbfb20c70624.jpg',
-            width: 20,
-            height: 20,
-            radius: 10),
-        Padding(
-            padding: EdgeInsets.only(left: 5),
-            child: Text('爱吃甜食的阿拉蕾', style: TextStyle(fontSize: 10))),
-        Padding(
+  Widget referenceAuthorInfo() => Row(
+        children: <Widget>[
+          ImageAvatar(
+              imageUrl:
+                  'http://judou.b0.upaiyun.com/uploads/authors/2017/03/923474e8-d751-4d67-9f83-dbfb20c70624.jpg',
+              width: 20,
+              height: 20,
+              radius: 10),
+          Padding(
+              padding: EdgeInsets.only(left: 5),
+              child: Text('爱吃甜食的阿拉蕾', style: TextStyle(fontSize: 10))),
+          Padding(
             padding: EdgeInsets.only(left: 10),
-            child: Text('一小时前收录',
-                style:
-                    TextStyle(fontSize: 10, color: ColorUtils.textGreyColor)))
-      ]);
+            child: Text(
+              '一小时前收录',
+              style: TextStyle(fontSize: 10, color: ColorUtils.textGreyColor),
+            ),
+          ),
+        ],
+      );
 
   // 最底部一排icon
   Widget bottomBtns() {
@@ -103,13 +111,14 @@ class DetailHeader extends StatelessWidget {
             onTap: onTap);
 
     return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          btn(Icons.favorite_border, () => print('11111'), '10'),
-          btn(Icons.insert_comment, null, '20'),
-          btn(Icons.bookmark_border, null),
-          btn(Icons.share, null)
-        ]);
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        btn(Icons.favorite_border, () => print('11111'), '10'),
+        btn(Icons.insert_comment, null, '20'),
+        btn(Icons.bookmark_border, null),
+        btn(Icons.share, null)
+      ],
+    );
   }
 
   @override
@@ -138,7 +147,7 @@ class DetailHeader extends StatelessWidget {
         ),
         color: Colors.white,
       ),
-      Blank()
+      divider,
     ]);
   }
 }

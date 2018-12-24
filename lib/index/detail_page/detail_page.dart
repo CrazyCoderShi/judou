@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:judou/utils/ui_util.dart';
 import 'package:judou/widgets/blank.dart';
 import 'package:judou/utils/color_util.dart';
-import 'detail_header.dart';
+import 'juzi_cell.dart';
 import 'detail_label.dart';
 import 'comment_cell.dart';
 
@@ -55,7 +55,7 @@ class _DetailStateful extends State<DetailPage> {
           itemBuilder: (context, index) {
             switch (index) {
               case 0:
-                return DetailHeader();
+                return JuZiCell(divider: Blank());
               case 1:
                 return DetailLabel();
               case 2:
