@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:judou/utils/ui_util.dart';
 import 'package:judou/widgets/blank.dart';
 import 'package:judou/utils/color_util.dart';
-import 'juzi_cell.dart';
+import 'judou_cell.dart';
 import 'detail_label.dart';
 import 'comment_cell.dart';
 
 class DetailPage extends StatefulWidget {
-  DetailPage({Key key, @required this.onDispose});
-  final VoidCallback onDispose;
+  DetailPage({Key key});
 
   final items = List<String>.generate(100, (i) => 'item $i');
 
@@ -19,6 +18,12 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailStateful extends State<DetailPage> {
+  @override
+  void dispose() {
+    print('死亡');
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget hotCommnets() => Container(
@@ -55,7 +60,10 @@ class _DetailStateful extends State<DetailPage> {
           itemBuilder: (context, index) {
             switch (index) {
               case 0:
-                return JuZiCell(divider: Blank());
+                return JuDouCell(
+                  divider: Blank(),
+                  tag: 'index_detail',
+                );
               case 1:
                 return DetailLabel();
               case 2:

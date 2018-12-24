@@ -3,22 +3,13 @@ import 'package:judou/widgets/image_avatar.dart';
 import 'package:judou/utils/color_util.dart';
 import 'package:judou/widgets/image_preview.dart';
 
-class JuZiCell extends StatelessWidget {
-  JuZiCell({Key key, this.divider}) : super(key: key);
+class JuDouCell extends StatelessWidget {
+  JuDouCell({Key key, this.divider, this.tag, this.onTap}) : super(key: key);
 
   final Widget divider;
-
-  // 大图预览
-  void toImagePreview(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => ImagePreview(
-            imageUrl:
-                'http://judou.b0.upaiyun.com/image/crawler/2017/12/02/86df66633a544a1b850d19333d4a4721.jpg'),
-      ),
-    );
-  }
+  // 每一个tag必须是唯一的
+  final String tag;
+  final VoidCallback onTap;
 
   // 顶部作者信息
   Widget authorInfo() => Row(
@@ -34,12 +25,15 @@ class JuZiCell extends StatelessWidget {
                     width: 30,
                     height: 30),
                 Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text('东野圭吾',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w300,
-                            color: ColorUtils.textUserNameColor))),
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text(
+                    '东野圭吾',
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                        color: ColorUtils.textUserNameColor),
+                  ),
+                ),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Icon(Icons.beenhere, size: 15),
@@ -47,13 +41,13 @@ class JuZiCell extends StatelessWidget {
               ],
             ),
           ),
-          IconButton(icon: Icon(Icons.keyboard_arrow_down), onPressed: null)
+          IconButton(icon: Icon(Icons.keyboard_arrow_down), onPressed: null),
         ],
       );
 
   // 中间大图
   Widget midImage(BuildContext context) => Hero(
-        tag: 'detail_image',
+        tag: this.tag,
         child: Padding(
           padding: EdgeInsets.only(top: 10, bottom: 10),
           child: ImageAvatar(
@@ -64,6 +58,20 @@ class JuZiCell extends StatelessWidget {
               radius: 8.0),
         ),
       );
+
+  // 大图预览
+  void toImagePreview(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ImagePreview(
+              imageUrl:
+                  'http://judou.b0.upaiyun.com/image/crawler/2017/12/02/86df66633a544a1b850d19333d4a4721.jpg',
+              tag: this.tag,
+            ),
+      ),
+    );
+  }
 
   // 收录者信息
   Widget referenceAuthorInfo() => Row(
@@ -123,31 +131,34 @@ class JuZiCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      Container(
-        padding: EdgeInsets.only(top: 15, bottom: 10, left: 15, right: 15),
-        child: Column(
-          children: <Widget>[
-            authorInfo(),
-            Text(
-              '生气的人是一个复杂的动物，发出极度矛盾的信息，哀求着救助与关注，然而当这一切到来的时，却又拒绝，希望无须语言就可以得到理解',
-              style: TextStyle(
-                  color: ColorUtils.textPrimaryColor,
-                  fontSize: 14,
-                  height: 1.2),
-            ),
-            GestureDetector(
-              child: midImage(context),
-              onTap: () => toImagePreview(context),
-            ),
-            referenceAuthorInfo(),
-            Divider(color: ColorUtils.dividerColor),
-            bottomBtns()
-          ],
+    return GestureDetector(
+      child: Column(children: <Widget>[
+        Container(
+          padding: EdgeInsets.only(top: 15, bottom: 10, left: 15, right: 15),
+          child: Column(
+            children: <Widget>[
+              authorInfo(),
+              Text(
+                '生气的人是一个复杂的动物，发出极度矛盾的信息，哀求着救助与关注，然而当这一切到来的时，却又拒绝，希望无须语言就可以得到理解',
+                style: TextStyle(
+                    color: ColorUtils.textPrimaryColor,
+                    fontSize: 14,
+                    height: 1.2),
+              ),
+              GestureDetector(
+                child: midImage(context),
+                onTap: () => this.toImagePreview(context),
+              ),
+              referenceAuthorInfo(),
+              Divider(color: ColorUtils.dividerColor),
+              bottomBtns()
+            ],
+          ),
+          color: Colors.white,
         ),
-        color: Colors.white,
-      ),
-      divider,
-    ]);
+        divider,
+      ]),
+      onTap: this.onTap,
+    );
   }
 }

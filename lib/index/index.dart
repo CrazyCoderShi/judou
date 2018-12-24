@@ -71,13 +71,9 @@ class _IndexPageState extends State<IndexPage> {
     _initialPageData(_dataModel.likeCount, _dataModel.commentCount);
   }
 
-  void detailPageDispose() {}
-
   void _toDetailPage() async {
     final result = await Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => DetailPage(onDispose: detailPageDispose)));
+        context, MaterialPageRoute(builder: (context) => DetailPage()));
 
 //    Scaffold.of(context)
 //      ..removeCurrentSnackBar()

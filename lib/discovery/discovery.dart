@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:judou/utils/color_util.dart';
+import 'package:judou/widgets/blank.dart';
+import 'package:judou/index/detail_page/judou_cell.dart';
+import 'package:judou/index/detail_page/detail_page.dart';
 
 class DiscoveryPage extends StatefulWidget {
   @override
@@ -10,9 +13,11 @@ class DiscoveryPage extends StatefulWidget {
 class _DiscoveryPageState extends State<DiscoveryPage>
     with SingleTickerProviderStateMixin {
   final List<Tab> myTabs = <Tab>[
-    Tab(text: 'LEFT'),
-    Tab(text: 'CENTER'),
-    Tab(text: 'RIGHT')
+    Tab(text: '推荐'),
+    Tab(text: '广场'),
+    Tab(text: '原创'),
+    Tab(text: '随笔'),
+    Tab(text: '励志')
   ];
 
   TabController _tabController;
@@ -29,12 +34,18 @@ class _DiscoveryPageState extends State<DiscoveryPage>
     super.dispose();
   }
 
+  void toDetailPage() {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => DetailPage()));
+  }
+
+  // placeholder的样式问题，已经在官方版本里面修复了
+  // 这里暂时tricky一下，😂
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: CupertinoTextField(
-          placeholder: '🔍搜索你喜欢的内容',
+          placeholder: '                                     🔍搜索你喜欢的内容',
           textAlign: TextAlign.center,
           decoration: BoxDecoration(
             color: ColorUtils.dividerColor,
@@ -55,7 +66,16 @@ class _DiscoveryPageState extends State<DiscoveryPage>
       body: TabBarView(
         controller: _tabController,
         children: myTabs.map((Tab tab) {
-          return Center(child: Text(tab.text));
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              return JuDouCell(
+                divider: Blank(),
+                tag: 'discovery_detail$index',
+                onTap: this.toDetailPage,
+              );
+            },
+            itemCount: 20,
+          );
         }).toList(),
       ),
     );
