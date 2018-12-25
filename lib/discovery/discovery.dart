@@ -4,6 +4,7 @@ import 'package:judou/utils/color_util.dart';
 import 'package:judou/widgets/blank.dart';
 import 'package:judou/widgets/judou_cell.dart';
 import 'package:judou/index/detail_page/detail_page.dart';
+import 'package:judou/widgets/jottings_cell.dart';
 
 class DiscoveryPage extends StatefulWidget {
   @override
@@ -68,6 +69,10 @@ class _DiscoveryPageState extends State<DiscoveryPage>
         children: myTabs.map((Tab tab) {
           return ListView.builder(
             itemBuilder: (context, index) {
+              if (tab.text == '随笔') {
+                return JottingsCell();
+              }
+
               return JuDouCell(
                 divider: Blank(),
                 tag: 'discovery_detail$index',
