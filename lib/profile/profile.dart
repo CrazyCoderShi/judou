@@ -3,6 +3,7 @@ import 'package:judou/widgets/list_cell.dart';
 import 'message.dart';
 import 'package:judou/widgets/blank.dart';
 import 'package:judou/utils/color_util.dart';
+import 'subscribes/subscribes.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key key}) : super(key: key);
@@ -40,24 +41,35 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            columnText('订阅'),
+            columnText('订阅', () => this.pushPage(Subscribes())),
             SizedBox(
                 width: 1,
                 height: 25,
                 child: Container(color: ColorUtils.dividerColor)),
-            columnText('句子'),
+            columnText('句子', () => {}),
             SizedBox(
                 width: 1,
                 height: 25,
                 child: Container(color: ColorUtils.dividerColor)),
-            columnText('喜欢'),
+            columnText('喜欢', () => {}),
           ]));
 
-  Widget columnText(String title) => Column(children: <Widget>[
-        Text('0', style: TextStyle(fontSize: 16)),
-        Text(title,
-            style: TextStyle(fontSize: 14, color: ColorUtils.textGreyColor))
-      ]);
+  Widget columnText(String title, VoidCallback onTap) => GestureDetector(
+        child: Column(
+          children: <Widget>[
+            Text('0', style: TextStyle(fontSize: 16)),
+            Text(
+              title,
+              style: TextStyle(fontSize: 14, color: ColorUtils.textGreyColor),
+            ),
+          ],
+        ),
+        onTap: onTap,
+      );
+
+  void pushPage(Widget page) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +85,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 leading: Icons.add_alert,
                 trailing: Icons.arrow_forward_ios,
                 isDivider: true,
-                onTap: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MessagePage())),
+                onTap: () => this.pushPage(MessagePage()),
               ),
               ListCell(
                 title: '我的收藏夹',
