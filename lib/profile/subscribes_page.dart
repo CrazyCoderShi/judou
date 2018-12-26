@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:judou/utils/ui_util.dart';
-import 'subscribes_cell.dart';
 import 'package:judou/widgets/end_cell.dart';
+import 'package:judou/widgets/subscribes_cell.dart';
 
 class Subscribes extends StatelessWidget {
   @override

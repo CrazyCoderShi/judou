@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'data/juzi_model.dart';
+import 'package:judou/index/data/juzi_model.dart';
 import 'package:judou/widgets/vertical_text.dart';
 
 class IndexPageItem extends StatefulWidget {
