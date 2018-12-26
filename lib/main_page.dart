@@ -23,6 +23,14 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
+  // @override
+  // void initState() {
+  //   setState(() {
+  //     _selectedIndex = 0;
+  //   });
+  //   super.initState();
+  // }
+
   @override
   void didUpdateWidget(MainPage oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -32,7 +40,37 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            IconButton(
+              icon: _selectedIndex == 0
+                  ? Icon(Icons.autorenew)
+                  : Icon(Icons.adjust),
+              onPressed: () => this._onItemTapped(0),
+            ),
+            IconButton(
+              icon: _selectedIndex == 1
+                  ? Icon(Icons.explore)
+                  : ImageIcon(AssetImage('assets/descovery.png')),
+              onPressed: () => this._onItemTapped(1),
+            ),
+            IconButton(
+              icon: _selectedIndex == 2
+                  ? Icon(Icons.person)
+                  : Icon(Icons.person_outline),
+              onPressed: () => this._onItemTapped(2),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/** 
+ * BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: ImageIcon(AssetImage('assets/home.png')),
@@ -52,6 +90,4 @@ class _MainPageState extends State<MainPage> {
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
       ),
-    );
-  }
-}
+ * */
