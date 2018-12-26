@@ -5,6 +5,7 @@ import 'package:judou/widgets/blank.dart';
 import 'package:judou/utils/color_util.dart';
 import 'package:judou/widgets/judou_cell.dart';
 import 'package:judou/widgets/comment_cell.dart';
+import 'package:judou/widgets/end_cell.dart';
 
 class DetailPage extends StatefulWidget {
   DetailPage({Key key});
@@ -18,12 +19,6 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailStateful extends State<DetailPage> {
-  @override
-  void dispose() {
-    print('死亡');
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     Widget hotCommnets() => Container(
@@ -39,16 +34,6 @@ class _DetailStateful extends State<DetailPage> {
               CommentCell(divider: Container()),
               Blank()
             ],
-          ),
-        );
-
-    Widget endline() => Container(
-          color: ColorUtils.blankColor,
-          padding: EdgeInsets.only(top: 10, bottom: 10),
-          child: Align(
-            alignment: AlignmentDirectional.center,
-            child: Text('- END -',
-                style: TextStyle(color: ColorUtils.textGreyColor)),
           ),
         );
 
@@ -71,7 +56,7 @@ class _DetailStateful extends State<DetailPage> {
               case 98:
                 return CommentCell(divider: Container());
               case 99:
-                return endline();
+                return EndCell();
               default:
                 return CommentCell(divider: Divider(indent: 50));
             }

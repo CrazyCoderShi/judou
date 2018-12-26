@@ -17,7 +17,6 @@ class _MainPageState extends State<MainPage> {
   final _widgetOptions = [IndexPage(), DiscoveryPage(), ProfilePage()];
 
   void _onItemTapped(int index) {
-    debugPrint('$index');
     setState(() {
       _selectedIndex = index;
     });
@@ -60,4 +59,3 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
-
