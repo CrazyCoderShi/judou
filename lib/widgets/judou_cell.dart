@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:judou/widgets/image_avatar.dart';
 import 'package:judou/utils/color_util.dart';
 import 'package:judou/widgets/image_preview.dart';
+import 'package:page_transition/page_transition.dart';
 
 class JuDouCell extends StatelessWidget {
   JuDouCell({Key key, this.divider, this.tag, this.onTap}) : super(key: key);
@@ -62,12 +63,13 @@ class JuDouCell extends StatelessWidget {
   void toImagePreview(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => ImagePreview(
-              imageUrl:
-                  'http://judou.b0.upaiyun.com/image/crawler/2017/12/02/86df66633a544a1b850d19333d4a4721.jpg',
-              tag: this.tag,
-            ),
+      PageTransition(
+        type: PageTransitionType.fade,
+        child: ImagePreview(
+          imageUrl:
+              'http://judou.b0.upaiyun.com/image/crawler/2017/12/02/86df66633a544a1b850d19333d4a4721.jpg',
+          tag: this.tag,
+        ),
       ),
     );
   }

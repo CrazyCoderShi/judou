@@ -89,23 +89,29 @@ class _IndexPageItemState extends State<IndexPageItem>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: widget.onTap,
-        child: Column(children: <Widget>[
+      onTap: widget.onTap,
+      child: Column(
+        children: <Widget>[
           headerView(),
           Expanded(
-              child: Stack(children: <Widget>[
-            SizedBox(child: contentView()),
-            Positioned(
-                child: Text(widget.model.day,
-                    style: TextStyle(fontSize: 99, color: Colors.black)),
-                top: -70,
-                left: 20),
-            Positioned(
-                child: Text(widget.model.dailyDate,
-                    style: textStyle(12, false), textAlign: TextAlign.end),
-                right: 20,
-                top: 5)
-          ]))
-        ]));
+            child: Stack(
+              children: <Widget>[
+                SizedBox(child: contentView()),
+                Positioned(
+                    child: Text(widget.model.day,
+                        style: TextStyle(fontSize: 99, color: Colors.black)),
+                    top: -70,
+                    left: 20),
+                Positioned(
+                    child: Text(widget.model.dailyDate,
+                        style: textStyle(12, false), textAlign: TextAlign.end),
+                    right: 20,
+                    top: 5)
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
