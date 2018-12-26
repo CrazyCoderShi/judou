@@ -35,9 +35,8 @@ class JuDouCell extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Icon(Icons.beenhere, size: 15),
-                ),
+                    padding: EdgeInsets.only(left: 10),
+                    child: Icon(Icons.stars, size: 16, color: Colors.blue)),
               ],
             ),
           ),

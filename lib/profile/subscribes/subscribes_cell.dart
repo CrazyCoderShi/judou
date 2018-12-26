@@ -7,6 +7,8 @@ class SubscribesCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+      margin: EdgeInsets.only(bottom: 10),
+      color: Colors.white,
       child: Row(
         children: <Widget>[
           ImageAvatar(

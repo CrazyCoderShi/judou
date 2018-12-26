@@ -23,14 +23,6 @@ class _MainPageState extends State<MainPage> {
     });
   }
 
-  // @override
-  // void initState() {
-  //   setState(() {
-  //     _selectedIndex = 0;
-  //   });
-  //   super.initState();
-  // }
-
   @override
   void didUpdateWidget(MainPage oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -69,25 +61,3 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
-/** 
- * BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/home.png')),
-              title: Text(''),
-              activeIcon: Icon(Icons.autorenew)),
-          BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage('assets/descovery.png')),
-              title: Text(''),
-              activeIcon: Icon(Icons.explore)),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              title: Text(''),
-              activeIcon: Icon(Icons.person))
-        ],
-        currentIndex: _selectedIndex,
-        fixedColor: ColorUtils.textPrimaryColor,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-      ),
- * */
