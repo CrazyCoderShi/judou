@@ -3,6 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:judou/index/index_page.dart';
 import 'package:judou/discovery/discovery_page.dart';
 import 'package:judou/profile/profile_page.dart';
+import 'network/network.dart';
+import 'package:dio/dio.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -20,9 +22,17 @@ class _MainPageState extends State<MainPage>
   final _widgetOptions = [_indexPage, _discoveryPage, _profilePage];
 
   void _onItemTapped(int index) {
+    Network.instance.request().then((response) {
+      print(response);
+    });
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
