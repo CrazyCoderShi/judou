@@ -12,7 +12,7 @@ class DiscoveryPage extends StatefulWidget {
 }
 
 class _DiscoveryPageState extends State<DiscoveryPage>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   final List<Tab> myTabs = <Tab>[
     Tab(text: '推荐'),
     Tab(text: '广场'),
@@ -28,6 +28,9 @@ class _DiscoveryPageState extends State<DiscoveryPage>
     super.initState();
     _tabController = TabController(vsync: this, length: myTabs.length);
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void dispose() {

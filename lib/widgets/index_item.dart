@@ -12,7 +12,11 @@ class IndexPageItem extends StatefulWidget {
   _IndexPageItemState createState() => _IndexPageItemState();
 }
 
-class _IndexPageItemState extends State<IndexPageItem> {
+class _IndexPageItemState extends State<IndexPageItem>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   // 字体设置
   TextStyle textStyle(double fontSize, bool isSpace) => TextStyle(
         fontSize: fontSize,
@@ -25,8 +29,8 @@ class _IndexPageItemState extends State<IndexPageItem> {
         child: Container(
           padding: EdgeInsets.only(left: 2),
           decoration: BoxDecoration(
-              border:
-                  Border(left: BorderSide(color: Colors.white, width: 0.5))),
+            border: Border(left: BorderSide(color: Colors.white, width: 0.5)),
+          ),
           child: VerticalText(
             text: text,
             color: Colors.white,
@@ -61,20 +65,26 @@ class _IndexPageItemState extends State<IndexPageItem> {
 
   // 文章和作者部分
   Container contentView() => Container(
-      padding: EdgeInsets.all(20),
-      child: Column(
+        padding: EdgeInsets.all(20),
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(widget.model.content,
                 style: textStyle(17, true), textAlign: TextAlign.start),
-            Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
-              Container(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Container(
                   padding: EdgeInsets.only(top: 10),
                   child: Text(widget.model.subHeading,
-                      style: textStyle(17, true), textAlign: TextAlign.end))
-            ])
-          ]));
+                      style: textStyle(17, true), textAlign: TextAlign.end),
+                )
+              ],
+            )
+          ],
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {

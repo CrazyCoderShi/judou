@@ -11,15 +11,22 @@ class MainPage extends StatefulWidget {
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState extends State<MainPage>
+    with AutomaticKeepAliveClientMixin {
   int _selectedIndex = 0;
-  final _widgetOptions = [IndexPage(), DiscoveryPage(), ProfilePage()];
+  static IndexPage _indexPage = IndexPage();
+  static DiscoveryPage _discoveryPage = DiscoveryPage();
+  static ProfilePage _profilePage = ProfilePage();
+  final _widgetOptions = [_indexPage, _discoveryPage, _profilePage];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void didUpdateWidget(MainPage oldWidget) {

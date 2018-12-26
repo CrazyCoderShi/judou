@@ -13,7 +13,11 @@ class JuDouApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MainPage(),
-      theme: ThemeData(primaryColor: Colors.white),
+      theme: ThemeData(
+        primaryColor: Colors.white,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+      ),
     );
   }
 }

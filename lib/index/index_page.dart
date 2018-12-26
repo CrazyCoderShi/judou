@@ -11,7 +11,8 @@ class IndexPage extends StatefulWidget {
   _IndexPageState createState() => _IndexPageState();
 }
 
-class _IndexPageState extends State<IndexPage> {
+class _IndexPageState extends State<IndexPage>
+    with AutomaticKeepAliveClientMixin {
   final PageController _pageController = PageController();
   List<JuDouModel> _listData = List();
   String _likeNum = '';
@@ -51,6 +52,9 @@ class _IndexPageState extends State<IndexPage> {
     return contents;
   }
 
+  @override
+  bool get wantKeepAlive => true;
+
   // 初始化每一页的数据
   void _initialPageData(int like, int comment) {
     setState(() {
@@ -80,40 +84,47 @@ class _IndexPageState extends State<IndexPage> {
 //      ..showSnackBar(SnackBar(content: Text('$result')));
   }
 
+  Widget indexAppBar() => AppBar(
+        iconTheme: IconThemeData(color: ColorUtils.iconColor),
+        centerTitle: true,
+        leading: Container(
+          alignment: Alignment.center,
+          child: Text('句子',
+              style: TextStyle(fontSize: 22.0, fontFamily: 'LiSung')),
+        ),
+        actions: <Widget>[
+          SubscriptButton(icon: Icon(Icons.message), subscript: _commentNum),
+          SubscriptButton(
+            icon: Icon(
+              Icons.favorite_border,
+              color:
+                  _dataModel.isLiked ? Colors.redAccent : ColorUtils.iconColor,
+            ),
+            subscript: _likeNum,
+          ),
+          IconButton(
+            icon: Icon(Icons.share, color: ColorUtils.iconColor),
+            onPressed: _toDetailPage,
+          ),
+        ],
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            iconTheme: IconThemeData(color: ColorUtils.iconColor),
-            centerTitle: true,
-            leading: Container(
-              alignment: Alignment.center,
-              child: Text('句子',
-                  style: TextStyle(fontSize: 22.0, fontFamily: 'LiSung')),
-            ),
-            actions: <Widget>[
-              SubscriptButton(
-                  icon: Icon(Icons.message), subscript: _commentNum),
-              SubscriptButton(
-                  icon: Icon(Icons.favorite_border,
-                      color: _dataModel.isLiked
-                          ? Colors.redAccent
-                          : ColorUtils.iconColor),
-                  subscript: _likeNum),
-              IconButton(
-                  icon: Icon(Icons.share, color: ColorUtils.iconColor),
-                  onPressed: _toDetailPage)
-            ]),
-        body: NotificationListener<ScrollNotification>(
-            child: PageView.builder(
-                itemBuilder: (context, index) {
-                  return IndexPageItem(onTap: _toDetailPage, model: _dataModel);
-                },
-                itemCount: _listData.length,
-                controller: this._pageController,
-                onPageChanged: (index) => this._onPageChanged(index)),
-            onNotification: (ScrollNotification notification) {
-              _handlePageScroll(notification);
-            }));
+      appBar: indexAppBar(),
+      body: NotificationListener<ScrollNotification>(
+        child: PageView.builder(
+            itemBuilder: (context, index) {
+              return IndexPageItem(onTap: _toDetailPage, model: _dataModel);
+            },
+            itemCount: _listData.length,
+            controller: this._pageController,
+            onPageChanged: (index) => this._onPageChanged(index)),
+        onNotification: (ScrollNotification notification) {
+          _handlePageScroll(notification);
+        },
+      ),
+    );
   }
 }
