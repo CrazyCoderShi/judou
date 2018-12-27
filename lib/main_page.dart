@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:judou/index/index_page.dart';
+import 'package:judou/index/pages/index_page.dart';
 import 'package:judou/discovery/discovery_page.dart';
 import 'package:judou/profile/profile_page.dart';
 import 'network/network.dart';
-import 'package:dio/dio.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);

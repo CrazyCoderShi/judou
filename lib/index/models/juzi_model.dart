@@ -1,5 +1,5 @@
 import 'author_model.dart';
-import 'image_data.dart';
+import 'image_model.dart';
 import 'user_model.dart';
 
 class JuDouModel {
@@ -34,7 +34,7 @@ class JuDouModel {
   JuDouModel(
       {this.isPrivate,
       this.dailyDate,
-        this.day,
+      this.day,
       this.publishedDate,
       this.isAd,
       this.isUsedByWechat,
@@ -64,14 +64,17 @@ class JuDouModel {
     var list = json['pictures'] as List;
     List<ImageModel> imageList;
     if (list != null) {
-      imageList =list.map((i) => ImageModel.fromJson(i)).toList();
+      imageList = list.map((i) => ImageModel.fromJson(i)).toList();
     }
 
     // 日期转换
-    String dailyString = json['daily_date'].toString().substring(0, 7).replaceAll(RegExp(r'-'), '.');
+    String dailyString = json['daily_date']
+        .toString()
+        .substring(0, 7)
+        .replaceAll(RegExp(r'-'), '.');
     var date = DateTime.parse(json['daily_date']);
     var dayList = ['一', '二', '三', '四', '五', '六', '日'];
-    var weekday = dayList[date.weekday-1];
+    var weekday = dayList[date.weekday - 1];
     String dayString = '$date'.substring(8, 10);
 
     return JuDouModel(
