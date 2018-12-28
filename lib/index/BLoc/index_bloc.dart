@@ -1,8 +1,8 @@
 import 'package:rxdart/rxdart.dart';
 import 'package:flutter/material.dart';
-import 'package:judou/bloc_provider.dart';
+import './bloc_provider.dart';
 
-class IndexBloc extends BlocBase {
+class IndexBloc implements BlocBase {
   IndexBloc() {
     fetchDailyData();
   }

@@ -6,6 +6,7 @@ import '../../widgets/index_item.dart';
 import '../../widgets/button_subscript.dart';
 import '../models/juzi_model.dart';
 import '../BLoc/index_bloc.dart';
+import '../BLoc/bloc_provider.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -77,12 +78,8 @@ class _IndexPageState extends State<IndexPage>
   }
 
   void _toDetailPage() async {
-    final result = await Navigator.push(
+    Navigator.push(
         context, MaterialPageRoute(builder: (context) => DetailPage()));
-
-//    Scaffold.of(context)
-//      ..removeCurrentSnackBar()
-//      ..showSnackBar(SnackBar(content: Text('$result')));
   }
 
   Widget indexAppBar() => AppBar(
@@ -112,6 +109,8 @@ class _IndexPageState extends State<IndexPage>
 
   @override
   Widget build(BuildContext context) {
+    final IndexBloc index = BlocProvider.of<IndexBloc>(context);
+    // index.
     return Scaffold(
       appBar: indexAppBar(),
       body: NotificationListener<ScrollNotification>(
