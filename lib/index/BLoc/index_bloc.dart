@@ -5,7 +5,7 @@ import '../models/judou_model.dart';
 
 class IndexBloc implements BlocBase {
   IndexBloc() {
-    _readDailyJson();
+    // _readDailyJson();
   }
 
   final _fetchDaily = PublishSubject<JuDouModel>();
@@ -16,15 +16,15 @@ class IndexBloc implements BlocBase {
     if (!_fetchDaily.isClosed) _fetchDaily.close();
   }
 
-  // 读取json数据
-  Future<String> _readDailyJson() async {
-    String contents;
-    try {
-      contents = await DefaultAssetBundle.of().loadString('json/daily.json');
-    } catch (e) {
-      print(e);
-    }
+  // // 读取json数据
+  // Future<String> _readDailyJson() async {
+  //   String contents;
+  //   try {
+  //     contents = await DefaultAssetBundle.of().loadString('json/daily.json');
+  //   } catch (e) {
+  //     print(e);
+  //   }
 
-    return contents;
-  }
+  //   return contents;
+  // }
 }
