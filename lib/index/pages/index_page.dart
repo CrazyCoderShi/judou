@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'detail_page.dart';
 import 'package:flutter/material.dart';
-import 'package:judou/utils/color_util.dart';
-import 'package:judou/widgets/index_item.dart';
-import 'package:judou/widgets/button_subscript.dart';
-import 'package:judou/index/models/juzi_model.dart';
+import '../../utils/color_util.dart';
+import '../../widgets/index_item.dart';
+import '../../widgets/button_subscript.dart';
+import '../models/juzi_model.dart';
+import '../BLoc/index_bloc.dart';
 
 class IndexPage extends StatefulWidget {
   @override

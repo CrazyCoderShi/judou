@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:judou/index/pages/index_page.dart';
-import 'package:judou/discovery/discovery_page.dart';
-import 'package:judou/profile/profile_page.dart';
+import './index/pages/index_page.dart';
+import './discovery/discovery_page.dart';
+import './profile/profile_page.dart';
 import 'network/network.dart';
 
 class MainPage extends StatefulWidget {

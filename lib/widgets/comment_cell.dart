@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:judou/widgets/image_avatar.dart';
-import 'package:judou/utils/color_util.dart';
+import '../widgets/image_avatar.dart';
+import '../utils/color_util.dart';
 
 class CommentCell extends StatelessWidget {
   CommentCell({Key key, @required this.divider}) : super(key: key);

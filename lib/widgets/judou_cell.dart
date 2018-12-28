@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:judou/widgets/image_avatar.dart';
-import 'package:judou/utils/color_util.dart';
-import 'package:judou/widgets/image_preview.dart';
+import '../widgets/image_avatar.dart';
+import '../utils/color_util.dart';
+import '../widgets/image_preview.dart';
 import 'package:page_transition/page_transition.dart';
 
 class JuDouCell extends StatelessWidget {

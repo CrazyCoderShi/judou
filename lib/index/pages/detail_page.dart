@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:judou/utils/ui_util.dart';
-import 'package:judou/widgets/blank.dart';
-import 'package:judou/utils/color_util.dart';
-import 'package:judou/widgets/judou_cell.dart';
-import 'package:judou/widgets/comment_cell.dart';
-import 'package:judou/widgets/end_cell.dart';
-import 'package:judou/widgets/detail_label.dart';
+import '../../utils/ui_util.dart';
+import '../../widgets/blank.dart';
+import '../../utils/color_util.dart';
+import '../../widgets/judou_cell.dart';
+import '../../widgets/comment_cell.dart';
+import '../../widgets/end_cell.dart';
+import '../../widgets/detail_label.dart';
 
 class DetailPage extends StatefulWidget {
   DetailPage({Key key});

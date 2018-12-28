@@ -1,6 +1,6 @@
 /// 随笔cell
 import 'package:flutter/material.dart';
-import 'package:judou/utils/color_util.dart';
+import '../utils/color_util.dart';
 
 class JottingsCell extends StatelessWidget {
   @override
