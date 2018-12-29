@@ -22,12 +22,29 @@ class IndexWidget extends StatefulWidget {
 }
 
 class _IndexWidgetState extends State<IndexWidget>
-    with AutomaticKeepAliveClientMixin {
+    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+  AnimationController controller =
+      AnimationController(duration: Duration(milliseconds: 1), vsync: this);
   final PageController _pageController = PageController();
   IndexBloc indexBloc;
   String like = '';
   String comment = '';
   String isLike = '';
+
+  TweenSequence sequence = TweenSequence([
+    TweenSequenceItem(
+      tween: Tween<double>(begin: 24, end: 35),
+      weight: 40,
+    ),
+    TweenSequenceItem(
+      tween: Tween<double>(begin: 35, end: 20),
+      weight: 40,
+    ),
+    TweenSequenceItem(
+      tween: Tween<double>(begin: 20, end: 24),
+      weight: 20,
+    ),
+  ]);
 
   @override
   void initState() {
