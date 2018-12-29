@@ -4,16 +4,26 @@ import 'package:flutter/material.dart';
 import '../../utils/color_util.dart';
 import '../../widgets/index_item.dart';
 import '../../widgets/button_subscript.dart';
-import '../models/juzi_model.dart';
+import '../models/judou_model.dart';
 import '../BLoc/index_bloc.dart';
-import '../BLoc/bloc_provider.dart';
+import '../../bloc_provider.dart';
 
-class IndexPage extends StatefulWidget {
+class IndexPage extends StatelessWidget {
   @override
-  _IndexPageState createState() => _IndexPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      bloc: IndexBloc(),
+      child: IndexWidget(),
+    );
+  }
 }
 
-class _IndexPageState extends State<IndexPage>
+class IndexWidget extends StatefulWidget {
+  @override
+  _IndexWidgetState createState() => _IndexWidgetState();
+}
+
+class _IndexWidgetState extends State<IndexWidget>
     with AutomaticKeepAliveClientMixin {
   final PageController _pageController = PageController();
   List<JuDouModel> _listData = List();

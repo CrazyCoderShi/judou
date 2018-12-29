@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 abstract class BlocBase {
   void dispose();
 }
 
+// Generic BLoC provider
 class BlocProvider<T extends BlocBase> extends StatefulWidget {
   BlocProvider({
     Key key,
