@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import './path.dart';
+import 'dart:convert';
+import '../index/models/judou_model.dart';
 
 class Request {
   /// instance
@@ -14,10 +16,20 @@ class Request {
   ///
   final Dio _dio = Dio(
     Options(
-        baseUrl: 'https://judouapp.com/api',
-        connectTimeout: 5000,
-        receiveTimeout: 3000),
+      baseUrl: 'https://judouapp.com/api',
+      connectTimeout: 5000,
+      receiveTimeout: 3000,
+      responseType: ResponseType.JSON,
+    ),
   );
 
-  Future<Response> request() => _dio.get(RequestPath.daily);
+  Future<List<JuDouModel>> request() async {
+    Response<Map<String, dynamic>> response = await _dio.get(RequestPath.daily);
+    List listData = response.data['data'];
+    List transformData =
+        listData.where((item) => item['author'] != null).toList();
+    List<JuDouModel> judouList =
+        transformData.map((item) => JuDouModel.fromJson(item)).toList();
+    return judouList;
+  }
 }

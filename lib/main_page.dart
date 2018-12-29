@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import './index/pages/index_page.dart';
 import './discovery/discovery_page.dart';
 import './profile/profile_page.dart';
-import 'network/request.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -20,9 +19,6 @@ class _MainPageState extends State<MainPage>
   final _widgetOptions = [_indexPage, _discoveryPage, _profilePage];
 
   void _onItemTapped(int index) {
-    Request.instance.request().then((response) {
-      print(response);
-    });
     setState(() {
       _selectedIndex = index;
     });

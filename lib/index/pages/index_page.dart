@@ -44,7 +44,7 @@ class _IndexWidgetState extends State<IndexWidget>
           }
         }
         setState(() {
-          _onPageChanged(0); // 初始化第一页
+          _onPageChanged(_listData[0]); // 初始化第一页
         });
       }
     });
@@ -67,24 +67,14 @@ class _IndexWidgetState extends State<IndexWidget>
   @override
   bool get wantKeepAlive => true;
 
-  // 初始化每一页的数据
-  void _initialPageData(int like, int comment) {
-    setState(() {
-      double l = _dataModel.likeCount / 1000;
-      double c = _dataModel.commentCount / 1000;
-      _likeNum = (l > 1) ? l.toStringAsFixed(1) + 'k' : '$like';
-      _commentNum = (c > 1) ? c.toStringAsFixed(1) : '$comment';
-    });
-  }
-
-  void _handlePageScroll(ScrollNotification notification) {
-    if (notification.depth == 0 && notification is ScrollUpdateNotification) {}
-  }
-
   // 页面滚动时调用
-  void _onPageChanged(index) {
-    _dataModel = _listData[index];
-    _initialPageData(_dataModel.likeCount, _dataModel.commentCount);
+  void _onPageChanged(JuDouModel model) {
+    setState(() {
+      double l = model.likeCount / 1000;
+      double c = model.commentCount / 1000;
+      _likeNum = (l > 1) ? l.toStringAsFixed(1) + 'k' : '${model.likeCount}}';
+      _commentNum = (c > 1) ? c.toStringAsFixed(1) : '${model.commentCount}';
+    });
   }
 
   void _toDetailPage() async {
@@ -117,24 +107,34 @@ class _IndexWidgetState extends State<IndexWidget>
         ],
       );
 
+  Widget buildBody(AsyncSnapshot<List<JuDouModel>> snapshot) {
+    if (snapshot.connectionState != ConnectionState.active) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+    return PageView.builder(
+      itemBuilder: (context, index) {
+        return IndexPageItem(onTap: _toDetailPage, model: snapshot.data[index]);
+      },
+      itemCount: _listData.length,
+      controller: this._pageController,
+      onPageChanged: (index) => this._onPageChanged(snapshot.data[index]),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final IndexBloc index = BlocProvider.of<IndexBloc>(context);
-    // index.
-    return Scaffold(
-      appBar: indexAppBar(),
-      body: NotificationListener<ScrollNotification>(
-        child: PageView.builder(
-            itemBuilder: (context, index) {
-              return IndexPageItem(onTap: _toDetailPage, model: _dataModel);
-            },
-            itemCount: _listData.length,
-            controller: this._pageController,
-            onPageChanged: (index) => this._onPageChanged(index)),
-        onNotification: (ScrollNotification notification) {
-          _handlePageScroll(notification);
-        },
-      ),
+
+    return StreamBuilder(
+      stream: index.dailyStream,
+      builder:
+          (BuildContext context, AsyncSnapshot<List<JuDouModel>> snapshot) =>
+              Scaffold(
+                appBar: indexAppBar(),
+                body: buildBody(snapshot),
+              ),
     );
   }
 }
