@@ -66,7 +66,11 @@ class _IndexWidgetState extends State<IndexWidget>
               style: TextStyle(fontSize: 22.0, fontFamily: 'LiSung')),
         ),
         actions: <Widget>[
-          SubscriptButton(icon: Icon(Icons.message), subscript: comment),
+          SubscriptButton(
+            icon: Icon(Icons.message),
+            subscript: comment,
+            onPressed: () => indexBloc.toDetailPage(context),
+          ),
           SubscriptButton(
             icon: likeIcon(),
             subscript: like,
