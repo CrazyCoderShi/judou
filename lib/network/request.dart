@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import './path.dart';
-import 'dart:convert';
 import '../index/models/judou_model.dart';
 
 class Request {
@@ -23,6 +22,7 @@ class Request {
     ),
   );
 
+  /// 请求首页数据
   Future<List<JuDouModel>> request() async {
     Response<Map<String, dynamic>> response = await _dio.get(RequestPath.daily);
     List listData = response.data['data'];

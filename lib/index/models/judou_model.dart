@@ -15,7 +15,7 @@ class JuDouModel {
   final UserModel user;
   final ImageModel image;
   final bool isCollected;
-  final int likeCount;
+  final String likeCount;
   final bool isUsedByWeibo;
   final String shareUrl;
   final String maskColor;
@@ -23,7 +23,7 @@ class JuDouModel {
   final bool isLiked;
   final bool isRandomable;
   final String content;
-  final int commentCount;
+  final String commentCount;
   final bool isDisabledComment;
   final String maskTransparent;
   final String weiboUsedAt;
@@ -67,6 +67,13 @@ class JuDouModel {
       imageList = list.map((i) => ImageModel.fromJson(i)).toList();
     }
 
+    double l = json['like_count'] / 1000;
+    double c = json['comment_count'] / 1000;
+    String likeNum =
+        (l > 1) ? l.toStringAsFixed(1) + 'k' : '${json['like_count']}';
+    String commentNum =
+        (c > 1) ? c.toStringAsFixed(1) : '${json['comment_count']}';
+
     // 日期转换
     String dailyString = json['daily_date']
         .toString()
@@ -90,7 +97,7 @@ class JuDouModel {
         user: UserModel.fromJson(json['user'] ?? Map()),
         image: ImageModel.fromJson(json['image'] ?? Map()),
         isCollected: json['is_collected'] as bool,
-        likeCount: json['like_count'] as int,
+        likeCount: likeNum,
         isUsedByWeibo: json['is_used_by_weibo'] as bool,
         shareUrl: json['share_url'] as String,
         maskColor: json['mask_color'] as String,
@@ -98,7 +105,7 @@ class JuDouModel {
         isLiked: json['is_liked'] ?? false,
         isRandomable: json['is_randomable'] as bool,
         content: json['content'] as String,
-        commentCount: json['comment_count'] as int,
+        commentCount: commentNum,
         isDisabledComment: json['is_disabled_comment'] as bool,
         maskTransparent: json['mask_transparent'] as String,
         weiboUsedAt: json['weibo_used_at'] as String,

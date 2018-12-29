@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'detail_page.dart';
 import 'package:flutter/material.dart';
 import '../../utils/color_util.dart';
 import '../../widgets/index_item.dart';
@@ -26,61 +24,38 @@ class IndexWidget extends StatefulWidget {
 class _IndexWidgetState extends State<IndexWidget>
     with AutomaticKeepAliveClientMixin {
   final PageController _pageController = PageController();
-  List<JuDouModel> _listData = List();
-  String _likeNum = '';
-  String _commentNum = '';
-  JuDouModel _dataModel = JuDouModel();
+  IndexBloc indexBloc;
+  String like = '';
+  String comment = '';
+  String isLike = '';
 
   @override
   void initState() {
-    // 读取本地json
-    _readDailyJson().then((data) {
-      if (data != null) {
-        Map<String, dynamic> map = jsonDecode(data);
-        List temp = map['data'];
-        for (var i in temp) {
-          if (i['comment_count'] != 0) {
-            _listData.add(JuDouModel.fromJson(i));
-          }
-        }
-        setState(() {
-          _onPageChanged(_listData[0]); // 初始化第一页
-        });
-      }
+    indexBloc = BlocProvider.of<IndexBloc>(context);
+
+    indexBloc.badgesSteam.listen((List<String> data) {
+      setState(() {
+        like = data[1];
+        comment = data[0];
+        isLike = data[2];
+      });
     });
+
     super.initState();
-  }
-
-  // 读取json数据
-  Future<String> _readDailyJson() async {
-    String contents;
-    try {
-      contents =
-          await DefaultAssetBundle.of(context).loadString('json/daily.json');
-    } catch (e) {
-      print(e);
-    }
-
-    return contents;
   }
 
   @override
   bool get wantKeepAlive => true;
 
-  // 页面滚动时调用
-  void _onPageChanged(JuDouModel model) {
-    setState(() {
-      double l = model.likeCount / 1000;
-      double c = model.commentCount / 1000;
-      _likeNum = (l > 1) ? l.toStringAsFixed(1) + 'k' : '${model.likeCount}}';
-      _commentNum = (c > 1) ? c.toStringAsFixed(1) : '${model.commentCount}';
-    });
-  }
-
-  void _toDetailPage() async {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => DetailPage()));
-  }
+  Icon likeIcon() => isLike == '0'
+      ? Icon(
+          Icons.favorite_border,
+          color: ColorUtils.iconColor,
+        )
+      : Icon(
+          Icons.favorite,
+          color: Colors.redAccent,
+        );
 
   Widget indexAppBar() => AppBar(
         iconTheme: IconThemeData(color: ColorUtils.iconColor),
@@ -91,18 +66,14 @@ class _IndexWidgetState extends State<IndexWidget>
               style: TextStyle(fontSize: 22.0, fontFamily: 'LiSung')),
         ),
         actions: <Widget>[
-          SubscriptButton(icon: Icon(Icons.message), subscript: _commentNum),
+          SubscriptButton(icon: Icon(Icons.message), subscript: comment),
           SubscriptButton(
-            icon: Icon(
-              Icons.favorite_border,
-              color:
-                  _dataModel.isLiked ? Colors.redAccent : ColorUtils.iconColor,
-            ),
-            subscript: _likeNum,
+            icon: likeIcon(),
+            subscript: like,
           ),
           IconButton(
             icon: Icon(Icons.share, color: ColorUtils.iconColor),
-            onPressed: _toDetailPage,
+            onPressed: () => indexBloc.toDetailPage(context),
           ),
         ],
       );
@@ -115,26 +86,28 @@ class _IndexWidgetState extends State<IndexWidget>
     }
     return PageView.builder(
       itemBuilder: (context, index) {
-        return IndexPageItem(onTap: _toDetailPage, model: snapshot.data[index]);
+        return IndexPageItem(
+          onTap: () => indexBloc.toDetailPage(context),
+          model: snapshot.data[index],
+        );
       },
-      itemCount: _listData.length,
+      itemCount: snapshot.data.length,
       controller: this._pageController,
-      onPageChanged: (index) => this._onPageChanged(snapshot.data[index]),
+      onPageChanged: indexBloc.onPageChanged,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final IndexBloc index = BlocProvider.of<IndexBloc>(context);
-
     return StreamBuilder(
-      stream: index.dailyStream,
+      stream: indexBloc.dailyStream,
       builder:
-          (BuildContext context, AsyncSnapshot<List<JuDouModel>> snapshot) =>
-              Scaffold(
-                appBar: indexAppBar(),
-                body: buildBody(snapshot),
-              ),
+          (BuildContext context, AsyncSnapshot<List<JuDouModel>> snapshot) {
+        return Scaffold(
+          appBar: indexAppBar(),
+          body: buildBody(snapshot),
+        );
+      },
     );
   }
 }
