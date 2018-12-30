@@ -22,39 +22,21 @@ class IndexWidget extends StatefulWidget {
 }
 
 class _IndexWidgetState extends State<IndexWidget>
-    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
-  // AnimationController controller =
-  //     AnimationController(duration: Duration(milliseconds: 1), vsync: this);
-  final PageController _pageController = PageController();
+    with SingleTickerProviderStateMixin {
+  PageController _pageController = PageController();
   IndexBloc indexBloc;
-  String like = '';
-  String comment = '';
-  String isLike = '';
-
-  TweenSequence sequence = TweenSequence([
-    TweenSequenceItem(
-      tween: Tween<double>(begin: 24, end: 35),
-      weight: 40,
-    ),
-    TweenSequenceItem(
-      tween: Tween<double>(begin: 35, end: 20),
-      weight: 40,
-    ),
-    TweenSequenceItem(
-      tween: Tween<double>(begin: 20, end: 24),
-      weight: 20,
-    ),
-  ]);
+  String _like = '';
+  String _comment = '';
+  String _isLike = '';
 
   @override
   void initState() {
     indexBloc = BlocProvider.of<IndexBloc>(context);
-
     indexBloc.badgesSteam.listen((List<String> data) {
       setState(() {
-        like = data[1];
-        comment = data[0];
-        isLike = data[2];
+        _like = data[1];
+        _comment = data[0];
+        _isLike = data[2];
       });
     });
 
@@ -62,9 +44,16 @@ class _IndexWidgetState extends State<IndexWidget>
   }
 
   @override
-  bool get wantKeepAlive => true;
+  void dispose() {
+    _pageController.dispose();
+    indexBloc.dispose();
+    super.dispose();
+  }
 
-  Icon likeIcon() => isLike == '0'
+  // @override
+  // bool get wantKeepAlive => true;
+
+  Icon likeIcon() => _isLike == '0'
       ? Icon(
           Icons.favorite_border,
           color: ColorUtils.iconColor,
@@ -85,12 +74,12 @@ class _IndexWidgetState extends State<IndexWidget>
         actions: <Widget>[
           SubscriptButton(
             icon: Icon(Icons.message),
-            subscript: comment,
+            subscript: _comment,
             onPressed: () => indexBloc.toDetailPage(context),
           ),
           SubscriptButton(
             icon: likeIcon(),
-            subscript: like,
+            subscript: _like,
           ),
           IconButton(
             icon: Icon(Icons.share, color: ColorUtils.iconColor),
