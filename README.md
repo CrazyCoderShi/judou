@@ -7,7 +7,6 @@ Judou is my favorite app，so I implemented it with flutter
 ## UI
 
 ![Index](https://github.com/CrazyCoderShi/judou/blob/master/assets/Index%20Screen%20Shot.png)
-![Index](https://github.com/CrazyCoderShi/judou/blob/master/assets/Index%20Screen%20Shot.png)
 
 ## Getting Started
 
