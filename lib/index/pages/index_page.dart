@@ -23,8 +23,8 @@ class IndexWidget extends StatefulWidget {
 
 class _IndexWidgetState extends State<IndexWidget>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
-  AnimationController controller =
-      AnimationController(duration: Duration(milliseconds: 1), vsync: this);
+  // AnimationController controller =
+  //     AnimationController(duration: Duration(milliseconds: 1), vsync: this);
   final PageController _pageController = PageController();
   IndexBloc indexBloc;
   String like = '';
