@@ -6,19 +6,40 @@ import '../../widgets/judou_cell.dart';
 import '../../widgets/comment_cell.dart';
 import '../../widgets/end_cell.dart';
 import '../../widgets/detail_label.dart';
+import '../models/judou_model.dart';
+import '../../bloc_provider.dart';
+import '../BLoc/detail_bloc.dart';
 
-class DetailPage extends StatefulWidget {
-  DetailPage({Key key});
-
-  final items = List<String>.generate(100, (i) => 'item $i');
-
+class DetailPage extends StatelessWidget {
+  DetailPage({Key key, this.model}) : super(key: key);
+  final JuDouModel model;
   @override
-  State<StatefulWidget> createState() {
-    return _DetailStateful();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      bloc: DetailBloc(),
+      child: DetailWidget(model: model),
+    );
   }
 }
 
-class _DetailStateful extends State<DetailPage> {
+class DetailWidget extends StatefulWidget {
+  DetailWidget({Key key, this.model});
+
+  final items = List<String>.generate(100, (i) => 'item $i');
+  final JuDouModel model;
+  @override
+  State<StatefulWidget> createState() {
+    return _DetailWidgetStateful();
+  }
+}
+
+class _DetailWidgetStateful extends State<DetailWidget> {
+  @override
+  void initState() {
+    print(widget.model.author.name);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget hotCommnets() => Container(
@@ -48,6 +69,7 @@ class _DetailStateful extends State<DetailPage> {
                 return JuDouCell(
                   divider: Blank(),
                   tag: 'index_detail',
+                  model: widget.model,
                 );
               case 1:
                 return DetailLabel();

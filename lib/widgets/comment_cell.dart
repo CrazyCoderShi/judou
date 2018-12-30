@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/image_avatar.dart';
+import '../widgets/radius_image.dart';
 import '../utils/color_util.dart';
 
 class CommentCell extends StatelessWidget {
@@ -15,7 +15,7 @@ class CommentCell extends StatelessWidget {
           children: <Widget>[
             Row(
               children: <Widget>[
-                ImageAvatar(
+                RadiusImage(
                   width: 30,
                   height: 30,
                   radius: 15,

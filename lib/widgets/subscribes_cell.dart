@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/image_avatar.dart';
+import '../widgets/radius_image.dart';
 import '../utils/color_util.dart';
 
 class SubscribesCell extends StatelessWidget {
@@ -11,7 +11,7 @@ class SubscribesCell extends StatelessWidget {
       color: Colors.white,
       child: Row(
         children: <Widget>[
-          ImageAvatar(
+          RadiusImage(
             imageUrl:
                 'http:\/\/judou.b0.upaiyun.com\/avatar\/2018\/04\/2E9998D6-7BC8-4D1A-B2D2-77B2D664910A.JPG',
             radius: 3.0,

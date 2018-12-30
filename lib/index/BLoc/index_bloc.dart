@@ -14,7 +14,7 @@ class IndexBloc implements BlocBase {
   /// [1] 喜欢数
   /// [2] '1' 喜欢， '0' 不喜欢
   final _badges = PublishSubject<List<String>>();
-
+  JuDouModel model = JuDouModel();
   List<JuDouModel> _dataList = List<JuDouModel>();
 
   IndexBloc() {
@@ -31,15 +31,22 @@ class IndexBloc implements BlocBase {
 
   /// pageview页面切换回调
   void onPageChanged(index) {
-    JuDouModel model = _dataList[index];
-    _badges.sink
-        .add([model.commentCount, model.likeCount, model.isLiked ? '1' : '0']);
+    model = _dataList[index];
+    double l = model.likeCount / 1000;
+    double c = model.commentCount / 1000;
+    String likeNum =
+        (l > 1) ? l.toStringAsFixed(1) + 'k' : '${model.likeCount}';
+    String commentNum =
+        (c > 1) ? c.toStringAsFixed(1) : '${model.commentCount}';
+    _badges.sink.add([commentNum, likeNum, model.isLiked ? '1' : '0']);
   }
 
   /// to detail page
   void toDetailPage(BuildContext context) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => DetailPage()));
+      context,
+      MaterialPageRoute(builder: (context) => DetailPage(model: model)),
+    );
   }
 
   @override

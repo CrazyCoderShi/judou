@@ -22,6 +22,7 @@ dependencies:
   dio: ^1.0.13
   page_transition: ^1.0.6
   rx_command: ^4.0.2
+  intl: ^0.15.7
 
 dev_dependencies:
   flutter_test:

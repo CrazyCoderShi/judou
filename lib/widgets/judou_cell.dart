@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import '../widgets/image_avatar.dart';
+import '../widgets/radius_image.dart';
 import '../utils/color_util.dart';
 import '../widgets/image_preview.dart';
 import 'package:page_transition/page_transition.dart';
+import '../index/models/judou_model.dart';
+import '../utils/date_util.dart';
 
 class JuDouCell extends StatelessWidget {
-  JuDouCell({Key key, this.divider, this.tag, this.onTap}) : super(key: key);
+  JuDouCell({Key key, this.divider, this.tag, this.model, this.onTap})
+      : super(key: key);
 
   final Widget divider;
   // 每一个tag必须是唯一的
   final String tag;
   final VoidCallback onTap;
+  final JuDouModel model;
 
   // 顶部作者信息
   Widget authorInfo() => Row(
@@ -19,16 +23,15 @@ class JuDouCell extends StatelessWidget {
           Container(
             child: Row(
               children: <Widget>[
-                ImageAvatar(
+                RadiusImage(
                     radius: 3.0,
-                    imageUrl:
-                        'http://judou.b0.upaiyun.com/uploads/authors/2017/03/923474e8-d751-4d67-9f83-dbfb20c70624.jpg',
+                    imageUrl: model.author.coverUrl,
                     width: 30,
                     height: 30),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
-                    '东野圭吾',
+                    model.author.name,
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w300,
@@ -37,7 +40,9 @@ class JuDouCell extends StatelessWidget {
                 ),
                 Padding(
                     padding: EdgeInsets.only(left: 10),
-                    child: Icon(Icons.stars, size: 16, color: Colors.blue)),
+                    child: model.author.isVerified
+                        ? Icon(Icons.stars, size: 16, color: Colors.blue)
+                        : Container()),
               ],
             ),
           ),
@@ -50,9 +55,8 @@ class JuDouCell extends StatelessWidget {
         tag: this.tag,
         child: Padding(
           padding: EdgeInsets.only(top: 10, bottom: 10),
-          child: ImageAvatar(
-              imageUrl:
-                  'http://judou.b0.upaiyun.com/image/crawler/2017/12/02/86df66633a544a1b850d19333d4a4721.jpg',
+          child: RadiusImage(
+              imageUrl: model.pictures[0].url,
               width: MediaQuery.of(context).size.width,
               height: 200,
               radius: 8.0),
@@ -77,19 +81,15 @@ class JuDouCell extends StatelessWidget {
   // 收录者信息
   Widget referenceAuthorInfo() => Row(
         children: <Widget>[
-          ImageAvatar(
-              imageUrl:
-                  'http://judou.b0.upaiyun.com/uploads/authors/2017/03/923474e8-d751-4d67-9f83-dbfb20c70624.jpg',
-              width: 20,
-              height: 20,
-              radius: 10),
+          RadiusImage(
+              imageUrl: model.user.avatar, width: 20, height: 20, radius: 10),
           Padding(
               padding: EdgeInsets.only(left: 5),
-              child: Text('爱吃甜食的阿拉蕾', style: TextStyle(fontSize: 10))),
+              child: Text(model.user.nickname, style: TextStyle(fontSize: 10))),
           Padding(
             padding: EdgeInsets.only(left: 10),
             child: Text(
-              '一小时前收录',
+              '${DateUtils.fromNow(int.parse(model.publishedDate))}收录',
               style: TextStyle(fontSize: 10, color: ColorUtils.textGreyColor),
             ),
           ),
@@ -105,6 +105,7 @@ class JuDouCell extends StatelessWidget {
     Widget btn(IconData iconData, VoidCallback onTap, [String rightTitle]) =>
         GestureDetector(
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Icon(iconData, color: ColorUtils.textUserNameColor),
                 Padding(
@@ -122,8 +123,8 @@ class JuDouCell extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        btn(Icons.favorite_border, () => print('11111'), '10'),
-        btn(Icons.insert_comment, null, '20'),
+        btn(Icons.favorite_border, () => print('11111'), '${model.likeCount}'),
+        btn(Icons.insert_comment, null, '${model.commentCount}'),
         btn(Icons.bookmark_border, null),
         btn(Icons.share, null)
       ],
@@ -140,7 +141,7 @@ class JuDouCell extends StatelessWidget {
             children: <Widget>[
               authorInfo(),
               Text(
-                '生气的人是一个复杂的动物，发出极度矛盾的信息，哀求着救助与关注，然而当这一切到来的时，却又拒绝，希望无须语言就可以得到理解',
+                model.content,
                 style: TextStyle(
                     color: ColorUtils.textPrimaryColor,
                     fontSize: 14,
