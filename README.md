@@ -28,8 +28,8 @@ If you are not familiar with BLoc, the following resources can help you.
 
 - [Architect your Flutter project using BLOC pattern](https://medium.com/flutterpub/architecting-your-flutter-project-bd04e144a8f1)
 - [Reactive Programming - Streams - BLoC](https://www.didierboelens.com/2018/08/reactive-programming---streams---bloc/)
-- [🎬 Technical Debt and Streams/BLoC](https://www.youtube.com/watch?v=fahC3ky_zW0)
-- [🎬 Flutter / AngularDart – Code sharing, better together](https://www.youtube.com/watch?v=PLHln7wHgPE)
+- [Technical Debt and Streams/BLoC](https://www.youtube.com/watch?v=fahC3ky_zW0)🎬
+- [Flutter / AngularDart – Code sharing, better together](https://www.youtube.com/watch?v=PLHln7wHgPE)🎬
 
 ## Thanks
 
