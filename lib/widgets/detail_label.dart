@@ -3,7 +3,9 @@ import '../widgets/blank.dart';
 import '../widgets/label.dart';
 
 class DetailLabel extends StatelessWidget {
-  DetailLabel({Key key}) : super(key: key);
+  DetailLabel({Key key, this.labelTitle}) : super(key: key);
+
+  final String labelTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class DetailLabel extends StatelessWidget {
                 width: 40,
                 height: 20,
                 radius: 10,
-                title: '爱情',
+                title: labelTitle,
                 onTap: () => print('爱情'),
               ),
             )

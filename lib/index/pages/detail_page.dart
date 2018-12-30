@@ -72,7 +72,9 @@ class _DetailWidgetStateful extends State<DetailWidget> {
                   model: widget.model,
                 );
               case 1:
-                return DetailLabel();
+                return DetailLabel(
+                  labelTitle: '爱情',
+                );
               case 2:
                 return hotCommnets();
               case 98:

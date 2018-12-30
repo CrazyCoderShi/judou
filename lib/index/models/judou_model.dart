@@ -1,9 +1,11 @@
 import 'author_model.dart';
 import 'image_model.dart';
 import 'user_model.dart';
+import 'tag_model.dart';
 
 class JuDouModel {
   final bool isPrivate;
+  final List<TagModel> tags;
   final String dailyDate;
   final String day;
   final String publishedDate;
@@ -33,6 +35,7 @@ class JuDouModel {
 
   JuDouModel(
       {this.isPrivate,
+      this.tags,
       this.dailyDate,
       this.day,
       this.publishedDate,
@@ -61,10 +64,16 @@ class JuDouModel {
       this.isUgc});
 
   factory JuDouModel.fromJson(Map<String, dynamic> json) {
-    var list = json['pictures'] as List;
+    var picturesList = json['pictures'] as List;
     List<ImageModel> imageList;
-    if (list != null) {
-      imageList = list.map((i) => ImageModel.fromJson(i)).toList();
+    if (picturesList != null) {
+      imageList = picturesList.map((i) => ImageModel.fromJson(i)).toList();
+    }
+
+    var tList = json['tags'] as List;
+    List<TagModel> tagList;
+    if (tList != null) {
+      tagList = tList.map((i) => TagModel.fromJSON(i)).toList();
     }
 
     // 日期转换
@@ -79,6 +88,7 @@ class JuDouModel {
 
     return JuDouModel(
         isPrivate: json['is_private'] as bool,
+        tags: tagList,
         dailyDate: dailyString + '星期' + '$weekday',
         day: dayString,
         publishedDate: json['published_at'] as String,
