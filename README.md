@@ -1,6 +1,8 @@
 # judou
 
-A new Flutter project.
+![Judou](https://github.com/CrazyCoderShi/judou/blob/master/assets/judou.png)
+
+Judou is my favorite app，so I implemented it with flutter
 
 ## Getting Started
 
