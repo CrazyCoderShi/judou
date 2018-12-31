@@ -70,8 +70,7 @@ class JuDouCell extends StatelessWidget {
       PageTransition(
         type: PageTransitionType.fade,
         child: ImagePreview(
-          imageUrl:
-              'http://judou.b0.upaiyun.com/image/crawler/2017/12/02/86df66633a544a1b850d19333d4a4721.jpg',
+          imageUrl: model.pictures[0].url,
           tag: this.tag,
         ),
       ),

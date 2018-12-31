@@ -2,4 +2,20 @@ class RequestPath {
   /// 首页接口地址
   static const String daily =
       '/v6/op/sentences/daily?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=45&platform=ios&signature=6d52830af89222da917a0161d3d32c70&system_version=12.1&timestamp=1546019663&token=249d880e4ba539c6edc04f9e35ff46a3&version=3.5.7&version_code=41';
+
+  /// 句子详情
+  /// [uuid] 句子id
+  static String sentence(String uuid) {
+    return '/v6/op/sentences/$uuid?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&platform=ios&signature=5351b762de0d27b2c2db3c4eebdaca41&system_version=12.1&timestamp=1546215975&token=249d880e4ba539c6edc04f9e35ff46a3&version=3.5.7&version_code=41';
+  }
+
+  /// 句子热评
+  static String sentenceHot(String uuid) {
+    return '/v6/op/sentences/$uuid/comments/hot?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=20&platform=ios&signature=78bffaeb4feeebdd5427dd810bc11e3d&system_version=12.1&timestamp=1546215975&token=249d880e4ba539c6edc04f9e35ff46a3&version=3.5.7&version_code=41';
+  }
+
+  /// 最新评论
+  static String sentenceLatest(String uuid) {
+    return '/v6/op/sentences/$uuid/comments/latest?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=20&platform=ios&signature=78bffaeb4feeebdd5427dd810bc11e3d&system_version=12.1&timestamp=1546215975&token=249d880e4ba539c6edc04f9e35ff46a3&version=3.5.7&version_code=41';
+  }
 }

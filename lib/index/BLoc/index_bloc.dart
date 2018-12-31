@@ -56,7 +56,7 @@ class IndexBloc implements BlocBase {
   }
 
   void _readDailyJson() async {
-    List<JuDouModel> list = await Request.instance.request();
+    List<JuDouModel> list = await Request.instance.daily();
     _fetchDaily.sink.add(list);
     _dataList = list;
     this.onPageChanged(0);
