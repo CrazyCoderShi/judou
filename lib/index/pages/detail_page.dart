@@ -16,7 +16,7 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      bloc: DetailBloc(),
+      bloc: DetailBloc(uuid: model.uuid),
       child: DetailWidget(model: model),
     );
   }
@@ -34,9 +34,11 @@ class DetailWidget extends StatefulWidget {
 }
 
 class _DetailWidgetStateful extends State<DetailWidget> {
+  DetailBloc detailBloc;
+
   @override
   void initState() {
-    print(widget.model.author.name);
+    detailBloc = BlocProvider.of<DetailBloc>(context);
     super.initState();
   }
 

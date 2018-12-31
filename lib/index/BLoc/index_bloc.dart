@@ -1,9 +1,7 @@
-import 'package:rxdart/rxdart.dart';
 import 'package:flutter/material.dart';
-import '../../bloc_provider.dart';
 import '../models/judou_model.dart';
-import '../../network/request.dart';
 import '../../index/pages/detail_page.dart';
+import '../../network/network.dart';
 
 class IndexBloc implements BlocBase {
   /// 存放所有的model
@@ -18,7 +16,7 @@ class IndexBloc implements BlocBase {
   List<JuDouModel> _dataList = List<JuDouModel>();
 
   IndexBloc() {
-    _readDailyJson();
+    _fetchDailyJson();
   }
 
   /// JudouModel数据流
@@ -55,10 +53,22 @@ class IndexBloc implements BlocBase {
     if (!_badges.isClosed) _badges.close();
   }
 
-  void _readDailyJson() async {
-    List<JuDouModel> list = await Request.instance.daily();
+  void _fetchDailyJson() async {
+    List<JuDouModel> list = await daily();
     _fetchDaily.sink.add(list);
     _dataList = list;
     this.onPageChanged(0);
+  }
+
+  /// 首页网络请求
+  Future<List<JuDouModel>> daily() async {
+    List<JuDouModel> list = await Request.instance.dio
+        .get(RequestPath.daily)
+        .then((response) => response.data['data'] as List)
+        .then((response) =>
+            response.where((item) => item['author'] != null).toList())
+        .then((response) =>
+            response.map((item) => JuDouModel.fromJson(item)).toList());
+    return list;
   }
 }

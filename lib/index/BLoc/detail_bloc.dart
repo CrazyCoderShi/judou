@@ -1,12 +1,16 @@
-import '../../bloc_provider.dart';
-import 'package:rxdart/rxdart.dart';
-import '../../network/request.dart';
-import '../models/comment_model.dart';
-import '../models/judou_model.dart';
-import 'package:dio/dio.dart';
+import '../../network/network.dart';
+import '../../index/models/judou_model.dart';
+import '../../index/models/comment_model.dart';
 
 class DetailBloc implements BlocBase {
-  final _fetchComments = PublishSubject();
+  /// 数据流中的类型
+  /// Map<String, List<CommentModel>>
+  /// {
+  ///   "hot": List<CommentModel>,
+  ///   "latest": List<CommentModel>
+  ///   "detail": JuDouModel
+  /// }
+  final _fetchComments = PublishSubject<Map<String, dynamic>>();
   final String uuid;
 
   DetailBloc({this.uuid}) {
@@ -17,10 +21,32 @@ class DetailBloc implements BlocBase {
 
   void fetchData() async {
     // JuDouModel
-    Map<String, List<CommentModel>> hot = await Request.instance
-        .sentenceHot('679996e4-bb90-4f99-9a39-9f04769e79ac');
+    Map<String, dynamic> hot = await sentenceHot(uuid);
+    _fetchComments.sink.add(hot);
   }
 
   @override
-  dispose() {}
+  dispose() {
+    if (!_fetchComments.isClosed) _fetchComments.close();
+  }
+
+  /// 每个句子的热评
+  /// 每个句子的最新评论
+  /// 每个句子的详情
+  Future<Map<String, dynamic>> sentenceHot(String uuid) async {
+    List<CommentModel> hot = await Request.instance.dio
+        .get(RequestPath.sentenceHot(uuid))
+        .then((response) => response.data['data'] as List)
+        .then((response) =>
+            response.map((item) => CommentModel.fromJSON(item)).toList());
+    List<CommentModel> latest = await Request.instance.dio
+        .get(RequestPath.sentenceLatest(uuid))
+        .then((response) => response.data['data'] as List)
+        .then((response) =>
+            response.map((item) => CommentModel.fromJSON(item)).toList());
+    JuDouModel detailModel = await Request.instance.dio
+        .get(RequestPath.sentence(uuid))
+        .then((response) => JuDouModel.fromJson(response.data));
+    return {'hot': hot, 'latest': latest, 'detail': detailModel};
+  }
 }
