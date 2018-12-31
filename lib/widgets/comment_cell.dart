@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/radius_image.dart';
 import '../index/models/comment_model.dart';
 import '../utils/color_util.dart';
+import '../utils/date_util.dart';
 
 class CommentCell extends StatelessWidget {
   CommentCell({Key key, @required this.divider, this.model}) : super(key: key);
@@ -59,7 +60,7 @@ class CommentCell extends StatelessWidget {
                         style: TextStyle(fontSize: 13),
                       ),
                       Text(
-                        '11',
+                        DateUtils.fromNow(int.parse(model.createdAt)),
                         style: TextStyle(
                           fontSize: 10,
                           color: ColorUtils.textGreyColor,
@@ -89,28 +90,29 @@ class CommentCell extends StatelessWidget {
         );
 
     Widget replyContent(CommentModel data) => Container(
+          width: 999,
           padding: EdgeInsets.all(8),
           color: ColorUtils.blankColor,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                '${data.user.nickname}:',
-                style: TextStyle(
-                  color: ColorUtils.textGreyColor,
-                  fontSize: 12,
-                  height: 1.2,
+          child: RichText(
+            text: TextSpan(
+              children: <TextSpan>[
+                TextSpan(
+                  text: '${data.user.nickname}:',
+                  style: TextStyle(
+                    color: ColorUtils.textGreyColor,
+                    fontSize: 12,
+                    height: 1.2,
+                  ),
                 ),
-              ),
-              Text(
-                data.content,
-                style: TextStyle(
-                  fontSize: 12,
-                  height: 1.2,
-                ),
-                softWrap: true,
-              ),
-            ],
+                TextSpan(
+                  text: data.content,
+                  style: TextStyle(
+                      fontSize: 12,
+                      height: 1.2,
+                      color: ColorUtils.textPrimaryColor),
+                )
+              ],
+            ),
           ),
         );
     return Container(

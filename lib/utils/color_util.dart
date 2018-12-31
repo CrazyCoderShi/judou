@@ -8,7 +8,7 @@ class ColorUtils {
   static const Color dividerColor = Color(0xFFEEEEEE);
 
   /// 空白分割条颜色
-  static const Color blankColor = Color(0xFFF5F5F5);
+  static const Color blankColor = Color(0xFFFAFAFA);
 
   /// 文字主色
   static const Color textPrimaryColor = Color(0xFF333333);
