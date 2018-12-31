@@ -9,7 +9,7 @@ class CommentModel {
   final bool isLiked;
   final String commentableType;
   final UserModel user;
-  final CommentModel replyToComment;
+  final Map<String, dynamic> replyToComment;
   final bool isBlock;
   final String commentableId;
   final String createdAt;
@@ -39,7 +39,7 @@ class CommentModel {
       isLiked: json['is_liked'],
       commentableType: json['commentable_type'],
       user: UserModel.fromJson(json['user'] ?? Map()),
-      replyToComment: json['reply_to_comment'],
+      replyToComment: json['reply_to_comment'] ?? Map<String, dynamic>(),
       isBlock: json['is_block'],
       commentableId: json['commentable_id'],
       createdAt: json['created_at'],
