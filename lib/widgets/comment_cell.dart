@@ -1,14 +1,41 @@
 import 'package:flutter/material.dart';
 import '../widgets/radius_image.dart';
+import '../index/models/comment_model.dart';
 import '../utils/color_util.dart';
 
 class CommentCell extends StatelessWidget {
-  CommentCell({Key key, @required this.divider}) : super(key: key);
+  CommentCell({Key key, @required this.divider, this.model}) : super(key: key);
 
   final Widget divider;
+  final CommentModel model;
 
   @override
   Widget build(BuildContext context) {
+    // 点赞及数字
+    Widget upCount() {
+      var color = model.isLiked ? Colors.black : ColorUtils.textGreyColor;
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            '${model.upCount}',
+            style: TextStyle(fontSize: 10, color: color),
+            textAlign: TextAlign.end,
+          ),
+          IconButton(
+            alignment: Alignment.centerLeft,
+            icon: Icon(
+              Icons.thumb_up,
+              color: color,
+            ),
+            onPressed: null,
+            iconSize: 12,
+          ),
+        ],
+      );
+    }
+
     // user-info
     Widget userInfo() => Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -19,43 +46,40 @@ class CommentCell extends StatelessWidget {
                   width: 30,
                   height: 30,
                   radius: 15,
-                  imageUrl:
-                      'http://judou.b0.upaiyun.com/uploads/authors/2017/03/923474e8-d751-4d67-9f83-dbfb20c70624.jpg',
+                  imageUrl: model.user.avatar,
                 ),
-                Padding(
+                Container(
                   padding: EdgeInsets.only(left: 5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        '有人说',
+                        model.user.nickname,
                         style: TextStyle(fontSize: 13),
                       ),
                       Text(
-                        '一分钟前',
+                        '11',
                         style: TextStyle(
                           fontSize: 10,
                           color: ColorUtils.textGreyColor,
                         ),
+                        softWrap: true,
+                        maxLines: 999,
                       )
                     ],
                   ),
                 ),
               ],
             ),
-            IconButton(
-              icon: Icon(Icons.thumb_up),
-              onPressed: null,
-              iconSize: 14,
-            ),
+            upCount(),
           ],
         );
 
     Widget commentContent() => Padding(
           padding: EdgeInsets.only(bottom: 10),
           child: Text(
-            '生气的人是一个复杂的动物，发出极度矛盾的信息，哀求着救助与关注，然而当这一切到来的时，却又拒绝，希望无须语言就可以得到理解',
+            model.content,
             style: TextStyle(
               color: ColorUtils.textPrimaryColor,
               fontSize: 13,
@@ -64,26 +88,27 @@ class CommentCell extends StatelessWidget {
           ),
         );
 
-    Widget replyContent() => Container(
+    Widget replyContent(CommentModel data) => Container(
           padding: EdgeInsets.all(8),
           color: ColorUtils.blankColor,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                '那些花儿:',
+                '${data.user.nickname}:',
                 style: TextStyle(
                   color: ColorUtils.textGreyColor,
-                  fontSize: 13,
+                  fontSize: 12,
                   height: 1.2,
                 ),
               ),
               Text(
-                '那些花儿\n真好看\n开出了绚烂的花\n一如年轻时的你',
+                data.content,
                 style: TextStyle(
-                  fontSize: 13,
+                  fontSize: 12,
                   height: 1.2,
                 ),
+                softWrap: true,
               ),
             ],
           ),
@@ -100,7 +125,13 @@ class CommentCell extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 35),
                   child: Column(
-                    children: <Widget>[commentContent(), replyContent()],
+                    children: <Widget>[
+                      commentContent(),
+                      model.replyToComment.isEmpty
+                          ? Container()
+                          : replyContent(
+                              CommentModel.fromJSON(model.replyToComment))
+                    ],
                   ),
                 ),
               ],

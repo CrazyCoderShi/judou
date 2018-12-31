@@ -17,7 +17,7 @@ class DetailBloc implements BlocBase {
     fetchData();
   }
 
-  Stream get commentSteam => _fetchComments.stream;
+  Stream<Map<String, dynamic>> get commentSteam => _fetchComments.stream;
 
   void fetchData() async {
     // JuDouModel
