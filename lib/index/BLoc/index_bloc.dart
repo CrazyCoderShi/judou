@@ -65,8 +65,7 @@ class IndexBloc implements BlocBase {
     List<JuDouModel> list = await Request.instance.dio
         .get(RequestPath.daily)
         .then((response) => response.data['data'] as List)
-        .then((response) =>
-            response.where((item) => item['author'] != null).toList())
+        .then((response) => response.where((item) => !item['is_ad']).toList())
         .then((response) =>
             response.map((item) => JuDouModel.fromJson(item)).toList());
     return list;
