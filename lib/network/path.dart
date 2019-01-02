@@ -18,4 +18,14 @@ class RequestPath {
   static String sentenceLatest(String uuid) {
     return '/v6/op/sentences/$uuid/comments/latest?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=20&platform=ios&signature=78bffaeb4feeebdd5427dd810bc11e3d&system_version=12.1&timestamp=1546215975&token=249d880e4ba539c6edc04f9e35ff46a3&version=3.5.7&version_code=41';
   }
+
+  /// 所有频道id + title
+  static String channels() {
+    return '/v6/op/discovery/channels?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&platform=ios&signature=9949b7b650b2c283fb9c69bc25275786&system_version=12.1.2&timestamp=1546392267&version=3.5.7&version_code=41';
+  }
+
+  /// 每个子频道的数据
+  static String channelWithId(String id) {
+    return '/v6/op/channels/$id?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=45&platform=ios&signature=9be25af477170799ad8025a490ebf67f&system_version=12.1.2&timestamp=1546392267&token=249d880e4ba539c6edc04f9e35ff46a3&version=3.5.7&version_code=41';
+  }
 }

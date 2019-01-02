@@ -1,24 +1,41 @@
+import '../bloc_provider.dart';
+import '../widgets/blank.dart';
+import '../utils/color_util.dart';
+import './BLoc/discovery_bloc.dart';
+import '../widgets/judou_cell.dart';
+import '../widgets/jottings_cell.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:judou/utils/color_util.dart';
-import 'package:judou/widgets/blank.dart';
-import 'package:judou/widgets/judou_cell.dart';
-import 'package:judou/index/pages/detail_page.dart';
-import 'package:judou/widgets/jottings_cell.dart';
+import '../index/pages/detail_page.dart';
 
-class DiscoveryPage extends StatefulWidget {
+class DiscoveryPage extends StatelessWidget {
   @override
-  _DiscoveryPageState createState() => _DiscoveryPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      child: DiscoveryWidget(),
+      bloc: DiscoveryBloc(),
+    );
+  }
 }
 
-class _DiscoveryPageState extends State<DiscoveryPage>
+class DiscoveryWidget extends StatefulWidget {
+  @override
+  _DiscoveryWidgetState createState() => _DiscoveryWidgetState();
+}
+
+class _DiscoveryWidgetState extends State<DiscoveryWidget>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   final List<Tab> myTabs = <Tab>[
     Tab(text: '推荐'),
     Tab(text: '广场'),
     Tab(text: '原创'),
     Tab(text: '随笔'),
-    Tab(text: '励志')
+    Tab(text: '励志'),
+    Tab(text: '毒汤'),
+    Tab(text: '英文'),
+    Tab(text: '情感'),
+    Tab(text: '订阅'),
+    Tab(text: '话题')
   ];
 
   TabController _tabController;
@@ -63,6 +80,7 @@ class _DiscoveryPageState extends State<DiscoveryPage>
         bottom: TabBar(
           controller: _tabController,
           tabs: myTabs,
+          isScrollable: true,
           indicatorColor: Colors.black26,
           indicatorSize: TabBarIndicatorSize.label,
         ),
