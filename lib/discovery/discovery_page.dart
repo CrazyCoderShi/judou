@@ -7,6 +7,7 @@ import '../widgets/jottings_cell.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../index/pages/detail_page.dart';
+import './BLoc/discovery_bloc.dart';
 
 class DiscoveryPage extends StatelessWidget {
   @override
@@ -25,25 +26,20 @@ class DiscoveryWidget extends StatefulWidget {
 
 class _DiscoveryWidgetState extends State<DiscoveryWidget>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  final List<Tab> myTabs = <Tab>[
-    Tab(text: '推荐'),
-    Tab(text: '广场'),
-    Tab(text: '原创'),
-    Tab(text: '随笔'),
-    Tab(text: '励志'),
-    Tab(text: '毒汤'),
-    Tab(text: '英文'),
-    Tab(text: '情感'),
-    Tab(text: '订阅'),
-    Tab(text: '话题')
-  ];
-
+  List<Tab> myTabs;
+  DiscoveryBloc discoveryBloc;
   TabController _tabController;
 
   @override
   void initState() {
+    discoveryBloc = BlocProvider.of<DiscoveryBloc>(context);
+    discoveryBloc.tabSubject.listen((tabs) {
+      setState(() {
+        myTabs = tabs.map((item) => Tab(text: item.name)).toList();
+        _tabController = TabController(vsync: this, length: myTabs.length);
+      });
+    });
     super.initState();
-    _tabController = TabController(vsync: this, length: myTabs.length);
   }
 
   @override
@@ -85,25 +81,29 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
           indicatorSize: TabBarIndicatorSize.label,
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: myTabs.map((Tab tab) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              if (tab.text == '随笔') {
-                return JottingsCell();
-              }
+      body: myTabs.isNotEmpty
+          ? TabBarView(
+              controller: _tabController,
+              children: myTabs.map((Tab tab) {
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    // if (tab.text == '随笔') {
+                    return JottingsCell();
+                    // }
 
-              return JuDouCell(
-                divider: Blank(),
-                tag: 'discovery_detail$index',
-                onTap: this.toDetailPage,
-              );
-            },
-            itemCount: 20,
-          );
-        }).toList(),
-      ),
+                    // return JuDouCell(
+                    //   divider: Blank(),
+                    //   tag: 'discovery_detail$index',
+                    //   onTap: this.toDetailPage,
+                    // );
+                  },
+                  itemCount: 20,
+                );
+              }).toList(),
+            )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 }

@@ -24,15 +24,16 @@ class JuttingModel {
 
   factory JuttingModel.fromJSON(Map<String, dynamic> json) {
     return JuttingModel(
-        summary: json['summary'] as String,
-        id: json['id'] as int,
-        author: json['author'] as String,
-        hits: json['hits'] as int,
-        publishedAt: json['published_at'] as String,
-        uuid: json['uuid'] as String,
-        title: json['title'] as String,
-        url: json['url'] as String,
-        banner: json['banner'] as String,
-        isShowBanner: json['is_show_banner'] as bool);
+      summary: json['summary'] as String,
+      id: json['id'] as int,
+      author: json['author'] as String,
+      hits: json['hits'] as int,
+      publishedAt: json['published_at'] as String,
+      uuid: json['uuid'] as String,
+      title: json['title'] as String,
+      url: json['url'] as String,
+      banner: json['banner'] as String,
+      isShowBanner: json['is_show_banner'] as bool,
+    );
   }
 }
