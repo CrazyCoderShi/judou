@@ -25,13 +25,17 @@ class JuDouCell extends StatelessWidget {
               children: <Widget>[
                 RadiusImage(
                     radius: 3.0,
-                    imageUrl: model.author.isVerified != null ? model.author.coverUrl : model.image.url,
+                    imageUrl: model.author.isVerified != null
+                        ? model.author.coverUrl
+                        : model.image.url,
                     width: 30,
                     height: 30),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
-                    model.author.isVerified != null ? model.author.name : model.subHeading,
+                    model.author.isVerified != null
+                        ? model.author.name
+                        : model.subHeading,
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w300,

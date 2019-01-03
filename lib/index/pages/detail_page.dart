@@ -63,8 +63,7 @@ class _DetailWidgetStateful extends State<DetailWidget> {
     for (var i = 0; i < hotList.length; i++) {
       listCell.add(
         CommentCell(
-            divider:
-                i == hotList.length - 1 ? Container() : Divider(indent: 50),
+            divider: i == hotList.length - 1 ? Container() : Divider(),
             model: hotList[i]),
       );
     }
@@ -106,9 +105,7 @@ class _DetailWidgetStateful extends State<DetailWidget> {
           if (index == 3) return sectionHeader('最新评论');
           if (index == latest.length + 2) return EndCell();
           return CommentCell(
-              divider: index == latest.length + 1
-                  ? Container()
-                  : Divider(indent: 50),
+              divider: index == latest.length + 1 ? Container() : Divider(),
               model: latest[index - 3]);
         },
         itemCount: latest.length + 3,
