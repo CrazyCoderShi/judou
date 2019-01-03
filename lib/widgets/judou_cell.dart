@@ -25,13 +25,13 @@ class JuDouCell extends StatelessWidget {
               children: <Widget>[
                 RadiusImage(
                     radius: 3.0,
-                    imageUrl: model.author.coverUrl,
+                    imageUrl: model.author.isVerified != null ? model.author.coverUrl : model.image.url,
                     width: 30,
                     height: 30),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
-                    model.author.name,
+                    model.author.isVerified != null ? model.author.name : model.subHeading,
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w300,
@@ -40,7 +40,7 @@ class JuDouCell extends StatelessWidget {
                 ),
                 Padding(
                     padding: EdgeInsets.only(left: 10),
-                    child: model.author.isVerified
+                    child: (model.author.isVerified ?? false)
                         ? Icon(Icons.stars, size: 16, color: Colors.blue)
                         : Container()),
               ],
@@ -88,7 +88,7 @@ class JuDouCell extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 10),
             child: Text(
-              '${DateUtils.fromNow(int.parse(model.publishedDate))}收录',
+              '收录',
               style: TextStyle(fontSize: 10, color: ColorUtils.textGreyColor),
             ),
           ),
