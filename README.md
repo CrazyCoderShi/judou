@@ -1,6 +1,6 @@
-# Judou
-
-![Judou](https://github.com/CrazyCoderShi/judou/blob/master/assets/judou.png)
+<p align="center">
+    <img alt="gank.io" src="https://github.com/CrazyCoderShi/judou/blob/master/assets/judou.png" width="240">
+</p>
 
 Judou is my favorite app，so I implemented it with flutter
 
