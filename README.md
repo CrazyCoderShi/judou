@@ -8,6 +8,7 @@
   <img src="https://img.shields.io/badge/language-dart2-blue.svg">
   <img src="https://img.shields.io/badge/license-MIT-orange.svg">
 </p>
+
 ## JuDou
 
 Judou is my favorite app，so I implemented it with flutter
