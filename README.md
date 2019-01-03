@@ -1,14 +1,22 @@
 <p align="center">
     <img alt="gank.io" src="https://github.com/CrazyCoderShi/judou/blob/master/assets/judou.png" width="240">
 </p>
-
+<p align="center">
+  <img src="https://img.shields.io/badge/build-passing-52C434.svg">
+  <img src="https://img.shields.io/badge/version-1.0.0-52C434.svg">
+  <img src="https://img.shields.io/badge/flutterSdk-1.0.0-red.svg">
+  <img src="https://img.shields.io/badge/language-dart2-blue.svg">
+  <img src="https://img.shields.io/badge/license-MIT-orange.svg">
+</p>
 ## JuDou
 
 Judou is my favorite app，so I implemented it with flutter
 
 ## UI
 
-![Index](https://github.com/CrazyCoderShi/judou/blob/master/assets/Index%20Screen%20Shot.png)
+| ![1](https://github.com/CrazyCoderShi/judou/blob/master/assets/index_page.jpg) | ![2](https://github.com/CrazyCoderShi/judou/blob/master/assets/detail_page.jpg) |
+| :--: | :--: |
+| 首页 | 详情 |
 
 ## Getting Started
 
