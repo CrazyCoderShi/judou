@@ -122,7 +122,10 @@ class CommentCell extends StatelessWidget {
         children: <Widget>[
           userInfo(),
           Padding(
-            padding: EdgeInsets.only(left: 35, right: 15),
+            padding: EdgeInsets.only(
+                left: 35,
+                right: 15,
+                bottom: model.replyToComment.isEmpty ? 0 : 8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
