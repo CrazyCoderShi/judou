@@ -32,11 +32,11 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
 
   @override
   void initState() {
+    _tabController = TabController(vsync: this, length: 3);
     discoveryBloc = BlocProvider.of<DiscoveryBloc>(context);
     discoveryBloc.tabSubject.listen((tabs) {
       setState(() {
         myTabs = tabs.map((item) => Tab(text: item.name)).toList();
-        _tabController = TabController(vsync: this, length: myTabs.length);
       });
     });
     super.initState();
@@ -59,7 +59,14 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('data'),
+        centerTitle: true,
+        title: TabBar(
+          controller: _tabController,
+          tabs: <Widget>[Tab(text: '订阅'), Tab(text: '发现'), Tab(text: '推荐')],
+          indicatorColor: Colors.yellow,
+          indicatorSize: TabBarIndicatorSize.label,
+          unselectedLabelColor: ColorUtils.textGreyColor,
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
