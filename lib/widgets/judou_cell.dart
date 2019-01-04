@@ -4,7 +4,6 @@ import '../utils/color_util.dart';
 import '../widgets/image_preview.dart';
 import 'package:page_transition/page_transition.dart';
 import '../index/models/judou_model.dart';
-import '../utils/date_util.dart';
 
 class JuDouCell extends StatelessWidget {
   JuDouCell({Key key, this.divider, this.tag, this.model, this.onTap})
@@ -25,13 +24,17 @@ class JuDouCell extends StatelessWidget {
               children: <Widget>[
                 RadiusImage(
                     radius: 3.0,
-                    imageUrl: model.author.isVerified != null ? model.author.coverUrl : model.image.url,
+                    imageUrl: model.author.isVerified != null
+                        ? model.author.coverUrl
+                        : model.image.url,
                     width: 30,
                     height: 30),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
-                    model.author.isVerified != null ? model.author.name : model.subHeading,
+                    model.author.isVerified != null
+                        ? model.author.name
+                        : model.subHeading,
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w300,
@@ -137,6 +140,7 @@ class JuDouCell extends StatelessWidget {
         Container(
           padding: EdgeInsets.only(top: 15, bottom: 10, left: 15, right: 15),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               authorInfo(),
               Text(

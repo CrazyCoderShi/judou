@@ -117,30 +117,28 @@ class CommentCell extends StatelessWidget {
         );
     return Container(
       color: Colors.white,
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
-            child: Column(
-              children: <Widget>[
-                userInfo(),
-                Padding(
-                  padding: EdgeInsets.only(left: 35),
-                  child: Column(
-                    children: <Widget>[
-                      commentContent(),
-                      model.replyToComment.isEmpty
-                          ? Container()
-                          : replyContent(
-                              CommentModel.fromJSON(model.replyToComment))
-                    ],
-                  ),
-                ),
-              ],
+      child: Padding(
+        padding: EdgeInsets.only(left: 15, right: 15, bottom: 10),
+        child: Column(
+          children: <Widget>[
+            userInfo(),
+            Padding(
+              padding: EdgeInsets.only(left: 35),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  commentContent(),
+                  model.replyToComment.isEmpty
+                      ? Container()
+                      : replyContent(
+                          CommentModel.fromJSON(model.replyToComment),
+                        ),
+                  divider
+                ],
+              ),
             ),
-          ),
-          divider
-        ],
+          ],
+        ),
       ),
     );
   }
