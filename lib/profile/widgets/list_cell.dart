@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import '../utils/color_util.dart';
+import '../../utils/color_util.dart';
 
 class ListCell extends StatelessWidget {
   ListCell(
@@ -60,7 +60,7 @@ class ListCell extends StatelessWidget {
         ),
         color: Colors.white,
       ),
-      onTap: this.onTap,
+      onTap: this.onTap ?? () => {},
     );
   }
 }

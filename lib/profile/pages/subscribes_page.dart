@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../utils/ui_util.dart';
-import '../widgets/end_cell.dart';
+import '../../utils/ui_util.dart';
+import '../../widgets/end_cell.dart';
 import '../widgets/subscribes_cell.dart';
 
 class Subscribes extends StatelessWidget {

@@ -21,18 +21,24 @@ class Label extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: SizedBox(
-          width: this.width,
-          height: this.height,
-          child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: ColorUtils.textGreyColor),
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(this.radius ?? 0)),
-                  shape: BoxShape.rectangle),
-              child: Center(
-                child: Text(this.title,
-                    style: TextStyle(color: Colors.black45, fontSize: 12)),
-              ))),
+        width: this.width,
+        height: this.height,
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: ColorUtils.textGreyColor),
+            borderRadius: BorderRadius.all(
+              Radius.circular(this.radius ?? 0),
+            ),
+            shape: BoxShape.rectangle,
+          ),
+          child: Center(
+            child: Text(
+              this.title,
+              style: TextStyle(color: Colors.black45, fontSize: 12),
+            ),
+          ),
+        ),
+      ),
       onTap: this.onTap ?? () => {},
     );
   }

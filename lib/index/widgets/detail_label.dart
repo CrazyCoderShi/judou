@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../widgets/blank.dart';
-import '../widgets/label.dart';
+import '../../widgets/blank.dart';
+import '../../widgets/label.dart';
 
 class DetailLabel extends StatelessWidget {
   DetailLabel({Key key, this.labelTitle}) : super(key: key);

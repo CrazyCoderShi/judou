@@ -5,7 +5,7 @@ import '../../utils/color_util.dart';
 import '../../widgets/judou_cell.dart';
 import '../../widgets/comment_cell.dart';
 import '../../widgets/end_cell.dart';
-import '../../widgets/detail_label.dart';
+import '../widgets/detail_label.dart';
 import '../models/judou_model.dart';
 import '../models/comment_model.dart';
 import '../../bloc_provider.dart';

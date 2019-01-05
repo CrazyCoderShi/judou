@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../widgets/radius_image.dart';
-import '../utils/color_util.dart';
+import '../../widgets/radius_image.dart';
+import '../../utils/color_util.dart';
 
 class SubscribesCell extends StatelessWidget {
   @override

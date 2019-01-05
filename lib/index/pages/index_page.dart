@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../utils/color_util.dart';
-import '../../widgets/index_item.dart';
+import '../widgets/index_item.dart';
 import '../../widgets/button_subscript.dart';
 import '../models/judou_model.dart';
 import '../BLoc/index_bloc.dart';

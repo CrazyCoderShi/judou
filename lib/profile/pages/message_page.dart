@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/blank.dart';
+import '../../widgets/blank.dart';
 import '../widgets/list_cell.dart';
 
 class MessagePage extends StatelessWidget {

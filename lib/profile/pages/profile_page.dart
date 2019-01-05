@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/list_cell.dart';
 import 'message_page.dart';
-import '../widgets/blank.dart';
-import '../utils/color_util.dart';
+import '../../widgets/blank.dart';
+import '../../utils/color_util.dart';
 import 'subscribes_page.dart';
 
 class ProfilePage extends StatefulWidget {
