@@ -1,38 +1,39 @@
 import '../../bloc_provider.dart';
-import '../../widgets/blank.dart';
 import '../../utils/color_util.dart';
 import '../BLoc/discovery_bloc.dart';
-import '../../widgets/judou_cell.dart';
-import '../../widgets/jottings_cell.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import '../widget/subscribe_widget.dart';
+import '../widget/recommand_widget.dart';
+import '../widget/discovery_widget.dart';
 import '../../index/pages/detail_page.dart';
-import '../BLoc/discovery_bloc.dart';
 
 class DiscoveryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      child: DiscoveryWidget(),
+      child: DiscoveryPageWidget(),
       bloc: DiscoveryBloc(),
     );
   }
 }
 
-class DiscoveryWidget extends StatefulWidget {
+class DiscoveryPageWidget extends StatefulWidget {
   @override
-  _DiscoveryWidgetState createState() => _DiscoveryWidgetState();
+  _DiscoveryPageWidgetState createState() => _DiscoveryPageWidgetState();
 }
 
-class _DiscoveryWidgetState extends State<DiscoveryWidget>
+class _DiscoveryPageWidgetState extends State<DiscoveryPageWidget>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   List<Tab> myTabs;
   DiscoveryBloc discoveryBloc;
   TabController _tabController;
+  List<Tab> tabs = [Tab(text: '订阅'), Tab(text: '发现'), Tab(text: '推荐')];
 
   @override
   void initState() {
     _tabController = TabController(vsync: this, length: 3);
+    _tabController.index = 1;
     discoveryBloc = BlocProvider.of<DiscoveryBloc>(context);
     discoveryBloc.tabSubject.listen((tabs) {
       setState(() {
@@ -62,7 +63,7 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
         centerTitle: true,
         title: TabBar(
           controller: _tabController,
-          tabs: <Widget>[Tab(text: '订阅'), Tab(text: '发现'), Tab(text: '推荐')],
+          tabs: tabs,
           indicatorColor: Colors.yellow,
           indicatorSize: TabBarIndicatorSize.label,
           unselectedLabelColor: ColorUtils.textGreyColor,
@@ -74,61 +75,14 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
           ),
         ],
       ),
-      body: Center(
-        child: Text('Hello World'),
+      body: TabBarView(
+        controller: _tabController,
+        children: <Widget>[
+          SubscribeWidget(),
+          DiscoveryWidget(),
+          RecommandWidget()
+        ],
       ),
     );
   }
-
-  // placeholder的样式问题，已经在官方版本里面修复了
-  // 这里暂时tricky一下，😂
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     appBar: AppBar(
-  //       title: CupertinoTextField(
-  //         placeholder: '                                     🔍搜索你喜欢的内容',
-  //         textAlign: TextAlign.center,
-  //         decoration: BoxDecoration(
-  //           color: ColorUtils.dividerColor,
-  //           border: Border.all(color: Colors.transparent),
-  //           shape: BoxShape.rectangle,
-  //           borderRadius: BorderRadius.circular(20.0),
-  //         ),
-  //         style: TextStyle(
-  //             height: 1, fontSize: 16, color: ColorUtils.textGreyColor),
-  //       ),
-  //       bottom: TabBar(
-  //         controller: _tabController,
-  //         tabs: myTabs,
-  //         isScrollable: true,
-  //         indicatorColor: Colors.black26,
-  //         indicatorSize: TabBarIndicatorSize.label,
-  //       ),
-  //     ),
-  //     body: myTabs.isNotEmpty
-  //         ? TabBarView(
-  //             controller: _tabController,
-  //             children: myTabs.map((Tab tab) {
-  //               return ListView.builder(
-  //                 itemBuilder: (context, index) {
-  //                   // if (tab.text == '随笔') {
-  //                   return JottingsCell();
-  //                   // }
-
-  //                   // return JuDouCell(
-  //                   //   divider: Blank(),
-  //                   //   tag: 'discovery_detail$index',
-  //                   //   onTap: this.toDetailPage,
-  //                   // );
-  //                 },
-  //                 itemCount: 20,
-  //               );
-  //             }).toList(),
-  //           )
-  //         : Center(
-  //             child: CircularProgressIndicator(),
-  //           ),
-  //   );
-  // }
 }
