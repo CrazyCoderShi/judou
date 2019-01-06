@@ -1,5 +1,6 @@
 import './discovery_card.dart';
 import '../../widgets/blank.dart';
+import '../../utils/color_util.dart';
 import 'package:flutter/material.dart';
 
 class DiscoveryWidget extends StatefulWidget {
@@ -33,6 +34,7 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       child: Column(
         children: <Widget>[
           Container(
@@ -49,17 +51,25 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
             ),
           ),
           Blank(height: 5),
-          TabBar(
-            controller: _controller,
-            tabs: tabs,
+          Container(
+            height: 35,
+            child: TabBar(
+              controller: _controller,
+              tabs: tabs,
+              indicatorSize: TabBarIndicatorSize.label,
+              indicatorColor: Colors.white,
+              unselectedLabelColor: ColorUtils.textGreyColor,
+              labelColor: ColorUtils.textPrimaryColor,
+              labelStyle: TextStyle(fontSize: 14),
+            ),
           ),
+          Blank(height: 1),
           Expanded(
             child: TabBarView(
               controller: _controller,
               children: tabs
                   .map((item) => ListView.builder(
                         itemBuilder: (context, inde) => Container(
-                              color: Colors.red,
                               height: 30,
                               width: MediaQuery.of(context).size.width - 30,
                               padding: EdgeInsets.symmetric(
