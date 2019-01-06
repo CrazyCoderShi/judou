@@ -27,13 +27,13 @@ class _DiscoveryPageWidgetState extends State<DiscoveryPageWidget>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   List<Tab> myTabs;
   DiscoveryBloc discoveryBloc;
-  TabController _tabController;
+  TabController _topController;
   List<Tab> tabs = [Tab(text: '订阅'), Tab(text: '发现'), Tab(text: '推荐')];
 
   @override
   void initState() {
-    _tabController = TabController(vsync: this, length: 3);
-    _tabController.index = 1;
+    _topController = TabController(vsync: this, length: 3);
+    _topController.index = 1;
     discoveryBloc = BlocProvider.of<DiscoveryBloc>(context);
     discoveryBloc.tabSubject.listen((tabs) {
       setState(() {
@@ -48,7 +48,7 @@ class _DiscoveryPageWidgetState extends State<DiscoveryPageWidget>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _topController.dispose();
     super.dispose();
   }
 
@@ -62,7 +62,7 @@ class _DiscoveryPageWidgetState extends State<DiscoveryPageWidget>
       appBar: AppBar(
         centerTitle: true,
         title: TabBar(
-          controller: _tabController,
+          controller: _topController,
           tabs: tabs,
           indicatorColor: Colors.yellow,
           indicatorSize: TabBarIndicatorSize.label,
@@ -76,7 +76,7 @@ class _DiscoveryPageWidgetState extends State<DiscoveryPageWidget>
         ],
       ),
       body: TabBarView(
-        controller: _tabController,
+        controller: _topController,
         children: <Widget>[
           SubscribeWidget(),
           DiscoveryWidget(),
