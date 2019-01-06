@@ -79,7 +79,7 @@ class _DiscoveryPageWidgetState extends State<DiscoveryPageWidget>
       body: TabBarView(
         controller: _topController,
         children: <Widget>[
-          SubscribeWidget(),
+          DiscoverySubscribe(),
           DiscoveryWidget(),
           RecommandWidget()
         ],
