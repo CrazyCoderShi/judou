@@ -80,7 +80,7 @@ class JuDouModel {
     String dayString = json['daily_date'].toString();
     String weekday = '';
     String dailyString = '';
-    if (dayString.isNotEmpty) {
+    if (dayString != 'null') {
       dailyString = dayString.substring(0, 7).replaceAll(RegExp(r'-'), '.');
       var date = DateTime.parse(json['daily_date']);
       List<String> dayList = ['一', '二', '三', '四', '五', '六', '日'];

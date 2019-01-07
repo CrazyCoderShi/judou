@@ -1,4 +1,3 @@
-
 class UserModel {
   final String nickname;
   final String avatar;
@@ -8,9 +7,8 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      nickname: json['nickname'] as String,
-      avatar: json['avatar'] as String,
-      uid: json['uid'] as String
-    );
+        nickname: json['nickname'] as String,
+        avatar: json['avatar'] as String,
+        uid: '${json['uid']}');
   }
 }
