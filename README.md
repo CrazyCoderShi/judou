@@ -15,7 +15,7 @@ Judou is my favorite app，so I implemented it with flutter
 
 ## UI
 
-| ![1](https://github.com/CrazyCoderShi/judou/blob/master/assets/index_page.jpg) | ![2](https://github.com/CrazyCoderShi/judou/blob/master/assets/detail_page.jpg) | ![3](https://github.com/CrazyCoderShi/judou/blob/master/assets/discovery_subscribe.jpg)
+| ![1](https://github.com/CrazyCoderShi/judou/blob/master/assets/index_page.jpg) | ![2](https://github.com/CrazyCoderShi/judou/blob/master/assets/detail_page.jpg) | ![3](https://github.com/CrazyCoderShi/judou/blob/master/assets/discovery_subscribe.jpg) |
 | :--: | :--: | :--: |
 | 首页 | 详情 | 订阅 |
 
