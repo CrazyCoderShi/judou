@@ -97,7 +97,11 @@ class _DetailWidgetStateful extends State<DetailWidget> {
         itemBuilder: (context, index) {
           if (index == 0)
             return JuDouCell(
-                divider: Blank(), tag: 'index_detail', model: model);
+              divider: Blank(),
+              tag: 'index_detail',
+              model: model,
+              isCell: false,
+            );
           if (index == 1)
             return DetailLabel(labelTitle: model?.tags[0].name ?? '爱情');
           if (index == 2)

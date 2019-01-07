@@ -1,13 +1,20 @@
-import 'package:flutter/material.dart';
-import '../widgets/radius_image.dart';
+import '../widgets/blank.dart';
 import '../utils/color_util.dart';
+import '../widgets/radius_image.dart';
 import '../widgets/image_preview.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:flutter/material.dart';
 import '../index/models/judou_model.dart';
+import 'package:page_transition/page_transition.dart';
 
-class JuDouCell extends StatelessWidget {
-  JuDouCell({Key key, this.divider, this.tag, this.model, this.onTap})
-      : super(key: key);
+class JuDouCell extends StatefulWidget {
+  JuDouCell({
+    Key key,
+    this.divider,
+    this.tag,
+    this.model,
+    this.onTap,
+    this.isCell = true,
+  }) : super(key: key);
 
   final Widget divider;
   // 每一个tag必须是唯一的
@@ -15,8 +22,47 @@ class JuDouCell extends StatelessWidget {
   final VoidCallback onTap;
   final JuDouModel model;
 
+  /// 如果是作为Cell时content文字只显示三行
+  final bool isCell;
+
+  @override
+  _JuDouCellState createState() => _JuDouCellState();
+}
+
+class _JuDouCellState extends State<JuDouCell>
+    with SingleTickerProviderStateMixin {
+  JuDouModel model;
+  AnimationController controller;
+
+  @override
+  void initState() {
+    model = widget.model;
+    controller = AnimationController(vsync: this, value: 1.0);
+    super.initState();
+  }
+
+  // 点击右侧下箭头
+  void _moreAction() {
+    showModalBottomSheet(
+      context: context,
+      builder: (builder) => SafeArea(
+            child: Container(
+              color: Colors.white,
+              height: 101,
+              child: Column(
+                children: <Widget>[
+                  FlatButton(child: Text('复制'), onPressed: () => print('复制')),
+                  Blank(height: 5),
+                  FlatButton(child: Text('取消'), onPressed: () => print('取消')),
+                ],
+              ),
+            ),
+          ),
+    );
+  }
+
   // 顶部作者信息
-  Widget authorInfo() => Row(
+  Widget _authorInfo() => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
@@ -49,13 +95,14 @@ class JuDouCell extends StatelessWidget {
               ],
             ),
           ),
-          IconButton(icon: Icon(Icons.keyboard_arrow_down), onPressed: null),
+          IconButton(
+              icon: Icon(Icons.keyboard_arrow_down), onPressed: _moreAction),
         ],
       );
 
   // 中间大图
-  Widget midImage(BuildContext context) => Hero(
-        tag: this.tag,
+  Widget _midImage(BuildContext context) => Hero(
+        tag: widget.tag,
         child: Padding(
           padding: EdgeInsets.only(top: 10, bottom: 10),
           child: RadiusImage(
@@ -67,21 +114,21 @@ class JuDouCell extends StatelessWidget {
       );
 
   // 大图预览
-  void toImagePreview(BuildContext context) {
+  void _toImagePreview(BuildContext context) {
     Navigator.push(
       context,
       PageTransition(
         type: PageTransitionType.fade,
         child: ImagePreview(
           imageUrl: model.pictures[0].url,
-          tag: this.tag,
+          tag: widget.tag,
         ),
       ),
     );
   }
 
   // 收录者信息
-  Widget referenceAuthorInfo() => Row(
+  Widget _referenceAuthorInfo() => Row(
         children: <Widget>[
           RadiusImage(
               imageUrl: model.user.avatar, width: 20, height: 20, radius: 10),
@@ -99,7 +146,7 @@ class JuDouCell extends StatelessWidget {
       );
 
   // 最底部一排icon
-  Widget bottomBtns() {
+  Widget _bottomBtns() {
     /// 左侧icon，右侧文字，文字参数可选
     /// iconData -> Icons.favorite_border
     /// onTap -> 点击回调
@@ -142,28 +189,33 @@ class JuDouCell extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              authorInfo(),
+              _authorInfo(),
               Text(
                 model.content,
                 style: TextStyle(
                     color: ColorUtils.textPrimaryColor,
                     fontSize: 14,
                     height: 1.2),
+                maxLines: widget.isCell ? 4 : 999,
+                overflow: TextOverflow.ellipsis,
+                softWrap: true,
               ),
-              GestureDetector(
-                child: midImage(context),
-                onTap: () => this.toImagePreview(context),
-              ),
-              referenceAuthorInfo(),
+              model.pictures.isNotEmpty
+                  ? GestureDetector(
+                      child: _midImage(context),
+                      onTap: () => _toImagePreview(context),
+                    )
+                  : Container(height: 10),
+              _referenceAuthorInfo(),
               Divider(color: ColorUtils.dividerColor),
-              bottomBtns()
+              _bottomBtns()
             ],
           ),
           color: Colors.white,
         ),
-        divider,
+        widget.divider,
       ]),
-      onTap: this.onTap,
+      onTap: widget.onTap,
     );
   }
 }

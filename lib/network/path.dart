@@ -27,6 +27,6 @@ class RequestPath {
   /// 每个子频道的数据
   /// 12 -> 订阅
   static String channelWithId(String id) {
-    return '/v6/op/channels/$id?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=45&platform=ios&signature=9be25af477170799ad8025a490ebf67f&system_version=12.1.2&timestamp=1546392267&token=249d880e4ba539c6edc04f9e35ff46a3&version=3.5.7&version_code=41';
+    return '/v6/op/channels/$id?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=20&platform=ios&signature=0e443b5733c1fe43b83dec0d70491904&system_version=12.1.2&timestamp=1546793077&token=5fbeffff6f6d92c4902139d2619852b0&version=3.6.1&version_code=44';
   }
 }

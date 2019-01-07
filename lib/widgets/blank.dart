@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import '../utils/color_util.dart';
 
 class Blank extends StatelessWidget {
-  Blank({Key key, this.height = 10}) : super(key: key);
+  Blank({
+    Key key,
+    this.height = 10,
+  }) : super(key: key);
 
   final double height;
 

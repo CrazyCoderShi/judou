@@ -77,14 +77,16 @@ class JuDouModel {
     }
 
     // 日期转换
-    String dailyString = json['daily_date']
-        .toString()
-        .substring(0, 7)
-        .replaceAll(RegExp(r'-'), '.');
-    var date = DateTime.parse(json['daily_date']);
-    var dayList = ['一', '二', '三', '四', '五', '六', '日'];
-    var weekday = dayList[date.weekday - 1];
-    String dayString = '$date'.substring(8, 10);
+    String dayString = json['daily_date'].toString();
+    String weekday = '';
+    String dailyString = '';
+    if (dayString.isNotEmpty) {
+      dailyString = dayString.substring(0, 7).replaceAll(RegExp(r'-'), '.');
+      var date = DateTime.parse(json['daily_date']);
+      List<String> dayList = ['一', '二', '三', '四', '五', '六', '日'];
+      weekday = dayList[date.weekday - 1];
+      dayString = '$date'.substring(8, 10);
+    }
 
     return JuDouModel(
         isPrivate: json['is_private'] as bool,
