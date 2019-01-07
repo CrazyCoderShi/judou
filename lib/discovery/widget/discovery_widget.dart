@@ -33,6 +33,9 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
   void initState() {
     _bloc = BlocProvider.of<DiscoveryBloc>(context);
     _controller = TabController(vsync: this, length: 5);
+    _controller.addListener(() {
+      print('change');
+    });
     super.initState();
   }
 
