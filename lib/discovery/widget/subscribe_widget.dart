@@ -1,4 +1,5 @@
 import '../../bloc_provider.dart';
+import '../../widgets/loading.dart';
 import '../BLoc/subscribe_bloc.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/judou_cell.dart';
@@ -39,12 +40,9 @@ class _SubscribeWidgetState extends State<SubscribeWidget> {
     return StreamBuilder(
         stream: bloc.stream,
         builder: (context, AsyncSnapshot<List<JuDouModel>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return ListView.builder(
-              itemBuilder: (context, index) => JuDouCell(
-                    model: snapshot.data[index],
-                  ),
-              itemCount: snapshot.data.length,
+          if (snapshot.connectionState != ConnectionState.active) {
+            return Center(
+              child: Loading(),
             );
           }
         });

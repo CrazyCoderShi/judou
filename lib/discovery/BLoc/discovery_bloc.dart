@@ -4,7 +4,6 @@ import '../../network/network.dart';
 import '../models/jotting_model.dart';
 
 class DiscoveryBloc implements BlocBase {
-
   final tabSubject = PublishSubject<List<TabModel>>();
 
   DiscoveryBloc() {
@@ -26,5 +25,7 @@ class DiscoveryBloc implements BlocBase {
   void _fetchDataWithId(TabModel tab) {}
 
   @override
-  dispose() {}
+  dispose() {
+    if (!tabSubject.isClosed) tabSubject.close();
+  }
 }
