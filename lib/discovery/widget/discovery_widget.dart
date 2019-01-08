@@ -26,7 +26,7 @@ class DiscoveryWidget extends StatefulWidget {
 }
 
 class _DiscoveryWidgetState extends State<DiscoveryWidget>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController _controller;
   DiscoveryBloc _bloc;
 
@@ -39,10 +39,13 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
     _controller = TabController(vsync: this, length: 8);
     _controller.addListener(() {
       if (_controller.indexIsChanging) {
-        print(_controller.index);
+        _bloc.fetchTagListDataWithId('${_bloc.tags[_controller.index].id}');
       }
     });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void dispose() {
@@ -137,16 +140,29 @@ class _DiscoverTopicsWidget extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: topics.length,
+        physics: AlwaysScrollableScrollPhysics(),
         itemBuilder: ((context, index) {
           if (index == 0) {
-            return DiscoveryCard(isLeading: true, isTrailing: false);
+            return DiscoveryCard(
+              isLeading: true,
+              isTrailing: false,
+              model: topics[index],
+            );
           }
 
           if (index == topics.length - 1) {
-            return DiscoveryCard(isLeading: false, isTrailing: true);
+            return DiscoveryCard(
+              isLeading: false,
+              isTrailing: true,
+              model: topics[index],
+            );
           }
 
-          return DiscoveryCard(isLeading: false, isTrailing: false);
+          return DiscoveryCard(
+            isLeading: false,
+            isTrailing: false,
+            model: topics[index],
+          );
         }),
       ),
     );

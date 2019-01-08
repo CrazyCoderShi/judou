@@ -22,7 +22,7 @@ class IndexWidget extends StatefulWidget {
 }
 
 class _IndexWidgetState extends State<IndexWidget>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   PageController _pageController = PageController();
   IndexBloc indexBloc;
   String _like = '';
@@ -50,8 +50,8 @@ class _IndexWidgetState extends State<IndexWidget>
     super.dispose();
   }
 
-  // @override
-  // bool get wantKeepAlive => true;
+  @override
+  bool get wantKeepAlive => true;
 
   Icon likeIcon() => _isLike == '0'
       ? Icon(

@@ -21,7 +21,8 @@ class SubscribeWidget extends StatefulWidget {
   _SubscribeWidgetState createState() => _SubscribeWidgetState();
 }
 
-class _SubscribeWidgetState extends State<SubscribeWidget> {
+class _SubscribeWidgetState extends State<SubscribeWidget>
+    with AutomaticKeepAliveClientMixin {
   SubscribeBloc bloc;
 
   @override
@@ -29,6 +30,9 @@ class _SubscribeWidgetState extends State<SubscribeWidget> {
     bloc = BlocProvider.of<SubscribeBloc>(context);
     super.initState();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void dispose() {

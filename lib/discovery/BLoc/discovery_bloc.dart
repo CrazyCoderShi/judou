@@ -6,7 +6,7 @@ import '../../index/models/judou_model.dart';
 class DiscoveryBloc implements BlocBase {
   final _discoverySubject = PublishSubject<Map<String, dynamic>>();
   List<TopicModel> _topics;
-  List<TagModel> _tags;
+  List<TagModel> tags;
   List<JuDouModel> _tagListData;
   DiscoveryBloc() {
     _fetchData();
@@ -36,13 +36,13 @@ class DiscoveryBloc implements BlocBase {
         .then((response) =>
             response.map((item) => TopicModel.fromJSON(item)).toList());
 
-    _tags = await Request.instance.dio
+    tags = await Request.instance.dio
         .get(RequestPath.discoveryTags())
         .then((response) => response.data['data'] as List)
         .then((response) =>
             response.map((item) => TagModel.fromJSON(item)).toList());
 
-    fetchTagListDataWithId('${_tags[0].id}');
+    fetchTagListDataWithId('${tags[0].id}');
   }
 
   /// 根据[id]获取某个tag下的数据
@@ -56,7 +56,7 @@ class DiscoveryBloc implements BlocBase {
             response.map((item) => JuDouModel.fromJson(item)).toList());
     Map<String, dynamic> map = {
       'topics': _topics,
-      'tags': _tags,
+      'tags': tags,
       'tagListData': _tagListData
     };
 
