@@ -14,8 +14,28 @@ class IndexPageItem extends StatefulWidget {
 
 class _IndexPageItemState extends State<IndexPageItem>
     with AutomaticKeepAliveClientMixin {
+  String day = '';
+  String dailyDate = '';
+
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  initState() {
+    // 日期转换
+    String dayString = widget.model.dailyDate.toString();
+    String weekday = '';
+    String dailyString = '';
+    if (dayString != '' || dailyString != 'null') {
+      dailyString = dayString.substring(0, 7).replaceAll(RegExp(r'-'), '.');
+      var date = DateTime.parse(widget.model.dailyDate);
+      List<String> dayList = ['一', '二', '三', '四', '五', '六', '日'];
+      weekday = dayList[date.weekday - 1];
+      day = '$date'.substring(8, 10);
+      dailyDate = dailyString + '星期' + '$weekday';
+    }
+    super.initState();
+  }
 
   // 字体设置
   TextStyle textStyle(double fontSize, bool isSpace) => TextStyle(
@@ -52,8 +72,8 @@ class _IndexPageItemState extends State<IndexPageItem>
                 gaplessPlayback: true),
           ),
           Positioned(
-            child: Text(widget.model.day,
-                style: TextStyle(fontSize: 99, color: Colors.white)),
+            child:
+                Text(day, style: TextStyle(fontSize: 99, color: Colors.white)),
             bottom: -50,
             left: 20,
           ),
@@ -98,12 +118,12 @@ class _IndexPageItemState extends State<IndexPageItem>
               children: <Widget>[
                 SizedBox(child: contentView()),
                 Positioned(
-                    child: Text(widget.model.day,
+                    child: Text(day,
                         style: TextStyle(fontSize: 99, color: Colors.black)),
                     top: -70,
                     left: 20),
                 Positioned(
-                    child: Text(widget.model.dailyDate,
+                    child: Text(dailyDate,
                         style: textStyle(12, false), textAlign: TextAlign.end),
                     right: 20,
                     top: 5)

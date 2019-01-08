@@ -7,7 +7,6 @@ class JuDouModel {
   final bool isPrivate;
   final List<TagModel> tags;
   final String dailyDate;
-  final String day;
   final String publishedDate;
   final bool isAd;
   final bool isUsedByWechat;
@@ -37,7 +36,6 @@ class JuDouModel {
       {this.isPrivate,
       this.tags,
       this.dailyDate,
-      this.day,
       this.publishedDate,
       this.isAd,
       this.isUsedByWechat,
@@ -76,23 +74,10 @@ class JuDouModel {
       tagList = tList.map((i) => TagModel.fromJSON(i)).toList();
     }
 
-    // 日期转换
-    String dayString = json['daily_date'].toString();
-    String weekday = '';
-    String dailyString = '';
-    if (dayString != 'null') {
-      dailyString = dayString.substring(0, 7).replaceAll(RegExp(r'-'), '.');
-      var date = DateTime.parse(json['daily_date']);
-      List<String> dayList = ['一', '二', '三', '四', '五', '六', '日'];
-      weekday = dayList[date.weekday - 1];
-      dayString = '$date'.substring(8, 10);
-    }
-
     return JuDouModel(
         isPrivate: json['is_private'] as bool,
         tags: tagList,
-        dailyDate: dailyString + '星期' + '$weekday',
-        day: dayString,
+        dailyDate: json['daily_date'] as String,
         publishedDate: json['published_at'] as String,
         isAd: json['is_ad'] as bool,
         isUsedByWechat: json['is_used_by_wechat'] as bool,
