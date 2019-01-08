@@ -34,7 +34,9 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
     _bloc = BlocProvider.of<DiscoveryBloc>(context);
     _controller = TabController(vsync: this, length: 5);
     _controller.addListener(() {
-      print('change');
+      if (_controller.indexIsChanging) {
+        print('change');
+      }
     });
     super.initState();
   }
@@ -72,7 +74,9 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
             color: Colors.white,
             child: Column(
               children: <Widget>[
-                _DiscoverTopicsWidget(),
+                _DiscoverTopicsWidget(
+                  topics: topics,
+                ),
                 Blank(height: 5),
                 Container(
                   height: 35,
@@ -118,6 +122,10 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
 }
 
 class _DiscoverTopicsWidget extends StatelessWidget {
+  _DiscoverTopicsWidget({this.topics});
+
+  final List<TopicModel> topics;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -126,17 +134,17 @@ class _DiscoverTopicsWidget extends StatelessWidget {
       color: Colors.white,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 5,
+        itemCount: topics.length,
         itemBuilder: ((context, index) {
-          switch (index) {
-            case 0:
-              return DiscoveryCard(isLeading: true, isTrailing: false);
-              break;
-            case 4:
-              return DiscoveryCard(isLeading: false, isTrailing: true);
-            default:
-              return DiscoveryCard(isLeading: false, isTrailing: false);
+          if (index == 0) {
+            return DiscoveryCard(isLeading: true, isTrailing: false);
           }
+
+          if (index == topics.length - 1) {
+            return DiscoveryCard(isLeading: false, isTrailing: true);
+          }
+
+          return DiscoveryCard(isLeading: false, isTrailing: false);
         }),
       ),
     );
