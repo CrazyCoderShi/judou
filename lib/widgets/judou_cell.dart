@@ -71,17 +71,17 @@ class _JuDouCellState extends State<JuDouCell>
               children: <Widget>[
                 RadiusImage(
                     radius: 3.0,
-                    imageUrl: model.author.isVerified != null
+                    imageUrl: model.author != null
                         ? model.author.coverUrl
-                        : model.image.url,
+                        : model.user.avatar,
                     width: 30,
                     height: 30),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
-                    model.author.isVerified != null
+                    model.author != null
                         ? model.author.name
-                        : model.subHeading,
+                        : model.user.nickname,
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w300,
@@ -90,9 +90,10 @@ class _JuDouCellState extends State<JuDouCell>
                 ),
                 Padding(
                     padding: EdgeInsets.only(left: 10),
-                    child: (model.author.isVerified ?? false)
-                        ? Icon(Icons.stars, size: 16, color: Colors.blue)
-                        : Container()),
+                    child:
+                        (model.author != null ? model.author.isVerified : false)
+                            ? Icon(Icons.stars, size: 16, color: Colors.blue)
+                            : Container()),
               ],
             ),
           ),
@@ -129,22 +130,25 @@ class _JuDouCellState extends State<JuDouCell>
   }
 
   // 收录者信息
-  Widget _referenceAuthorInfo() => Row(
-        children: <Widget>[
-          RadiusImage(
-              imageUrl: model.user.avatar, width: 20, height: 20, radius: 10),
-          Padding(
-              padding: EdgeInsets.only(left: 5),
-              child: Text(model.user.nickname, style: TextStyle(fontSize: 10))),
-          Padding(
-            padding: EdgeInsets.only(left: 10),
-            child: Text(
-              '收录',
-              style: TextStyle(fontSize: 10, color: ColorUtils.textGreyColor),
+  Widget _referenceAuthorInfo() => model.author != null
+      ? Row(
+          children: <Widget>[
+            RadiusImage(
+                imageUrl: model.user.avatar, width: 20, height: 20, radius: 10),
+            Padding(
+                padding: EdgeInsets.only(left: 5),
+                child:
+                    Text(model.user.nickname, style: TextStyle(fontSize: 10))),
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text(
+                '收录',
+                style: TextStyle(fontSize: 10, color: ColorUtils.textGreyColor),
+              ),
             ),
-          ),
-        ],
-      );
+          ],
+        )
+      : Container();
 
   // 最底部一排icon
   Widget _bottomBtns() {

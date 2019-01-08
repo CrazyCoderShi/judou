@@ -82,10 +82,13 @@ class JuDouModel {
         isAd: json['is_ad'] as bool,
         isUsedByWechat: json['is_used_by_wechat'] as bool,
         isEditable: json['is_editable'] as bool,
-        author: AuthorModel.fromJson(json['author'] ?? Map()),
+        author: json['author'] != null
+            ? AuthorModel.fromJson(json['author'])
+            : null,
         isOriginal: json['is_original'] as bool,
-        user: UserModel.fromJson(json['user'] ?? Map()),
-        image: ImageModel.fromJson(json['image'] ?? Map()),
+        user: json['user'] != null ? UserModel.fromJson(json['user']) : null,
+        image:
+            json['image'] != null ? ImageModel.fromJson(json['image']) : null,
         isCollected: json['is_collected'] as bool,
         likeCount: json['like_count'] as int,
         isUsedByWeibo: json['is_used_by_weibo'] as bool,
