@@ -92,6 +92,8 @@ class _DetailWidgetStateful extends State<DetailWidget> {
     List<CommentModel> hot = snapshot.data['hot'];
     List<CommentModel> latest = snapshot.data['latest'];
     JuDouModel model = snapshot.data['detail'];
+    int itemCount = latest.length + 5;
+    String endString = latest.isNotEmpty ? '- END -' : '快来添加第一条评论吧';
     return Container(
       child: ListView.builder(
         itemBuilder: (context, index) {
@@ -106,13 +108,14 @@ class _DetailWidgetStateful extends State<DetailWidget> {
             return DetailLabel(labelTitle: model?.tags[0].name ?? '爱情');
           if (index == 2)
             return hot.isNotEmpty ? hotCommnets(hot) : Container();
-          if (index == 3) return sectionHeader('最新评论');
-          if (index == latest.length + 2) return EndCell();
+          if (index == 3)
+            return latest.isNotEmpty ? sectionHeader('最新评论') : Container();
+          if (index == itemCount - 1) return EndCell(text: endString);
           return CommentCell(
-              divider: index == latest.length + 1 ? Container() : Divider(),
-              model: latest[index - 3]);
+              divider: index == itemCount - 2 ? Container() : Divider(),
+              model: latest[index - 4]);
         },
-        itemCount: latest.length + 3,
+        itemCount: itemCount,
       ),
     );
   }
