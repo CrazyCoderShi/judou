@@ -13,12 +13,17 @@ class RadiusImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(this.radius)),
-      child: Image.network(
-        this.imageUrl,
-        width: this.width,
-        height: this.height,
-        fit: BoxFit.cover,
-      ),
+      child: imageUrl == null
+          ? Icon(
+              Icons.portrait,
+              size: width,
+            )
+          : Image.network(
+              this.imageUrl,
+              width: this.width,
+              height: this.height,
+              fit: BoxFit.cover,
+            ),
     );
   }
 }

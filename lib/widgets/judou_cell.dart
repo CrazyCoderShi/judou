@@ -3,6 +3,7 @@ import '../utils/color_util.dart';
 import '../widgets/radius_image.dart';
 import '../widgets/image_preview.dart';
 import 'package:flutter/material.dart';
+import '../index/pages/detail_page.dart';
 import '../index/models/judou_model.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -180,6 +181,16 @@ class _JuDouCellState extends State<JuDouCell>
     );
   }
 
+  void _toDetailPage() {
+    if (!widget.isCell) return;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailPage(model: model),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -215,7 +226,7 @@ class _JuDouCellState extends State<JuDouCell>
         ),
         widget.divider,
       ]),
-      onTap: widget.onTap,
+      onTap: _toDetailPage,
     );
   }
 }

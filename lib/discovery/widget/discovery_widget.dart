@@ -1,13 +1,14 @@
 import './discovery_card.dart';
 import '../../widgets/blank.dart';
+import '../../bloc_provider.dart';
+import '../../widgets/loading.dart';
+import '../models/topic_model.dart';
+import '../BLoc/discovery_bloc.dart';
 import '../../utils/color_util.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/loading.dart';
-import '../../bloc_provider.dart';
-import '../models/topic_model.dart';
+import '../../widgets/judou_cell.dart';
 import '../../index/models/tag_model.dart';
 import '../../index/models/judou_model.dart';
-import '../BLoc/discovery_bloc.dart';
 
 class Discovery extends StatelessWidget {
   @override
@@ -31,14 +32,16 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
 
   @override
   void initState() {
+    super.initState();
     _bloc = BlocProvider.of<DiscoveryBloc>(context);
-    _controller = TabController(vsync: this, length: 5);
+
+    /// TODO： Length is dynamic
+    _controller = TabController(vsync: this, length: 8);
     _controller.addListener(() {
       if (_controller.indexIsChanging) {
-        print('change');
+        print(_controller.index);
       }
     });
-    super.initState();
   }
 
   @override
@@ -55,9 +58,21 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
         .toList();
   }
 
-  // List<Widget> _tabBarViews() {
-  //   return
-  // }
+  List<Widget> _tabBarViews(List<TagModel> tags, List<JuDouModel> tagListData) {
+    return _tagWidgets(tags)
+        .map(
+          (item) => ListView.builder(
+                itemBuilder: (context, index) => JuDouCell(
+                      model: tagListData[index],
+                      divider: Blank(height: 10),
+                      tag: 'discovery$index',
+                      isCell: true,
+                    ),
+                itemCount: tagListData.length,
+              ),
+        )
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +82,12 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
         if (snapshot.connectionState != ConnectionState.active) {
           return Loading();
         } else {
-          List<TopicModel> topics = snapshot.data['topics'];
-          List<TagModel> tags = snapshot.data['tags'];
-          List<JuDouModel> tagListData = snapshot.data['tagListData'];
           return Container(
             color: Colors.white,
             child: Column(
               children: <Widget>[
                 _DiscoverTopicsWidget(
-                  topics: topics,
+                  topics: snapshot.data['topics'],
                 ),
                 Blank(height: 5),
                 Container(
@@ -83,7 +95,7 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
                   child: TabBar(
                     isScrollable: true,
                     controller: _controller,
-                    tabs: _tagWidgets(tags),
+                    tabs: _tagWidgets(snapshot.data['tags']),
                     indicatorSize: TabBarIndicatorSize.label,
                     indicatorColor: Colors.white,
                     unselectedLabelColor: ColorUtils.textGreyColor,
@@ -95,21 +107,10 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
                 Expanded(
                   child: TabBarView(
                     controller: _controller,
-                    children: _tagWidgets(tags)
-                        .map(
-                          (item) => ListView.builder(
-                                itemBuilder: (context, inde) => Container(
-                                      height: 30,
-                                      width: MediaQuery.of(context).size.width -
-                                          30,
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 15),
-                                      child: Text('${item.text}'),
-                                    ),
-                                itemCount: 30,
-                              ),
-                        )
-                        .toList(),
+                    children: _tabBarViews(
+                      snapshot.data['tags'],
+                      snapshot.data['tagListData'],
+                    ),
                   ),
                 )
               ],
