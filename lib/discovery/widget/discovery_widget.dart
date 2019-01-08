@@ -69,6 +69,7 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
                       isCell: true,
                     ),
                 itemCount: tagListData.length,
+                physics: AlwaysScrollableScrollPhysics(),
               ),
         )
         .toList();

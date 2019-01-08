@@ -174,7 +174,7 @@ class _JuDouCellState extends State<JuDouCell>
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         btn(Icons.favorite_border, () => print('11111'), '${model.likeCount}'),
-        btn(Icons.insert_comment, null, '${model.commentCount}'),
+        btn(Icons.insert_comment, this._toDetailPage, '${model.commentCount}'),
         btn(Icons.bookmark_border, null),
         btn(Icons.share, null)
       ],

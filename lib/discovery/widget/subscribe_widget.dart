@@ -57,6 +57,7 @@ class _SubscribeWidgetState extends State<SubscribeWidget> {
                 isCell: true,
               ),
           itemCount: dataList.length,
+          physics: AlwaysScrollableScrollPhysics(),
         );
       },
     );

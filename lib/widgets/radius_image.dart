@@ -23,6 +23,7 @@ class RadiusImage extends StatelessWidget {
               width: this.width,
               height: this.height,
               fit: BoxFit.cover,
+              gaplessPlayback: true,
             ),
     );
   }
