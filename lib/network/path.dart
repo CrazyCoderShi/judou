@@ -48,4 +48,25 @@ class RequestPath {
   static String dataWithTagId(String id) {
     return '/v5/tags/$id/ordered_sentences?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=20&platform=ios&signature=af6b8753c7eed7177746f0b326de350d&system_version=12.1.2&timestamp=1546822893&token=5fbeffff6f6d92c4902139d2619852b0&version=3.6.1&version_code=44';
   }
+
+  /// 发现页面
+  /// 推荐轮播
+  static String carousels() {
+    return '/v5/recommends/carousels?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&platform=ios&signature=39acb567bf5b1792f58b58ff46ad6003&system_version=12.1.2&timestamp=1547011818&token=8783e97df8f4a954663a0674fb38ffe0&version=3.6.1&version_code=44';
+  }
+
+  /// 发现页面
+  /// 今日哲思考
+  static String todayThink() {
+    return '/v5/recommends/today?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&platform=ios&signature=39acb567bf5b1792f58b58ff46ad6003&system_version=12.1.2&timestamp=1547011818&token=8783e97df8f4a954663a0674fb38ffe0&version=3.6.1&version_code=44';
+  }
+
+  /// 发现页面
+  /// 三段list数据
+  /// posts
+  /// subjects
+  /// videos
+  static String recommand() {
+    return '/v5/recommends?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&platform=ios&signature=39acb567bf5b1792f58b58ff46ad6003&system_version=12.1.2&timestamp=1547011818&token=8783e97df8f4a954663a0674fb38ffe0&version=3.6.1&version_code=44';
+  }
 }

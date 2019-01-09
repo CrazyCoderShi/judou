@@ -20,14 +20,14 @@ class _RecommandWidgetState extends State<RecommandWidget> {
               itemBuilder: (context, index) {
                 return Container(
                   height: 100,
-                  width: MediaQuery.of(context).size.width - 40,
                   color: index == 1 ? Colors.brown : Colors.red,
                 );
               },
               itemCount: 3,
-              pagination: SwiperPagination(alignment: Alignment.bottomCenter),
+              autoplay: true,
               indicatorLayout: PageIndicatorLayout.WARM,
-              layout: SwiperLayout.TINDER,
+              layout: SwiperLayout.STACK,
+              outer: false,
             ),
           ]),
         )
