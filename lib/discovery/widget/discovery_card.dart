@@ -19,6 +19,17 @@ class DiscoveryCard extends StatelessWidget {
         children: <Widget>[
           SizedBox(
             child: Container(
+              foregroundDecoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+                  Colors.black,
+                  Colors.black26,
+                  Colors.black12,
+                  Colors.transparent
+                ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(3),
+                ),
+              ),
               width: 100,
               child: RadiusImage(
                 imageUrl: model.cover,
