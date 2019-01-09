@@ -1,10 +1,11 @@
+import './include_page.dart';
 import '../../utils/color_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../widget/subscribe_widget.dart';
 import '../widget/recommand_widget.dart';
 import '../widget/discovery_widget.dart';
-import '../../index/pages/detail_page.dart';
+import 'package:page_transition/page_transition.dart';
 
 class DiscoveryPage extends StatefulWidget {
   @override
@@ -32,8 +33,11 @@ class _DiscoveryPageState extends State<DiscoveryPage>
     super.dispose();
   }
 
-  void toDetailPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => DetailPage()));
+  void _toIncludePage() {
+    Navigator.of(context).push(PageTransition(
+      type: PageTransitionType.downToUp,
+      child: IncludePage(),
+    ));
   }
 
   @override
@@ -63,6 +67,20 @@ class _DiscoveryPageState extends State<DiscoveryPage>
           Discovery(),
           RecommandWidget()
         ],
+      ),
+      floatingActionButton: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          color: ColorUtils.textPrimaryColor,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: IconButton(
+          icon: Icon(Icons.add),
+          color: Colors.white,
+          onPressed: _toIncludePage,
+        ),
       ),
     );
   }
