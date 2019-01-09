@@ -8,8 +8,6 @@ class RecommandWidget extends StatefulWidget {
 class _RecommandWidgetState extends State<RecommandWidget> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('推荐'),
-    );
+    return Container();
   }
 }

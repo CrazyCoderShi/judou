@@ -27,13 +27,17 @@ class DiscoveryWidget extends StatefulWidget {
 
 class _DiscoveryWidgetState extends State<DiscoveryWidget>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+  ScrollController _scrollController;
   TabController _controller;
   DiscoveryBloc _bloc;
+  double _offset = 0;
 
   @override
   void initState() {
     super.initState();
     _bloc = BlocProvider.of<DiscoveryBloc>(context);
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
 
     /// TODO： Length is dynamic
     _controller = TabController(vsync: this, length: 8);
@@ -53,6 +57,10 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
     super.dispose();
   }
 
+  _scrollListener() {
+    // print(_scrollController.position.extentInside);
+  }
+
   List<Tab> _tagWidgets(List<TagModel> tags) {
     return tags
         .map((item) => Tab(
@@ -62,20 +70,21 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
   }
 
   List<Widget> _tabBarViews(List<TagModel> tags, List<JuDouModel> tagListData) {
-    return _tagWidgets(tags)
-        .map(
-          (item) => ListView.builder(
-                itemBuilder: (context, index) => JuDouCell(
-                      model: tagListData[index],
-                      divider: Blank(height: 10),
-                      tag: 'discovery$index',
-                      isCell: true,
-                    ),
-                itemCount: tagListData.length,
-                physics: AlwaysScrollableScrollPhysics(),
+    return _tagWidgets(tags).map(
+      (item) {
+        return ListView.builder(
+          itemBuilder: (context, index) => JuDouCell(
+                model: tagListData[index],
+                divider: Blank(height: 10),
+                tag: 'discovery$index',
+                isCell: true,
               ),
-        )
-        .toList();
+          itemCount: tagListData.length,
+          physics: AlwaysScrollableScrollPhysics(),
+          controller: _scrollController,
+        );
+      },
+    ).toList();
   }
 
   @override

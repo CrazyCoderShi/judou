@@ -9,7 +9,7 @@ class EndCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 10, bottom: 10),
+      padding: EdgeInsets.only(top: 10, bottom: 50),
       child: Align(
         alignment: AlignmentDirectional.center,
         child: Text(
