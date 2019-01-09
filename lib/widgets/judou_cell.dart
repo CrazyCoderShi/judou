@@ -62,56 +62,17 @@ class _JuDouCellState extends State<JuDouCell>
     );
   }
 
-  // 顶部作者信息
-  Widget _authorInfo() => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Container(
-            child: Row(
-              children: <Widget>[
-                RadiusImage(
-                    radius: 3.0,
-                    imageUrl: model.author != null
-                        ? model.author.coverUrl
-                        : model.user.avatar,
-                    width: 30,
-                    height: 30),
-                Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Text(
-                    model.author != null
-                        ? model.author.name
-                        : model.user.nickname,
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        color: ColorUtils.textUserNameColor),
-                  ),
-                ),
-                Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child:
-                        (model.author != null ? model.author.isVerified : false)
-                            ? Icon(Icons.stars, size: 16, color: Colors.blue)
-                            : Container()),
-              ],
-            ),
-          ),
-          IconButton(
-              icon: Icon(Icons.keyboard_arrow_down), onPressed: _moreAction),
-        ],
-      );
-
   // 中间大图
   Widget _midImage(BuildContext context) => Hero(
         tag: widget.tag,
         child: Padding(
           padding: EdgeInsets.only(top: 10, bottom: 10),
           child: RadiusImage(
-              imageUrl: model.pictures[0].url,
-              width: MediaQuery.of(context).size.width,
-              height: 200,
-              radius: 8.0),
+            imageUrl: model.pictures[0].url,
+            width: MediaQuery.of(context).size.width,
+            height: 200,
+            radius: 8.0,
+          ),
         ),
       );
 
@@ -126,62 +87,6 @@ class _JuDouCellState extends State<JuDouCell>
           tag: widget.tag,
         ),
       ),
-    );
-  }
-
-  // 收录者信息
-  Widget _referenceAuthorInfo() => model.author != null
-      ? Row(
-          children: <Widget>[
-            RadiusImage(
-                imageUrl: model.user.avatar, width: 20, height: 20, radius: 10),
-            Padding(
-                padding: EdgeInsets.only(left: 5),
-                child:
-                    Text(model.user.nickname, style: TextStyle(fontSize: 10))),
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Text(
-                '收录',
-                style: TextStyle(fontSize: 10, color: ColorUtils.textGreyColor),
-              ),
-            ),
-          ],
-        )
-      : Container();
-
-  // 最底部一排icon
-  Widget _bottomBtns() {
-    /// 左侧icon，右侧文字，文字参数可选
-    /// iconData -> Icons.favorite_border
-    /// onTap -> 点击回调
-    /// rightTitle -> 可选参数，如果有传，右侧会显示一个文字
-    Widget btn(IconData iconData, VoidCallback onTap, [String rightTitle]) =>
-        GestureDetector(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Icon(iconData, color: ColorUtils.textUserNameColor),
-                Padding(
-                  padding: EdgeInsets.only(left: 2),
-                  child: Text(
-                    rightTitle ?? '',
-                    style: TextStyle(
-                        color: ColorUtils.textUserNameColor, fontSize: 10),
-                  ),
-                )
-              ],
-            ),
-            onTap: onTap);
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        btn(Icons.favorite_border, () => print('11111'), '${model.likeCount}'),
-        btn(Icons.insert_comment, this._toDetailPage, '${model.commentCount}'),
-        btn(Icons.bookmark_border, null),
-        btn(Icons.share, null)
-      ],
     );
   }
 
@@ -204,7 +109,7 @@ class _JuDouCellState extends State<JuDouCell>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              _authorInfo(),
+              _AuthorInfo(model: model, moreAction: _moreAction),
               Text(
                 model.content,
                 style: TextStyle(
@@ -221,9 +126,9 @@ class _JuDouCellState extends State<JuDouCell>
                       onTap: () => _toImagePreview(context),
                     )
                   : Container(height: 10),
-              _referenceAuthorInfo(),
+              _ReferenceAuthorInfo(model: model),
               Divider(color: ColorUtils.dividerColor),
-              _bottomBtns()
+              _BottomButtonRow(model: model, commentAction: _toDetailPage)
             ],
           ),
           color: Colors.white,
@@ -231,6 +136,131 @@ class _JuDouCellState extends State<JuDouCell>
         widget.divider,
       ]),
       onTap: _toDetailPage,
+    );
+  }
+}
+
+/// 顶部作者信息
+class _AuthorInfo extends StatelessWidget {
+  _AuthorInfo({Key key, this.model, this.moreAction}) : super(key: key);
+
+  final JuDouModel model;
+  final VoidCallback moreAction;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Container(
+          child: Row(
+            children: <Widget>[
+              RadiusImage(
+                  radius: 3.0,
+                  imageUrl: model.author != null
+                      ? model.author.coverUrl
+                      : model.user.avatar,
+                  width: 30,
+                  height: 30),
+              Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Text(
+                  model.author != null
+                      ? model.author.name
+                      : model.user.nickname,
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w300,
+                      color: ColorUtils.textUserNameColor),
+                ),
+              ),
+              Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child:
+                      (model.author != null ? model.author.isVerified : false)
+                          ? Icon(Icons.stars, size: 16, color: Colors.blue)
+                          : Container()),
+            ],
+          ),
+        ),
+        IconButton(
+            icon: Icon(Icons.keyboard_arrow_down), onPressed: moreAction),
+      ],
+    );
+  }
+}
+
+/// 收录者信息
+class _ReferenceAuthorInfo extends StatelessWidget {
+  _ReferenceAuthorInfo({Key key, this.model}) : super(key: key);
+
+  final JuDouModel model;
+  @override
+  Widget build(BuildContext context) {
+    return model.author != null
+        ? Row(
+            children: <Widget>[
+              RadiusImage(
+                imageUrl: model.user.avatar,
+                width: 20,
+                height: 20,
+                radius: 10,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 5),
+                child: Text(
+                  model.user.nickname,
+                  style: TextStyle(fontSize: 10),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Text(
+                  '收录',
+                  style:
+                      TextStyle(fontSize: 10, color: ColorUtils.textGreyColor),
+                ),
+              ),
+            ],
+          )
+        : Container();
+  }
+}
+
+/// 最底部一排icon
+class _BottomButtonRow extends StatelessWidget {
+  _BottomButtonRow({Key key, this.model, this.commentAction}) : super(key: key);
+
+  final JuDouModel model;
+  final VoidCallback commentAction;
+
+  Widget btn(IconData iconData, VoidCallback onTap, [String rightTitle]) =>
+      GestureDetector(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Icon(iconData, color: ColorUtils.textUserNameColor),
+            Padding(
+              padding: EdgeInsets.only(left: 2),
+              child: Text(
+                rightTitle ?? '',
+                style: TextStyle(
+                    color: ColorUtils.textUserNameColor, fontSize: 10),
+              ),
+            )
+          ],
+        ),
+        onTap: onTap,
+      );
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        btn(Icons.favorite_border, () => print('11111'), '${model.likeCount}'),
+        btn(Icons.insert_comment, commentAction, '${model.commentCount}'),
+        btn(Icons.bookmark_border, null),
+        btn(Icons.share, null)
+      ],
     );
   }
 }
