@@ -12,7 +12,7 @@
 // "is_liked": false,
 // "is_disabled_comment": false
 
-class VideoModel {
+class PostModel {
   final int id;
   final String title;
   final int commentCount;
@@ -24,7 +24,7 @@ class VideoModel {
   final bool isLiked;
   final String publishedAt;
 
-  VideoModel({
+  PostModel({
     this.id,
     this.title,
     this.commentCount,
@@ -37,8 +37,8 @@ class VideoModel {
     this.publishedAt,
   });
 
-  factory VideoModel.fromJSON(Map<String, dynamic> json) {
-    return VideoModel(
+  factory PostModel.fromJSON(Map<String, dynamic> json) {
+    return PostModel(
       id: json['id'],
       title: json['title'],
       commentCount: json['comment_count'],
