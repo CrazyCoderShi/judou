@@ -11,6 +11,8 @@ class RecommandBloc implements BlocBase {
     _fetchData();
   }
 
+  Stream<Map<String, dynamic>> get stream => _fetchSubject.stream;
+
   void _fetchData() async {
     Map<String, dynamic> recommands = await Request.instance.dio
         .get(RequestPath.recommand())

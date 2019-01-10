@@ -65,7 +65,7 @@ class _DiscoveryPageState extends State<DiscoveryPage>
         children: <Widget>[
           DiscoverySubscribe(),
           Discovery(),
-          RecommandWidget()
+          DiscoveryRecommand()
         ],
       ),
       floatingActionButton: Container(
