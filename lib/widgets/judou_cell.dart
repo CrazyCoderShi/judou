@@ -196,7 +196,7 @@ class _ReferenceAuthorInfo extends StatelessWidget {
   final JuDouModel model;
   @override
   Widget build(BuildContext context) {
-    return model.author != null
+    return model.user != null
         ? Row(
             children: <Widget>[
               RadiusImage(
