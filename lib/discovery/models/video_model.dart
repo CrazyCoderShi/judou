@@ -1,5 +1,3 @@
-import '../../index/models/user_model.dart';
-
 // "id": 58,
 // "title": "分享才是快乐的意义",
 // "source": "",

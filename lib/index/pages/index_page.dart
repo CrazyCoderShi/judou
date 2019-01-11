@@ -68,8 +68,10 @@ class _IndexWidgetState extends State<IndexWidget>
         centerTitle: true,
         leading: Container(
           alignment: Alignment.center,
-          child: Text('句子',
-              style: TextStyle(fontSize: 22.0, fontFamily: 'LiSung')),
+          child: Text(
+            '句子',
+            style: TextStyle(fontSize: 22.0, fontFamily: 'LiSung'),
+          ),
         ),
         actions: <Widget>[
           SubscriptButton(

@@ -30,7 +30,6 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
   ScrollController _scrollController;
   TabController _controller;
   DiscoveryBloc _bloc;
-  double _offset = 0;
 
   @override
   void initState() {
@@ -39,7 +38,6 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
 
-    /// TODO： Length is dynamic
     _controller = TabController(vsync: this, length: 8);
     _controller.addListener(() {
       if (_controller.indexIsChanging) {
