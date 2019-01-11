@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'main_page.dart';
 
 void main() {
 //  debugPaintSizeEnabled = true;
+  debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
   runApp(JuDouApp());
 }
 

@@ -1,0 +1,6 @@
+framework module FlutterEmbedderMenubar {
+  umbrella header "FlutterEmbedderMenubar.h"
+
+  export *
+  module * { export * }
+}

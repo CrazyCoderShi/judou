@@ -24,7 +24,8 @@ class RecommandWidget extends StatefulWidget {
   _RecommandWidgetState createState() => _RecommandWidgetState();
 }
 
-class _RecommandWidgetState extends State<RecommandWidget> {
+class _RecommandWidgetState extends State<RecommandWidget>
+    with AutomaticKeepAliveClientMixin {
   RecommandBloc bloc;
   @override
   void initState() {
@@ -37,6 +38,9 @@ class _RecommandWidgetState extends State<RecommandWidget> {
     super.dispose();
     bloc.dispose();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +56,12 @@ class _RecommandWidgetState extends State<RecommandWidget> {
           children: <Widget>[
             SizedBox(
               width: MediaQuery.of(context).size.width,
-              height: 150,
+              height: 180,
               child: Swiper(
                 itemBuilder: (context, index) {
                   return Image.network(
                     carousels[index].cover,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                   );
                 },
                 itemCount: carousels.length,

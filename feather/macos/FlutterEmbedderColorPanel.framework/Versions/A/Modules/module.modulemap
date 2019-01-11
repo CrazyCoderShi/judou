@@ -1,0 +1,6 @@
+framework module FlutterEmbedderColorPanel {
+  umbrella header "FlutterEmbedderColorPanel.h"
+
+  export *
+  module * { export * }
+}
