@@ -42,6 +42,12 @@ If you are not familiar with BLoc, the following resources can help you.
 - [Technical Debt and Streams/BLoC](https://www.youtube.com/watch?v=fahC3ky_zW0)🎬
 - [Flutter / AngularDart – Code sharing, better together](https://www.youtube.com/watch?v=PLHln7wHgPE)🎬
 
+## Desktop
+
+Currently only supports macOS
+
+Open FeatherApp.xcodeproj file with Xcode, then cmd + R
+
 ## Thanks
 
 - [RxDart](https://github.com/ReactiveX/rxdart)

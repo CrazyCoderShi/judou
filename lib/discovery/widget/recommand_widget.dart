@@ -85,13 +85,6 @@ class _RecommandWidgetState extends State<RecommandWidget>
   }
 }
 
-class _ScrollBody extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return null;
-  }
-}
-
 class _RecommandThink extends StatelessWidget {
   /// [onTap] 点击回调
   _RecommandThink({this.onTap, this.models});
