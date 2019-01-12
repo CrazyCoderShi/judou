@@ -110,7 +110,9 @@ class _DetailWidgetStateful extends State<DetailWidget> {
                   isCell: false,
                 );
               if (index == 1)
-                return DetailLabel(labelTitle: model?.tags[0].name ?? '爱情');
+                return model.tags != null
+                    ? DetailLabel(labelTitle: model.tags[0].name ?? '爱情')
+                    : Container();
               if (index == 2)
                 return hot.isNotEmpty ? hotCommnets(hot) : Container();
               if (index == 3)
