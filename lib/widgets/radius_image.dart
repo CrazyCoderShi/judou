@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class RadiusImage extends StatelessWidget {
-  RadiusImage({Key key, this.radius, this.imageUrl, this.width, this.height})
-      : super(key: key);
+  RadiusImage({
+    Key key,
+    this.radius,
+    @required this.imageUrl,
+    @required this.width,
+    @required this.height,
+  }) : super(key: key);
 
   final double radius;
   final String imageUrl;
@@ -12,7 +17,7 @@ class RadiusImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(this.radius)),
+      borderRadius: BorderRadius.all(Radius.circular(this.radius ?? 0)),
       child: imageUrl == null
           ? Icon(
               Icons.portrait,

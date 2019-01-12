@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import '../../widgets/radius_image.dart';
-import '../models/topic_model.dart';
 
 class DiscoveryCard extends StatelessWidget {
-  DiscoveryCard({Key key, this.isLeading, this.isTrailing, this.model})
+  DiscoveryCard(
+      {Key key,
+      this.isLeading,
+      this.isTrailing,
+      this.title,
+      this.imageUrl,
+      this.height,
+      this.width})
       : super(key: key);
 
   final bool isLeading;
   final bool isTrailing;
-  final TopicModel model;
+  final String title;
+  final String imageUrl;
+  final double height;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
@@ -20,36 +29,45 @@ class DiscoveryCard extends StatelessWidget {
           SizedBox(
             child: Container(
               foregroundDecoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  Colors.black,
-                  Colors.black26,
-                  Colors.black12,
-                  Colors.transparent
-                ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.black,
+                    Colors.black26,
+                    Colors.black12,
+                    Colors.transparent
+                  ],
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                ),
                 borderRadius: BorderRadius.all(
                   Radius.circular(3),
                 ),
               ),
-              width: 100,
+              width: width,
               child: RadiusImage(
-                imageUrl: model.cover,
+                imageUrl: imageUrl,
                 radius: 3,
-                width: 100,
-                height: 70,
+                width: width,
+                height: height,
               ),
             ),
           ),
           Positioned(
             bottom: 8,
-            left: 0,
-            right: 0,
+            left: 8,
+            right: 8,
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  '${model.name}',
-                  style: TextStyle(color: Colors.white, fontSize: 12),
+                Container(
+                  width: 84,
+                  child: Text(
+                    title,
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                  ),
                 )
               ],
             ),

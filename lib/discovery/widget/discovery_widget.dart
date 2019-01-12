@@ -149,26 +149,14 @@ class _DiscoverTopicsWidget extends StatelessWidget {
         itemCount: topics.length,
         physics: AlwaysScrollableScrollPhysics(),
         itemBuilder: ((context, index) {
-          if (index == 0) {
-            return DiscoveryCard(
-              isLeading: true,
-              isTrailing: false,
-              model: topics[index],
-            );
-          }
-
-          if (index == topics.length - 1) {
-            return DiscoveryCard(
-              isLeading: false,
-              isTrailing: true,
-              model: topics[index],
-            );
-          }
-
+          TopicModel model = topics[index];
           return DiscoveryCard(
-            isLeading: false,
-            isTrailing: false,
-            model: topics[index],
+            isLeading: index == 0,
+            isTrailing: index == topics.length - 1,
+            title: model.name,
+            imageUrl: model.cover,
+            height: 70,
+            width: 100,
           );
         }),
       ),

@@ -17,6 +17,7 @@ class PostModel {
   final String title;
   final int commentCount;
   final int hits;
+  final String author;
   final String summary;
   final String banner;
   final String url;
@@ -27,6 +28,7 @@ class PostModel {
   PostModel({
     this.id,
     this.title,
+    this.author,
     this.commentCount,
     this.likeCount,
     this.summary,
@@ -41,6 +43,7 @@ class PostModel {
     return PostModel(
       id: json['id'],
       title: json['title'],
+      author: json['author'],
       commentCount: json['comment_count'],
       likeCount: json['like_count'],
       summary: json['summary'],

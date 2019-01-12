@@ -45,7 +45,6 @@ class SubscribesCell extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.all(0),
                   width: MediaQuery.of(context).size.width - 98,
                   child: Text(
                     '华语流行乐男歌手，影视演员，音乐制作人，代表作品认真的雪、演员、丑八怪 || 华语流行乐男歌手，影视演员，音乐制作人，代表作品认真的雪、演员、丑八怪',

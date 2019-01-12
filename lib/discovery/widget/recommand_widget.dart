@@ -1,3 +1,5 @@
+import './discovery_card.dart';
+import './recommand_cell.dart';
 import '../../bloc_provider.dart';
 import '../../widgets/blank.dart';
 import '../models/post_model.dart';
@@ -6,10 +8,13 @@ import '../../widgets/loading.dart';
 import '../BLoc/recommand_bloc.dart';
 import '../../utils/color_util.dart';
 import '../models/subject_model.dart';
-import '../../index/models/judou_model.dart';
 import '../models/carousel_model.dart';
 import 'package:flutter/material.dart';
+import '../../index/models/judou_model.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+
+final TextStyle _textStyle =
+    TextStyle(fontSize: 12, color: ColorUtils.textGreyColor);
 
 class DiscoveryRecommand extends StatelessWidget {
   @override
@@ -52,7 +57,6 @@ class _RecommandWidgetState extends State<RecommandWidget>
         if (snapshot.connectionState != ConnectionState.active) {
           return Loading();
         }
-        print(snapshot.data);
         List<CarouselModel> carousels = snapshot.data['carousels'] as List;
         return Container(
           color: Colors.white,
@@ -76,6 +80,15 @@ class _RecommandWidgetState extends State<RecommandWidget>
               ),
               Blank(height: 10),
               _RecommandThink(models: snapshot.data['today']),
+              Blank(height: 10),
+              _SectionTitle(title: '文章', moreAction: () => print('更多')),
+              _ArticleList(posts: snapshot.data['posts']),
+              Blank(height: 10),
+              _SectionTitle(title: '话题', moreAction: () => print('更多')),
+              _SubjectList(subjects: snapshot.data['subjects']),
+              Blank(height: 10),
+              _SectionTitle(title: '视频', moreAction: () => print('更多')),
+              _VideoList(videos: snapshot.data['videos']),
               Blank(height: 10),
             ],
           ),
@@ -135,6 +148,115 @@ class _RecommandThink extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ArticleList extends StatelessWidget {
+  _ArticleList({this.posts});
+
+  final List<PostModel> posts;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: Column(
+        children: posts
+            .map((item) => RecommandCell(
+                  isVideo: false,
+                  title: item.title,
+                  subTitle: item.author,
+                  content: item.summary,
+                  imageUrl: item.banner,
+                ))
+            .toList(),
+      ),
+    );
+  }
+}
+
+class _SubjectList extends StatelessWidget {
+  _SubjectList({this.subjects});
+  final List<SubjectModel> subjects;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 90,
+      padding: EdgeInsets.only(bottom: 10),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: subjects.length,
+        physics: AlwaysScrollableScrollPhysics(),
+        itemBuilder: ((context, index) {
+          SubjectModel model = subjects[index];
+          return DiscoveryCard(
+            isLeading: index == 0,
+            isTrailing: index == subjects.length - 1,
+            title: model.title,
+            imageUrl: model.cover,
+            height: 90,
+            width: 150,
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class _VideoList extends StatelessWidget {
+  _VideoList({this.videos});
+
+  final List<VideoModel> videos;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: Column(
+        children: videos
+            .map((item) => RecommandCell(
+                  isVideo: true,
+                  title: item.title,
+                  subTitle: item.summary,
+                  content: '时长: ${item.videoLength}',
+                  imageUrl: item.cover,
+                ))
+            .toList(),
+      ),
+    );
+  }
+}
+
+class _SectionTitle extends StatelessWidget {
+  _SectionTitle({
+    this.title,
+    this.moreAction,
+  });
+
+  final String title;
+  final VoidCallback moreAction;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            title,
+            style: TextStyle(fontSize: 18),
+          ),
+          FlatButton(
+            child: Text(
+              '更多',
+              style: _textStyle,
+            ),
+            onPressed: moreAction,
+          )
+        ],
       ),
     );
   }

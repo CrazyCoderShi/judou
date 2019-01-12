@@ -51,7 +51,8 @@ class _DiscoveryPageState extends State<DiscoveryPage>
           indicatorColor: Colors.yellow,
           indicatorSize: TabBarIndicatorSize.label,
           unselectedLabelColor: ColorUtils.textGreyColor,
-          labelStyle: TextStyle(fontSize: 18),
+          labelStyle: TextStyle(fontSize: 16),
+          labelPadding: EdgeInsets.symmetric(horizontal: 4),
         ),
         actions: <Widget>[
           IconButton(
