@@ -24,6 +24,7 @@ dependencies:
   rx_command: ^4.0.2
   intl: ^0.15.7
   flutter_swiper : ^1.1.4
+  video_player: ^0.8.0
 
 dev_dependencies:
   flutter_test:
