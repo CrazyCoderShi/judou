@@ -3,6 +3,7 @@ import '../widgets/radius_image.dart';
 import '../index/models/comment_model.dart';
 import '../utils/color_util.dart';
 import '../utils/date_util.dart';
+import '../profile/pages/profile_detail.dart';
 
 class CommentCell extends StatelessWidget {
   CommentCell({Key key, @required this.divider, this.model}) : super(key: key);
@@ -101,7 +102,8 @@ class _UserInfo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         GestureDetector(
-          onTap: () => print('个人主页'),
+          onTap: () => Navigator.push(
+              context, MaterialPageRoute(builder: (_) => ProfilDetail())),
           child: Row(
             children: <Widget>[
               RadiusImage(
