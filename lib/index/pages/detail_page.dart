@@ -43,6 +43,12 @@ class _DetailWidgetStateful extends State<DetailWidget> {
     super.initState();
   }
 
+  @override
+  dispose() {
+    detailBloc.dispose();
+    super.dispose();
+  }
+
   Widget sectionHeader(String title) {
     return Container(
       color: Colors.white,
@@ -153,7 +159,7 @@ class _BottomInput extends StatelessWidget {
     return SafeArea(
       right: false,
       child: Container(
-        height: 60,
+        height: 50,
         color: Colors.white,
         child: Column(
           children: <Widget>[

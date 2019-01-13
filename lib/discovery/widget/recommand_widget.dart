@@ -42,8 +42,8 @@ class _RecommandWidgetState extends State<RecommandWidget>
 
   @override
   void dispose() {
-    super.dispose();
     bloc.dispose();
+    super.dispose();
   }
 
   @override
@@ -250,10 +250,7 @@ class _SectionTitle extends StatelessWidget {
             style: TextStyle(fontSize: 18),
           ),
           FlatButton(
-            child: Text(
-              '更多',
-              style: _textStyle,
-            ),
+            child: Text('更多', style: _textStyle),
             onPressed: moreAction,
           )
         ],

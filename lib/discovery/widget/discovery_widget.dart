@@ -52,6 +52,7 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
   @override
   void dispose() {
     _controller.dispose();
+    _bloc.dispose();
     super.dispose();
   }
 
