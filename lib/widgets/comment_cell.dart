@@ -12,71 +12,6 @@ class CommentCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 点赞及数字
-    Widget upCount() {
-      var color = model.isLiked ? Colors.black : ColorUtils.textGreyColor;
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            '${model.upCount}',
-            style: TextStyle(fontSize: 10, color: color),
-            textAlign: TextAlign.end,
-          ),
-          IconButton(
-            alignment: Alignment.centerLeft,
-            icon: Icon(
-              Icons.thumb_up,
-              color: color,
-            ),
-            onPressed: null,
-            iconSize: 12,
-          ),
-        ],
-      );
-    }
-
-    // user-info
-    Widget userInfo() => Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                RadiusImage(
-                  width: 30,
-                  height: 30,
-                  radius: 15,
-                  imageUrl: model.user.avatar,
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: 5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        model.user.nickname,
-                        style: TextStyle(fontSize: 13),
-                      ),
-                      Text(
-                        DateUtils.fromNow(int.parse(model.createdAt)),
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: ColorUtils.textGreyColor,
-                        ),
-                        softWrap: true,
-                        maxLines: 999,
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            upCount(),
-          ],
-        );
-
     Widget commentContent() => Padding(
           padding: EdgeInsets.only(bottom: 10),
           child: Text(
@@ -88,39 +23,12 @@ class CommentCell extends StatelessWidget {
             ),
           ),
         );
-
-    Widget replyContent(CommentModel data) => Container(
-          width: 999,
-          padding: EdgeInsets.all(8),
-          color: ColorUtils.blankColor,
-          child: RichText(
-            text: TextSpan(
-              children: <TextSpan>[
-                TextSpan(
-                  text: '${data.user.nickname}:',
-                  style: TextStyle(
-                    color: ColorUtils.textGreyColor,
-                    fontSize: 12,
-                    height: 1.2,
-                  ),
-                ),
-                TextSpan(
-                  text: data.content,
-                  style: TextStyle(
-                      fontSize: 12,
-                      height: 1.2,
-                      color: ColorUtils.textPrimaryColor),
-                )
-              ],
-            ),
-          ),
-        );
     return Container(
       padding: EdgeInsets.only(left: 15),
       color: Colors.white,
       child: Column(
         children: <Widget>[
-          userInfo(),
+          _UserInfo(model: model),
           Padding(
             padding: EdgeInsets.only(
                 left: 35,
@@ -132,8 +40,8 @@ class CommentCell extends StatelessWidget {
                 commentContent(),
                 model.replyToComment.isEmpty
                     ? Container()
-                    : replyContent(
-                        CommentModel.fromJSON(model.replyToComment),
+                    : _ReplyContent(
+                        replyModel: CommentModel.fromJSON(model.replyToComment),
                       ),
               ],
             ),
@@ -143,6 +51,126 @@ class CommentCell extends StatelessWidget {
             child: divider,
           ),
         ],
+      ),
+    );
+  }
+}
+
+// 点赞及数字
+class _UpCount extends StatelessWidget {
+  _UpCount({this.isLiked, this.countStr});
+
+  final bool isLiked;
+  final String countStr;
+
+  @override
+  Widget build(BuildContext context) {
+    var color = isLiked ? Colors.black : ColorUtils.textGreyColor;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          countStr,
+          style: TextStyle(fontSize: 10, color: color),
+          textAlign: TextAlign.end,
+        ),
+        IconButton(
+          alignment: Alignment.centerLeft,
+          icon: Icon(
+            Icons.thumb_up,
+            color: color,
+          ),
+          onPressed: null,
+          iconSize: 12,
+        ),
+      ],
+    );
+  }
+}
+
+// user-info
+class _UserInfo extends StatelessWidget {
+  _UserInfo({this.model});
+
+  final CommentModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        GestureDetector(
+          onTap: () => print('个人主页'),
+          child: Row(
+            children: <Widget>[
+              RadiusImage(
+                width: 30,
+                height: 30,
+                radius: 15,
+                imageUrl: model.user.avatar,
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      model.user.nickname,
+                      style: TextStyle(fontSize: 13),
+                    ),
+                    Text(
+                      DateUtils.fromNow(int.parse(model.createdAt)),
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: ColorUtils.textGreyColor,
+                      ),
+                      softWrap: true,
+                      maxLines: 999,
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        _UpCount(isLiked: model.isLiked, countStr: '${model.upCount}'),
+      ],
+    );
+  }
+}
+
+// 回复引用
+class _ReplyContent extends StatelessWidget {
+  _ReplyContent({this.replyModel});
+  final CommentModel replyModel;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 999,
+      padding: EdgeInsets.all(8),
+      color: ColorUtils.blankColor,
+      child: RichText(
+        text: TextSpan(
+          children: <TextSpan>[
+            TextSpan(
+              text: '${replyModel.user.nickname}:',
+              style: TextStyle(
+                color: ColorUtils.textGreyColor,
+                fontSize: 12,
+                height: 1.2,
+              ),
+            ),
+            TextSpan(
+              text: replyModel.content,
+              style: TextStyle(
+                  fontSize: 12,
+                  height: 1.2,
+                  color: ColorUtils.textPrimaryColor),
+            )
+          ],
+        ),
       ),
     );
   }
