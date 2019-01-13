@@ -116,6 +116,7 @@ class _IndexWidgetState extends State<IndexWidget>
           (BuildContext context, AsyncSnapshot<List<JuDouModel>> snapshot) {
         return Scaffold(
           appBar: indexAppBar(),
+          backgroundColor: Colors.white,
           body: buildBody(snapshot),
         );
       },
