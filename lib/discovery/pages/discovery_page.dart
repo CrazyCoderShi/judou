@@ -19,9 +19,9 @@ class _DiscoveryPageState extends State<DiscoveryPage>
 
   @override
   void initState() {
+    super.initState();
     _topController = TabController(vsync: this, length: 3);
     _topController.index = 1;
-    super.initState();
   }
 
   @override

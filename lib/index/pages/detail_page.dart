@@ -39,8 +39,8 @@ class _DetailWidgetStateful extends State<DetailWidget> {
 
   @override
   void initState() {
-    detailBloc = BlocProvider.of<DetailBloc>(context);
     super.initState();
+    detailBloc = BlocProvider.of<DetailBloc>(context);
   }
 
   @override

@@ -31,6 +31,7 @@ class _IndexWidgetState extends State<IndexWidget>
 
   @override
   void initState() {
+    super.initState();
     indexBloc = BlocProvider.of<IndexBloc>(context);
     indexBloc.badgesSteam.listen((List<String> data) {
       setState(() {
@@ -39,8 +40,6 @@ class _IndexWidgetState extends State<IndexWidget>
         _isLike = data[2];
       });
     });
-
-    super.initState();
   }
 
   @override

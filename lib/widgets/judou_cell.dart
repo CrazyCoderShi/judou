@@ -37,9 +37,9 @@ class _JuDouCellState extends State<JuDouCell>
 
   @override
   void initState() {
+    super.initState();
     model = widget.model;
     controller = AnimationController(vsync: this, value: 1.0);
-    super.initState();
   }
 
   // 点击右侧下箭头

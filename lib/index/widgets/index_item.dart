@@ -22,6 +22,7 @@ class _IndexPageItemState extends State<IndexPageItem>
 
   @override
   initState() {
+    super.initState();
     // 日期转换
     String dayString = widget.model.dailyDate.toString();
     String weekday = '';
@@ -34,7 +35,6 @@ class _IndexPageItemState extends State<IndexPageItem>
       day = '$date'.substring(8, 10);
       dailyDate = dailyString + '星期' + '$weekday';
     }
-    super.initState();
   }
 
   // 字体设置

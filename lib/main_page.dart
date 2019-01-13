@@ -33,11 +33,6 @@ class _MainPageState extends State<MainPage>
   bool get wantKeepAlive => true;
 
   @override
-  void didUpdateWidget(MainPage oldWidget) {
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),

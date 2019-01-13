@@ -27,8 +27,8 @@ class _SubscribeWidgetState extends State<SubscribeWidget>
 
   @override
   void initState() {
-    bloc = BlocProvider.of<SubscribeBloc>(context);
     super.initState();
+    bloc = BlocProvider.of<SubscribeBloc>(context);
   }
 
   @override
