@@ -59,8 +59,9 @@ class DiscoveryBloc implements BlocBase {
       'tags': tags,
       'tagListData': _tagListData
     };
-
-    _discoverySubject.sink.add(map);
+    if (!_discoverySubject.isClosed) {
+      _discoverySubject.sink.add(map);
+    }
   }
 
   @override

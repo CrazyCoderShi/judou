@@ -54,8 +54,9 @@ class RecommandBloc implements BlocBase {
     /// videos -> List<VideoModel>
     /// carousels -> List<CarouselModel>
     recommands.addAll({'carousels': carousels, 'today': today});
-
-    _fetchSubject.sink.add(recommands);
+    if (!_fetchSubject.isClosed) {
+      _fetchSubject.sink.add(recommands);
+    }
   }
 
   @override

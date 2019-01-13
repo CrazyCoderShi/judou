@@ -19,7 +19,9 @@ class SubscribeBloc implements BlocBase {
         .then((response) => response.where((item) => !item['is_ad']).toList())
         .then((response) =>
             response.map((item) => JuDouModel.fromJson(item)).toList());
-    _fetchSubject.sink.add(dataList);
+    if (!_fetchSubject.isClosed) {
+      _fetchSubject.sink.add(dataList);
+    }
   }
 
   /// to detail page

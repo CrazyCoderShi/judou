@@ -22,7 +22,9 @@ class DetailBloc implements BlocBase {
   void fetchData() async {
     // JuDouModel
     Map<String, dynamic> hot = await sentenceHot(uuid);
-    _fetchComments.sink.add(hot);
+    if (!_fetchComments.isClosed) {
+      _fetchComments.sink.add(hot);
+    }
   }
 
   @override

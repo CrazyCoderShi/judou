@@ -36,7 +36,9 @@ class IndexBloc implements BlocBase {
         (l > 1) ? l.toStringAsFixed(1) + 'k' : '${model.likeCount}';
     String commentNum =
         (c > 1) ? c.toStringAsFixed(1) : '${model.commentCount}';
-    _badges.sink.add([commentNum, likeNum, model.isLiked ? '1' : '0']);
+    if (!_badges.isClosed) {
+      _badges.sink.add([commentNum, likeNum, model.isLiked ? '1' : '0']);
+    }
   }
 
   /// to detail page
@@ -55,7 +57,9 @@ class IndexBloc implements BlocBase {
 
   void _fetchDailyJson() async {
     List<JuDouModel> list = await daily();
-    _fetchDaily.sink.add(list);
+    if (!_fetchDaily.isClosed) {
+      _fetchDaily.sink.add(list);
+    }
     _dataList = list;
     this.onPageChanged(0);
   }
