@@ -76,6 +76,7 @@ flutter:
   assets:
     - assets/home.png
     - assets/descovery.png
+    - assets/avatar_placeholder.png
     - json/daily.json
 
   fonts:

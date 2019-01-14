@@ -18,10 +18,11 @@ class RadiusImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(this.radius ?? 0)),
-      child: imageUrl == null
-          ? Icon(
-              Icons.portrait,
-              size: width,
+      child: imageUrl == null || imageUrl == ''
+          ? Image(
+              image: AssetImage('assets/avatar_placeholder.png'),
+              width: this.width,
+              height: this.height,
             )
           : Image.network(
               this.imageUrl,
