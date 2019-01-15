@@ -69,4 +69,58 @@ class RequestPath {
   static String recommand() {
     return '/v5/recommends?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&platform=ios&signature=39acb567bf5b1792f58b58ff46ad6003&system_version=12.1.2&timestamp=1547011818&token=8783e97df8f4a954663a0674fb38ffe0&version=3.6.1&version_code=44';
   }
+
+  /// ProfileDetail
+  /// Author Info
+  static String authorInfo() {
+    return '/v6/op/authors/144?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&platform=ios&signature=a00f384c42d33a23334baef74690628b&system_version=12.1.2&timestamp=1547494083&token=8783e97df8f4a954663a0674fb38ffe0&version=3.6.1&version_code=44';
+  }
+
+  /// ProfileDetail
+  /// Author Info Latest
+  static String authorInfoLatest() {
+    return '/v6/op/authors/144/sentences?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&order_by=latest&page=1&per_page=20&platform=ios&signature=e53538fc8afbeee370c06f4ac9e88862&system_version=12.1.2&timestamp=1547494908&token=8783e97df8f4a954663a0674fb38ffe0&version=3.6.1&version_code=44';
+  }
+
+  /// ProfileDetail
+  /// Author Info Latest
+  static String authorInfoHot() {
+    return '/v6/op/authors/144/sentences?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&order_by=hot&page=1&per_page=20&platform=ios&signature=b93170717513bd9ea3aba395911fb740&system_version=12.1.2&timestamp=1547494915&token=8783e97df8f4a954663a0674fb38ffe0&version=3.6.1&version_code=44';
+  }
+
+  /// ProfileDetail
+  /// Topics
+  static String topicsInfo() {
+    return '/v5/topics/54330511-3d9d-4d30-a589-164c9224b44a?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&platform=ios&signature=816ca877b7a4f8ebae64fc5fbd2cf81f&system_version=12.1.2&timestamp=1547497222&token=8783e97df8f4a954663a0674fb38ffe0&version=3.6.1&version_code=44';
+  }
+
+  /// ProfileDetail
+  /// Topics Latest
+  static String topicsInfoLatest() {
+    return '/v5/topics/54330511-3d9d-4d30-a589-164c9224b44a/sentences?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=20&platform=ios&signature=6c86664041fa6268b446f716cc0d84be&system_version=12.1.2&timestamp=1547497222&token=8783e97df8f4a954663a0674fb38ffe0&type=latest&version=3.6.1&version_code=44';
+  }
+
+  /// ProfileDetail
+  /// Topics Hot
+  static String topicsInfoHot() {
+    return '/v5/topics/54330511-3d9d-4d30-a589-164c9224b44a/sentences?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=20&platform=ios&signature=8131b95f324e83bde06ecd60d7511966&system_version=12.1.2&timestamp=1547497366&token=8783e97df8f4a954663a0674fb38ffe0&type=hot&version=3.6.1&version_code=44';
+  }
+
+  /// ProfileDetail
+  /// User
+  static String userInfo() {
+    return '/v5/users/90227?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&platform=ios&signature=59d38a91f8219559371f933ae6985a4f&system_version=12.1.2&timestamp=1547497556&token=8783e97df8f4a954663a0674fb38ffe0&version=3.6.1&version_code=44';
+  }
+
+  /// ProfileDetail
+  /// Topics Latest
+  static String userInfoSentences() {
+    return '/v6/op/users/90227/sentences?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=20&platform=ios&signature=4cfeb986375df7fc319575c06b2e7d96&system_version=12.1.2&timestamp=1547497556&token=8783e97df8f4a954663a0674fb38ffe0&version=3.6.1&version_code=44';
+  }
+
+  /// ProfileDetail
+  /// Topics Hot
+  static String userInfoCollections() {
+    return '/v6/op/users/90227/collections?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=20&platform=ios&signature=b4fdc33ea9ac41325261a7ccf2a4dbc1&system_version=12.1.2&timestamp=1547497622&token=8783e97df8f4a954663a0674fb38ffe0&version=3.6.1&version_code=44';
+  }
 }
