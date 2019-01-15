@@ -1,4 +1,10 @@
+import 'dart:ui';
+import '../widgets/verify_header.dart';
+import 'package:flutter/services.dart';
+import '../../utils/color_util.dart';
 import 'package:flutter/material.dart';
+import '../widgets/normal_header.dart';
+import '../../discovery/widget/topic_header.dart';
 
 class ProfilDetail extends StatefulWidget {
   @override
@@ -6,20 +12,27 @@ class ProfilDetail extends StatefulWidget {
 }
 
 class _ProfilDetailState extends State<ProfilDetail> {
-  Color titleColor = Colors.transparent;
+  Color _titleColor = Colors.transparent;
+  Color _iconColor = Colors.white;
   ScrollController _controller = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _controller.addListener(() {
+      bool isTop = _controller.offset >= 135;
       setState(() {
-        titleColor =
-            _controller.offset >= 135 ? Colors.white : Colors.transparent;
+        _titleColor = isTop ? Colors.black : Colors.transparent;
+        _iconColor = isTop ? Colors.black : Colors.white;
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+          statusBarColor: isTop ? Colors.black : Colors.white,
+        ));
       });
     });
   }
 
+  /// verify,topics -> 350
+  /// normal -> 286
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -37,30 +50,27 @@ class _ProfilDetailState extends State<ProfilDetail> {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                backgroundColor: Colors.red,
-                expandedHeight: 240,
+                backgroundColor: Colors.white,
+                expandedHeight: 286,
                 bottom: TabBar(
-                  tabs: <Widget>[Tab(text: '句子 1'), Tab(text: '收藏夹 2')],
+                  indicatorColor: Colors.yellow,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  unselectedLabelColor: ColorUtils.textGreyColor,
+                  tabs: <Widget>[Tab(text: '句子'), Tab(text: '收藏夹')],
                 ),
+                iconTheme: IconThemeData(color: _iconColor),
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
-                  background: Container(
-                    color: Colors.blue,
-                    child: Column(
-                      children: <Widget>[
-                        Text('Reloaded 12 of 576 libraries in 924ms'),
-                        Text('Reloaded 12 of 576 libraries in 924ms'),
-                        Text('Reloaded 12 of 576 libraries in 924ms'),
-                        Text('Reloaded 12 of 576 libraries in 924ms'),
-                        Text('Reloaded 12 of 576 libraries in 924ms'),
-                        Text('Reloaded 12 of 576 libraries in 924ms'),
-                        Text('Reloaded 12 of 576 libraries in 924ms'),
-                      ],
-                    ),
-                  ),
+                  background: TopicsHeader(),
                 ),
-                title: Text('标题', style: TextStyle(color: titleColor)),
-              ),
+                title: Text('标题', style: TextStyle(color: _titleColor)),
+                leading: IconButton(
+                  icon: Icon(Icons.arrow_back_ios, color: _iconColor, size: 20),
+                  onPressed: () {
+                    Navigator.maybePop(context);
+                  },
+                ),
+              )
             ];
           },
         ),

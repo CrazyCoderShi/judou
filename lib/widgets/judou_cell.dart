@@ -1,4 +1,5 @@
 import '../widgets/blank.dart';
+import './user_info_tile.dart';
 import '../utils/color_util.dart';
 import '../widgets/radius_image.dart';
 import '../widgets/image_preview.dart';
@@ -197,30 +198,10 @@ class _ReferenceAuthorInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return model.user != null
-        ? Row(
-            children: <Widget>[
-              RadiusImage(
-                imageUrl: model.user.avatar,
-                width: 20,
-                height: 20,
-                radius: 10,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 5),
-                child: Text(
-                  model.user.nickname,
-                  style: TextStyle(fontSize: 10),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text(
-                  '收录',
-                  style:
-                      TextStyle(fontSize: 10, color: ColorUtils.textGreyColor),
-                ),
-              ),
-            ],
+        ? UserInfoTile(
+            avatar: model.user.avatar,
+            name: model.user.nickname,
+            trailName: '收录',
           )
         : Container();
   }
