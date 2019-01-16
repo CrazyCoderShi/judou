@@ -17,16 +17,15 @@ class _MainPageState extends State<MainPage>
   static DiscoveryPage _discoveryPage = DiscoveryPage();
   static ProfilePage _profilePage = ProfilePage();
   final _pages = [_indexPage, _discoveryPage, _profilePage];
-  TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: 3);
-    _tabController.addListener(() {
-      setState(() {
-        _selectedIndex = _tabController.index;
-      });
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
     });
   }
 
@@ -36,45 +35,33 @@ class _MainPageState extends State<MainPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: TabBarView(
-        controller: _tabController,
+      body: IndexedStack(
+        index: _selectedIndex,
         children: _pages,
-        physics: NeverScrollableScrollPhysics(),
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black,
-              offset: Offset(1, 10),
-              blurRadius: 10.0,
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            IconButton(
+              icon: _selectedIndex == 0
+                  ? Icon(Icons.autorenew)
+                  : Icon(Icons.adjust),
+              onPressed: () => this._onItemTapped(0),
             ),
+            IconButton(
+              icon: _selectedIndex == 1
+                  ? Icon(Icons.explore)
+                  : ImageIcon(AssetImage('assets/descovery.png')),
+              onPressed: () => this._onItemTapped(1),
+            ),
+            IconButton(
+              icon: _selectedIndex == 2
+                  ? Icon(Icons.person)
+                  : Icon(Icons.person_outline),
+              onPressed: () => this._onItemTapped(2),
+            )
           ],
-          shape: BoxShape.rectangle,
-          color: Colors.white,
-        ),
-        child: SafeArea(
-          child: TabBar(
-            controller: _tabController,
-            indicatorColor: Colors.transparent,
-            tabs: <Widget>[
-              Tab(
-                icon: _selectedIndex == 0
-                    ? Icon(Icons.autorenew)
-                    : Icon(Icons.adjust),
-              ),
-              Tab(
-                icon: _selectedIndex == 1
-                    ? Icon(Icons.explore)
-                    : ImageIcon(AssetImage('assets/descovery.png')),
-              ),
-              Tab(
-                icon: _selectedIndex == 2
-                    ? Icon(Icons.person)
-                    : Icon(Icons.person_outline),
-              ),
-            ],
-          ),
         ),
       ),
     );
