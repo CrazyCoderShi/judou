@@ -25,6 +25,7 @@ dependencies:
   intl: ^0.15.7
   flutter_swiper : ^1.1.4
   video_player: ^0.8.0
+  path_provider: ^0.4.1
 
 dev_dependencies:
   flutter_test:

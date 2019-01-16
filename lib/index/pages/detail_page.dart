@@ -147,6 +147,7 @@ class _DetailWidgetStateful extends State<DetailWidget> {
           floatingActionButton: _BottomInput(),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
+          resizeToAvoidBottomPadding: true,
         );
       },
     );

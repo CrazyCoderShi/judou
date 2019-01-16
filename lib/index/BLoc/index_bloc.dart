@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../models/judou_model.dart';
 import '../../index/pages/detail_page.dart';
 import '../../network/network.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 class IndexBloc implements BlocBase {
   /// 存放所有的model
@@ -72,6 +74,28 @@ class IndexBloc implements BlocBase {
         .then((response) => response.where((item) => !item['is_ad']).toList())
         .then((response) =>
             response.map((item) => JuDouModel.fromJson(item)).toList());
+
+    // var dio = Dio();
+    // dio.onHttpClientCreate = (HttpClient client) {
+    //   client.idleTimeout = Duration(seconds: 1);
+    // };
+
+    // Directory appDocDir = await getApplicationDocumentsDirectory();
+    // String appDocPath = appDocDir.path;
+
+    // try {
+    //   Response response = await dio.download(
+    //       'http://flv2.bn.netease.com/videolib3/1707/07/liHAU2643/HD/liHAU2643-mobile.mp4',
+    //       '$appDocPath/test.mp4', onProgress: (received, total) {
+    //     print('received----- $received  total******** $total');
+    //   });
+    //   print(response.data);
+    // } catch (e) {
+    //   print('error -> $e');
+    // }
+
+    // print("download succeed!");
+
     return list;
   }
 }
