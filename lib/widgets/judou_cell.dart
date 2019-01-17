@@ -14,14 +14,12 @@ class JuDouCell extends StatefulWidget {
     this.divider,
     this.tag,
     this.model,
-    this.onTap,
     this.isCell = true,
   }) : super(key: key);
 
   final Widget divider;
   // 每一个tag必须是唯一的
   final String tag;
-  final VoidCallback onTap;
   final JuDouModel model;
 
   /// 如果是作为Cell时content文字只显示三行

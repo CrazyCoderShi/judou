@@ -56,7 +56,6 @@ class _SubscribeWidgetState extends State<SubscribeWidget>
           itemBuilder: (context, index) => JuDouCell(
                 model: dataList[index],
                 tag: 'DiscoveryPageSubscribe$index',
-                onTap: () => bloc.toDetailPage(context, dataList[index]),
                 divider: Blank(),
                 isCell: true,
               ),

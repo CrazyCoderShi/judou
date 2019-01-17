@@ -11,6 +11,7 @@ import '../models/judou_model.dart';
 import '../models/comment_model.dart';
 import '../../bloc_provider.dart';
 import '../BLoc/detail_bloc.dart';
+import '../../widgets/loading.dart';
 
 class DetailPage extends StatelessWidget {
   DetailPage({Key key, this.model}) : super(key: key);
@@ -93,7 +94,7 @@ class _DetailWidgetStateful extends State<DetailWidget> {
       BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
     if (snapshot.connectionState != ConnectionState.active) {
       return Center(
-        child: CircularProgressIndicator(),
+        child: Loading(),
       );
     }
     List<CommentModel> hot = snapshot.data['hot'];
