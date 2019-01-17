@@ -19,6 +19,10 @@ Judou is my favorite app，so I implemented it with flutter
 | :--: | :--: | :--: | :--: |
 | 首页 | 详情 | 订阅 | 发现 |
 
+| ![1](https://github.com/CrazyCoderShi/judou/blob/master/assets/author_sub.jpg) | ![2](https://github.com/CrazyCoderShi/judou/blob/master/assets/user_sentences.jpg) | ![3](https://github.com/CrazyCoderShi/judou/blob/master/assets/user_collections.jpg) | ![4](https://github.com/CrazyCoderShi/judou/blob/master/assets/topics.jpg) |
+| :--: | :--: | :--: | :--: |
+| 订阅作者 | 用户句子 | 用户收藏 | 话题 |
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
