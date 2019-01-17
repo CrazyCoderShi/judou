@@ -103,7 +103,10 @@ class _UserInfo extends StatelessWidget {
       children: <Widget>[
         GestureDetector(
           onTap: () => Navigator.push(
-              context, MaterialPageRoute(builder: (_) => ProfilDetail())),
+              context,
+              MaterialPageRoute(
+                  builder: (_) =>
+                      ProfileDetailPage(type: 0, id: '${model.user.uid}'))),
           child: Row(
             children: <Widget>[
               RadiusImage(

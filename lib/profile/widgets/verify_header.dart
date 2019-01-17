@@ -8,6 +8,10 @@ import '../../widgets/radius_image.dart';
 import '../../widgets/user_info_tile.dart';
 
 class VerfiyHeader extends StatelessWidget {
+  VerfiyHeader({this.data});
+
+  final Map<String, dynamic> data;
+
   @override
   Widget build(BuildContext context) {
     final sreenWidth = MediaQuery.of(context).size.width;

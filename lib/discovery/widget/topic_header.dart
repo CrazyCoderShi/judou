@@ -3,9 +3,13 @@ import 'dart:ui';
 import '../../utils/ui_util.dart';
 import '../../widgets/blank.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/radius_image.dart';
+// import '../../widgets/radius_image.dart';
 
 class TopicsHeader extends StatelessWidget {
+  TopicsHeader({this.data});
+
+  final Map<String, dynamic> data;
+
   @override
   Widget build(BuildContext context) {
     final sreenWidth = MediaQuery.of(context).size.width;

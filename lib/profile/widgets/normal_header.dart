@@ -1,11 +1,14 @@
 // 普通用户Profile
 import 'dart:ui';
-import '../../widgets/blank.dart';
 import '../../utils/ui_util.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/radius_image.dart';
 
 class NormalHeader extends StatelessWidget {
+  NormalHeader({this.data});
+
+  final Map<String, dynamic> data;
+
   @override
   Widget build(BuildContext context) {
     final sreenWidth = MediaQuery.of(context).size.width;
@@ -20,7 +23,7 @@ class NormalHeader extends StatelessWidget {
           width: sreenWidth,
           height: DeviceUtils.iPhoneXAbove(context) ? 286 : 264,
           child: Image.network(
-            'https://judou.oss-cn-beijing.aliyuncs.com/images/author/2019/1/9/5ajgw7fmt4.jpeg',
+            data['avatar'],
             fit: BoxFit.cover,
           ),
         ),
@@ -38,8 +41,7 @@ class NormalHeader extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 80),
                     child: RadiusImage(
-                      imageUrl:
-                          'https://judou.oss-cn-beijing.aliyuncs.com/images/author/2019/1/9/5ajgw7fmt4.jpeg',
+                      imageUrl: data['avatar'],
                       width: 70,
                       height: 70,
                       radius: 35,
@@ -47,11 +49,13 @@ class NormalHeader extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 8),
-                    child: Text('天南', style: textStyle(16)),
+                    child: Text(data['nickname'], style: textStyle(16)),
                   ),
                   Padding(
                     padding: EdgeInsets.only(bottom: 10),
-                    child: Text('关注 0 | 粉丝 888', style: textStyle(12)),
+                    child: Text(
+                        '关注 ${data['followings_count']} | 粉丝 ${data['followers_count']}',
+                        style: textStyle(12)),
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -61,7 +65,7 @@ class NormalHeader extends StatelessWidget {
                     width: 100,
                     child: Center(
                       child: Text(
-                        '关注',
+                        data['is_self'] ? '编辑' : '关注',
                         style: textStyle(12),
                       ),
                     ),
