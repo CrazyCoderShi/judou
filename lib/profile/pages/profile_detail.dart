@@ -15,6 +15,10 @@ import '../../index/models/judou_model.dart';
 import '../../discovery/widget/topic_header.dart';
 
 class ProfileDetailPage extends StatelessWidget {
+  /// prfile header wiget type
+  /// 0 Normal
+  /// 1 Verify
+  /// 2 Topics
   ProfileDetailPage({
     @required this.type,
     @required this.id,
@@ -86,7 +90,16 @@ class _ProfilDetailState extends State<ProfilDetail> {
 
           Map<String, dynamic> header = snapshot.data['header'];
           List<JuDouModel> sentences = snapshot.data['sentences'];
-          List<CollectionModel> collections = snapshot.data['collections'];
+          List<CollectionModel> collections;
+          List<JuDouModel> hot;
+          String title;
+          if (_bloc.type == 0) {
+            title = header['nickname'];
+            collections = snapshot.data['collections'];
+          } else {
+            title = header['name'];
+            hot = snapshot.data['collections'];
+          }
 
           return Scaffold(
             backgroundColor: Colors.white,
@@ -98,21 +111,34 @@ class _ProfilDetailState extends State<ProfilDetail> {
                     itemBuilder: (context, index) {
                       return JuDouCell(
                         divider: Blank(),
-                        tag: 'profile_detail$index',
+                        tag: 'profile_detail_$index',
                         model: sentences[index],
                         isCell: true,
                       );
                     },
                     itemCount: sentences.length,
                   ),
-                  GridView.builder(
-                    itemBuilder: (context, index) {
-                      return CollectionCell(model: collections[index]);
-                    },
-                    itemCount: collections.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
-                  ),
+                  _bloc.type == 0
+                      ? GridView.builder(
+                          itemBuilder: (context, index) {
+                            return CollectionCell(model: collections[index]);
+                          },
+                          itemCount: collections.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2),
+                        )
+                      : ListView.builder(
+                          itemBuilder: (context, index) {
+                            return JuDouCell(
+                              divider: Blank(),
+                              tag: 'profile_detail_hot$index',
+                              model: hot[index],
+                              isCell: true,
+                            );
+                          },
+                          itemCount: hot.length,
+                        ),
                 ],
               ),
               headerSliverBuilder: (context, innerBoxIsScrolled) {
@@ -124,7 +150,16 @@ class _ProfilDetailState extends State<ProfilDetail> {
                       indicatorColor: Colors.yellow,
                       indicatorSize: TabBarIndicatorSize.label,
                       unselectedLabelColor: ColorUtils.textGreyColor,
-                      tabs: <Widget>[Tab(text: '句子'), Tab(text: '收藏夹')],
+                      tabs: <Widget>[
+                        Tab(
+                            text: _bloc.type == 0
+                                ? '句子 ${sentences.length}'
+                                : '最新'),
+                        Tab(
+                            text: _bloc.type == 0
+                                ? '收藏夹 ${collections.length}'
+                                : '最热')
+                      ],
                     ),
                     iconTheme: IconThemeData(color: _iconColor),
                     pinned: true,
@@ -132,8 +167,10 @@ class _ProfilDetailState extends State<ProfilDetail> {
                       background: _header(header, _bloc.type),
                       collapseMode: CollapseMode.pin,
                     ),
-                    title: Text(header['nickname'],
-                        style: TextStyle(color: _titleColor)),
+                    title: Text(
+                      title,
+                      style: TextStyle(color: _titleColor),
+                    ),
                     leading: IconButton(
                       icon: Icon(Icons.arrow_back_ios,
                           color: _iconColor, size: 20),

@@ -6,6 +6,7 @@ import '../widgets/image_preview.dart';
 import 'package:flutter/material.dart';
 import '../index/pages/detail_page.dart';
 import '../index/models/judou_model.dart';
+import '../profile/pages/profile_detail.dart';
 import 'package:page_transition/page_transition.dart';
 
 class JuDouCell extends StatefulWidget {
@@ -151,34 +152,44 @@ class _AuthorInfo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Container(
-          child: Row(
-            children: <Widget>[
-              RadiusImage(
-                  radius: 3.0,
-                  imageUrl: model.author != null
-                      ? model.author.coverUrl
-                      : model.user.avatar,
-                  width: 30,
-                  height: 30),
-              Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text(
-                  model.author != null
-                      ? model.author.name
-                      : model.user.nickname,
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w300,
-                      color: ColorUtils.textUserNameColor),
-                ),
-              ),
-              Padding(
+          child: GestureDetector(
+            child: Row(
+              children: <Widget>[
+                RadiusImage(
+                    radius: 3.0,
+                    imageUrl: model.author != null
+                        ? model.author.coverUrl
+                        : model.user.avatar,
+                    width: 30,
+                    height: 30),
+                Padding(
                   padding: EdgeInsets.only(left: 10),
-                  child:
-                      (model.author != null ? model.author.isVerified : false)
-                          ? Icon(Icons.stars, size: 16, color: Colors.blue)
-                          : Container()),
-            ],
+                  child: Text(
+                    model.author != null
+                        ? model.author.name
+                        : model.user.nickname,
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                        color: ColorUtils.textUserNameColor),
+                  ),
+                ),
+                Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child:
+                        (model.author != null ? model.author.isVerified : false)
+                            ? Icon(Icons.stars, size: 16, color: Colors.blue)
+                            : Container()),
+              ],
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) =>
+                        ProfileDetailPage(type: 1, id: '${model.author.id}')),
+              );
+            },
           ),
         ),
         IconButton(

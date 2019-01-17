@@ -1,5 +1,6 @@
 // 认证用户的Profile
 import 'dart:ui';
+import '../../index/models/user_model.dart';
 import '../../utils/ui_util.dart';
 import '../../widgets/blank.dart';
 import '../../utils/color_util.dart';
@@ -15,13 +16,14 @@ class VerfiyHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sreenWidth = MediaQuery.of(context).size.width;
+    UserModel user = UserModel.fromJson(data['user'] ?? Map());
     return Stack(
       children: <Widget>[
         SizedBox(
           width: sreenWidth,
           height: 180,
           child: Image.network(
-            'https://judou.oss-cn-beijing.aliyuncs.com/images/author/2019/1/9/5ajgw7fmt4.jpeg',
+            data['cover'],
             fit: BoxFit.cover,
           ),
         ),
@@ -47,8 +49,7 @@ class VerfiyHeader extends StatelessWidget {
           top: 120,
           left: (sreenWidth - 80) / 2,
           child: RadiusImage(
-            imageUrl:
-                'https://judou.oss-cn-beijing.aliyuncs.com/images/author/2019/1/9/5ajgw7fmt4.jpeg',
+            imageUrl: data['cover'],
             width: 80,
             height: 80,
             radius: 3,
@@ -66,7 +67,7 @@ class VerfiyHeader extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      '生命的高度 ',
+                      data['name'],
                       style: TextStyle(fontSize: 13),
                     ),
                     Icon(Icons.stars, size: 16, color: Colors.blue)
@@ -75,7 +76,7 @@ class VerfiyHeader extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    '贷后——使用【巨享花】的签名，短信内容加业务app的名称贷后——使用【巨享花】的签名，短信内容加业务app的名称贷后——使用【巨享花】的签名，短信内容加业务app的名称',
+                    data['description'],
                     style: TextStyle(
                         fontSize: 12, color: ColorUtils.textGreyColor),
                     maxLines: DeviceUtils.iPhoneXAbove(context) ? 3 : 2,
@@ -86,12 +87,13 @@ class VerfiyHeader extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    UserInfoTile(
-                      avatar:
-                          'https://judou.oss-cn-beijing.aliyuncs.com/images/author/2019/1/9/5ajgw7fmt4.jpeg',
-                      name: '天南',
-                      trailName: '创建',
-                    ),
+                    data['user'] != null
+                        ? UserInfoTile(
+                            avatar: user.avatar,
+                            name: user.nickname,
+                            trailName: '创建',
+                          )
+                        : Container(),
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(width: 0.5),
