@@ -55,12 +55,13 @@ class ProfileDetailBloc implements BlocBase {
         .then((response) => response.data['data'] as List)
         .then((response) =>
             response.map((item) => CollectionModel.fromJSON(item)).toList());
-
-    _dataSubject.sink.add({
-      'header': header,
-      'sentences': sentences,
-      'collections': collections,
-    });
+    if (!_dataSubject.isClosed) {
+      _dataSubject.sink.add({
+        'header': header,
+        'sentences': sentences,
+        'collections': collections,
+      });
+    }
   }
 
   _fetchAuthorInfo(String uid) async {
@@ -81,12 +82,13 @@ class ProfileDetailBloc implements BlocBase {
         .then((response) => response.where((item) => !item['is_ad']).toList())
         .then((response) =>
             response.map((item) => JuDouModel.fromJson(item)).toList());
-
-    _dataSubject.sink.add({
-      'header': user,
-      'sentences': sentences,
-      'collections': hot,
-    });
+    if (!_dataSubject.isClosed) {
+      _dataSubject.sink.add({
+        'header': user,
+        'sentences': sentences,
+        'collections': hot,
+      });
+    }
   }
 
   _fetchTopicsInfo(String uid) async {
@@ -108,13 +110,19 @@ class ProfileDetailBloc implements BlocBase {
         .then((response) =>
             response.map((item) => JuDouModel.fromJson(item)).toList());
 
-    _dataSubject.sink.add({
-      'header': user,
-      'sentences': sentences,
-      'collections': hot,
-    });
+    if (!_dataSubject.isClosed) {
+      _dataSubject.sink.add({
+        'header': user,
+        'sentences': sentences,
+        'collections': hot,
+      });
+    }
   }
 
   @override
-  dispose() {}
+  dispose() {
+    if (!_dataSubject.isClosed) {
+      _dataSubject.close();
+    }
+  }
 }
