@@ -3,7 +3,6 @@ import 'dart:ui';
 import '../../utils/ui_util.dart';
 import '../../widgets/blank.dart';
 import 'package:flutter/material.dart';
-// import '../../widgets/radius_image.dart';
 
 class TopicsHeader extends StatelessWidget {
   TopicsHeader({this.data});
@@ -28,7 +27,7 @@ class TopicsHeader extends StatelessWidget {
           width: sreenWidth,
           height: DeviceUtils.iPhoneXAbove(context) ? 190 : 170,
           child: Image.network(
-            'https://judou.oss-cn-beijing.aliyuncs.com/images/tag/2018/12/29/1cu290lfq4.png',
+            data['cover'],
             fit: BoxFit.cover,
           ),
         ),
@@ -40,12 +39,12 @@ class TopicsHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                '文学素材',
+                data['name'],
                 style: textStyle(16),
                 textAlign: TextAlign.left,
               ),
               Text(
-                '文学素材文学素材文学素材文学素材文学素材文学素材文学素材文学素材文学素材文学素材文学素材文学素材文学素材文学素材文学素材',
+                data['description'],
                 style: textStyle(13),
                 textAlign: TextAlign.left,
                 maxLines: 2,

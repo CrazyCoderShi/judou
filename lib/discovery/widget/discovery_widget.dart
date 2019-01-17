@@ -158,6 +158,7 @@ class _DiscoverTopicsWidget extends StatelessWidget {
             imageUrl: model.cover,
             height: 70,
             width: 100,
+            id: model.uuid,
           );
         }),
       ),

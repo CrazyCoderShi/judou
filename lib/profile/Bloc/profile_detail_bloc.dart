@@ -89,12 +89,30 @@ class ProfileDetailBloc implements BlocBase {
     });
   }
 
-  Future<Map<String, dynamic>> _fetchTopicsInfo(String uid) async {
+  _fetchTopicsInfo(String uid) async {
     Map<String, dynamic> user = await Request.instance.dio
-        .get(RequestPath.userInfo(uid))
+        .get(RequestPath.topicsInfo(uid))
         .then((response) => response.data);
 
-    return user;
+    List<JuDouModel> sentences = await Request.instance.dio
+        .get(RequestPath.topicsInfoLatest(uid))
+        .then((response) => response.data['data'] as List)
+        .then((response) => response.where((item) => !item['is_ad']).toList())
+        .then((response) =>
+            response.map((item) => JuDouModel.fromJson(item)).toList());
+
+    List<JuDouModel> hot = await Request.instance.dio
+        .get(RequestPath.topicsInfoHot(uid))
+        .then((response) => response.data['data'] as List)
+        .then((response) => response.where((item) => !item['is_ad']).toList())
+        .then((response) =>
+            response.map((item) => JuDouModel.fromJson(item)).toList());
+
+    _dataSubject.sink.add({
+      'header': user,
+      'sentences': sentences,
+      'collections': hot,
+    });
   }
 
   @override
