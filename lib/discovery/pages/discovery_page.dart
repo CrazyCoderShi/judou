@@ -15,7 +15,7 @@ class DiscoveryPage extends StatefulWidget {
 class _DiscoveryPageState extends State<DiscoveryPage>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController _topController;
-  List<Tab> tabs = [Tab(text: '订阅'), Tab(text: '发现'), Tab(text: '推荐')];
+  List<Tab> tabs = [Tab(text: '订阅!'), Tab(text: '发现'), Tab(text: '推荐')];
 
   @override
   void initState() {

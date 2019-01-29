@@ -46,6 +46,7 @@ class _ProfilDetailState extends State<ProfilDetail> {
   Color _iconColor = Colors.white;
   ScrollController _controller = ScrollController();
   ProfileDetailBloc _bloc;
+  Brightness _brightness = Brightness.dark;
 
   @override
   void initState() {
@@ -56,9 +57,7 @@ class _ProfilDetailState extends State<ProfilDetail> {
       setState(() {
         _titleColor = isTop ? Colors.black : Colors.transparent;
         _iconColor = isTop ? Colors.black : Colors.white;
-        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-          statusBarColor: isTop ? Colors.black : Colors.white,
-        ));
+        _brightness = isTop ? Brightness.light : Brightness.dark;
       });
     });
   }
@@ -144,6 +143,7 @@ class _ProfilDetailState extends State<ProfilDetail> {
               headerSliverBuilder: (context, innerBoxIsScrolled) {
                 return [
                   SliverAppBar(
+                    brightness: _brightness,
                     backgroundColor: Colors.white,
                     expandedHeight: _bloc.type == 1 ? 350 : 286,
                     bottom: TabBar(
