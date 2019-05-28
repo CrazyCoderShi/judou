@@ -38,7 +38,7 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
 
-    _controller = TabController(vsync: this, length: 8);
+    _controller = TabController(vsync: this, length: 9);
     _controller.addListener(() {
       if (_controller.indexIsChanging) {
         _bloc.fetchTagListDataWithId('${_bloc.tags[_controller.index].id}');

@@ -21,13 +21,13 @@ class RequestPath {
 
   /// 所有频道id + title
   static String channels() {
-    return '/v6/op/discovery/channels?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&platform=ios&signature=9949b7b650b2c283fb9c69bc25275786&system_version=12.1.2&timestamp=1546392267&version=3.5.7&version_code=41';
+    return 'v6/op/channels/12?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=20&platform=ios&signature=9eb7dd623af816981a9947e017fb95e9&system_version=12.3&timestamp=1559000076&token=5c445d2b07a7e9ee6a84e9a4a1533891&version=3.8.0&version_code=51';
   }
 
   /// 每个子频道的数据
   /// 12 -> 订阅
   static String channelWithId(String id) {
-    return '/v6/op/channels/12?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=20&platform=ios&signature=d9dc0c50e7d7d95b9b4b7457633fb1d0&system_version=12.1.2&timestamp=1546828665&token=8783e97df8f4a954663a0674fb38ffe0&version=3.6.1&version_code=44';
+    return '/v6/op/channels/12?app_key=af66b896-665e-415c-a119-6ca5233a6963&channel=App%20Store&device_id=9f5e19d3dd08667400da31ae0e045e1b&device_type=iPhone9%2C1&page=1&per_page=20&platform=ios&signature=44afc59250d46d93fdde07ba6579e889&system_version=12.1.2&timestamp=1551393195&token=bf803413c8e020a23f9c15f4c4237ee6&version=3.7.0&version_code=45';
   }
 
   /// 发现页面

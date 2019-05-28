@@ -65,6 +65,7 @@ class _JuDouCellState extends State<JuDouCell>
   // 中间大图
   Widget _midImage(BuildContext context) => Hero(
         tag: widget.tag,
+        transitionOnUserGestures: true,
         child: Padding(
           padding: EdgeInsets.only(top: 10, bottom: 10),
           child: RadiusImage(
@@ -159,7 +160,7 @@ class _AuthorInfo extends StatelessWidget {
                     radius: 3.0,
                     imageUrl: model.author != null
                         ? model.author.coverUrl
-                        : model.user.avatar,
+                        : model.user.avatar ?? '',
                     width: 30,
                     height: 30),
                 Padding(
@@ -186,8 +187,8 @@ class _AuthorInfo extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (_) =>
-                        ProfileDetailPage(type: 1, id: '${model.author.id}')),
+                    builder: (_) => ProfileDetailPage(
+                        type: 1, id: '${model.author.id ?? model.user.uid}')),
               );
             },
           ),

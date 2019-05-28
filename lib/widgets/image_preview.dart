@@ -11,12 +11,13 @@ class ImagePreview extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-          child: Hero(
-              tag: this.tag,
-              child: GestureDetector(
-                  child: Image.network(this.imageUrl),
-                  onTap: () => Navigator.pop(context)),
-              transitionOnUserGestures: true)),
+        child: Hero(
+            tag: this.tag,
+            child: GestureDetector(
+                child: Image.network(this.imageUrl),
+                onTap: () => Navigator.pop(context)),
+            transitionOnUserGestures: true),
+      ),
     );
   }
 }

@@ -79,7 +79,7 @@ class _IndexPageItemState extends State<IndexPageItem>
           ),
           verticalText('戊戌狗年', 15),
           verticalText('甲子月庚寅日', 35),
-          verticalText('冬月十八', 55)
+          verticalText('腊月甘十八', 55),
         ],
       );
 

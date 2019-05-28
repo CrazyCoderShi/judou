@@ -5,6 +5,7 @@ import '../../widgets/button_subscript.dart';
 import '../models/judou_model.dart';
 import '../BLoc/index_bloc.dart';
 import '../../bloc_provider.dart';
+import 'package:flutter/services.dart';
 
 class IndexPage extends StatelessWidget {
   @override
@@ -39,6 +40,14 @@ class _IndexWidgetState extends State<IndexWidget>
         _comment = data[0];
         _isLike = data[2];
       });
+    });
+  }
+
+  void _test() {
+    print('-------1-');
+    var platform = MethodChannel('judou.test');
+    platform.invokeMethod('getString').then((result) {
+      print('------- $result');
     });
   }
 

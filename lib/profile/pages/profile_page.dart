@@ -23,13 +23,15 @@ class _ProfilePageState extends State<ProfilePage> {
         Column(
           children: <Widget>[
             Text(
-              '庸者的救赎',
+              'CrazyCoderShi',
               style: TextStyle(fontSize: 20, fontFamily: 'PingFang'),
             ),
             GestureDetector(
-                child: Text('点击查看个人主页',
-                    style: TextStyle(
-                        fontSize: 14, color: ColorUtils.textGreyColor)))
+              child: Text(
+                '点击查看个人主页',
+                style: TextStyle(fontSize: 14, color: ColorUtils.textGreyColor),
+              ),
+            ),
           ],
           crossAxisAlignment: CrossAxisAlignment.start,
         )
@@ -74,62 +76,66 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-            child: ListView(children: <Widget>[
-              header(),
-              subscribe(),
-              Blank(),
-              ListCell(
-                title: '我的消息',
-                leading: Icons.add_alert,
-                trailing: Icons.arrow_forward_ios,
-                isDivider: true,
-                onTap: () => this.pushPage(MessagePage()),
-              ),
-              ListCell(
-                title: '我的收藏夹',
-                leading: Icons.bookmark,
-                trailing: Icons.arrow_forward_ios,
-                isDivider: true,
-                onTap: () => debugPrint('点击'),
-              ),
-              ListCell(
-                title: '我的评论',
-                leading: Icons.insert_comment,
-                trailing: Icons.arrow_forward_ios,
-                onTap: () => debugPrint('点击'),
-              ),
-              Blank(),
-              ListCell(
-                title: '常见问题',
-                leading: Icons.assistant_photo,
-                trailing: Icons.arrow_forward_ios,
-                isDivider: true,
-                onTap: () => debugPrint('点击'),
-              ),
-              ListCell(
-                title: '我要反馈',
-                leading: Icons.feedback,
-                trailing: Icons.arrow_forward_ios,
-                isDivider: true,
-                onTap: () => debugPrint('点击'),
-              ),
-              ListCell(
-                title: '推荐句读',
-                leading: Icons.thumb_up,
-                trailing: Icons.arrow_forward_ios,
-                onTap: () => debugPrint('点击'),
-              ),
-              Blank(),
-              ListCell(
-                title: '设置',
-                leading: Icons.settings,
-                trailing: Icons.arrow_forward_ios,
-                onTap: () => debugPrint('点击'),
-              ),
-              Blank()
-            ]),
-            top: true));
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: ListView(
+          children: <Widget>[
+            header(),
+            subscribe(),
+            Blank(),
+            ListCell(
+              title: '我的消息',
+              leading: Icons.add_alert,
+              trailing: Icons.arrow_forward_ios,
+              isDivider: true,
+              onTap: () => this.pushPage(MessagePage()),
+            ),
+            ListCell(
+              title: '我的收藏夹',
+              leading: Icons.bookmark,
+              trailing: Icons.arrow_forward_ios,
+              isDivider: true,
+              onTap: () => debugPrint('点击'),
+            ),
+            ListCell(
+              title: '我的评论',
+              leading: Icons.insert_comment,
+              trailing: Icons.arrow_forward_ios,
+              onTap: () => debugPrint('点击'),
+            ),
+            Blank(),
+            ListCell(
+              title: '常见问题',
+              leading: Icons.assistant_photo,
+              trailing: Icons.arrow_forward_ios,
+              isDivider: true,
+              onTap: () => debugPrint('点击'),
+            ),
+            ListCell(
+              title: '我要反馈',
+              leading: Icons.feedback,
+              trailing: Icons.arrow_forward_ios,
+              isDivider: true,
+              onTap: () => debugPrint('点击'),
+            ),
+            ListCell(
+              title: '推荐句读',
+              leading: Icons.thumb_up,
+              trailing: Icons.arrow_forward_ios,
+              onTap: () => debugPrint('点击'),
+            ),
+            Blank(),
+            ListCell(
+              title: '设置',
+              leading: Icons.settings,
+              trailing: Icons.arrow_forward_ios,
+              onTap: () => debugPrint('点击'),
+            ),
+            Blank(),
+          ],
+        ),
+        top: true,
+      ),
+    );
   }
 }
