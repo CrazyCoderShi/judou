@@ -1,6 +1,0 @@
-framework module FlutterEmbedderFileChooser {
-  umbrella header "FlutterEmbedderFileChooser.h"
-
-  export *
-  module * { export * }
-}
