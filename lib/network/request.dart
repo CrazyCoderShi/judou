@@ -12,11 +12,11 @@ class Request {
   /// receiveTimeout
   ///
   final Dio dio = Dio(
-    Options(
+    BaseOptions(
       baseUrl: 'https://judouapp.com/api',
       connectTimeout: 5000,
       receiveTimeout: 3000,
-      responseType: ResponseType.JSON,
+      responseType: ResponseType.json,
     ),
   );
 }

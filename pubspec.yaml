@@ -19,11 +19,11 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  dio: ^1.0.13
-  page_transition: ^1.0.6
-  rx_command: ^4.0.2
-  intl: ^0.15.7
-  flutter_swiper : ^1.1.4
+  dio: ^2.1.13
+  page_transition: ^1.1.4
+  rx_command: 4.3.1+1
+  intl: ^0.15.8
+  flutter_swiper : ^1.1.6
   video_player: ^0.8.0
   path_provider: ^0.4.1
 

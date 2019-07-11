@@ -30,8 +30,7 @@ class JuDouCell extends StatefulWidget {
   _JuDouCellState createState() => _JuDouCellState();
 }
 
-class _JuDouCellState extends State<JuDouCell>
-    with SingleTickerProviderStateMixin {
+class _JuDouCellState extends State<JuDouCell> with SingleTickerProviderStateMixin {
   JuDouModel model;
   AnimationController controller;
 
@@ -113,10 +112,7 @@ class _JuDouCellState extends State<JuDouCell>
               _AuthorInfo(model: model, moreAction: _moreAction),
               Text(
                 model.content,
-                style: TextStyle(
-                    color: ColorUtils.textPrimaryColor,
-                    fontSize: 14,
-                    height: 1.2),
+                style: TextStyle(color: ColorUtils.textPrimaryColor, fontSize: 14, height: 1.2),
                 maxLines: widget.isCell ? 4 : 999,
                 overflow: TextOverflow.ellipsis,
                 softWrap: true,
@@ -158,43 +154,33 @@ class _AuthorInfo extends StatelessWidget {
               children: <Widget>[
                 RadiusImage(
                     radius: 3.0,
-                    imageUrl: model.author != null
-                        ? model.author.coverUrl
-                        : model.user.avatar ?? '',
+                    imageUrl: model.author != null ? model.author.coverUrl : model.user.avatar ?? '',
                     width: 30,
                     height: 30),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
-                    model.author != null
-                        ? model.author.name
-                        : model.user.nickname,
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        color: ColorUtils.textUserNameColor),
+                    model.author != null ? model.author.name : model.user.nickname,
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300, color: ColorUtils.textUserNameColor),
                   ),
                 ),
                 Padding(
                     padding: EdgeInsets.only(left: 10),
-                    child:
-                        (model.author != null ? model.author.isVerified : false)
-                            ? Icon(Icons.stars, size: 16, color: Colors.blue)
-                            : Container()),
+                    child: (model.author != null ? model.author.isVerified : false)
+                        ? Icon(Icons.stars, size: 16, color: Colors.blue)
+                        : Container()),
               ],
             ),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (_) => ProfileDetailPage(
-                        type: 1, id: '${model.author.id ?? model.user.uid}')),
+                    builder: (_) => ProfileDetailPage(type: 1, id: '${model.author.id ?? model.user.uid}')),
               );
             },
           ),
         ),
-        IconButton(
-            icon: Icon(Icons.keyboard_arrow_down), onPressed: moreAction),
+        IconButton(icon: Icon(Icons.keyboard_arrow_down), onPressed: moreAction),
       ],
     );
   }
@@ -224,8 +210,7 @@ class _BottomButtonRow extends StatelessWidget {
   final JuDouModel model;
   final VoidCallback commentAction;
 
-  Widget btn(IconData iconData, VoidCallback onTap, [String rightTitle]) =>
-      GestureDetector(
+  Widget btn(IconData iconData, VoidCallback onTap, [String rightTitle]) => GestureDetector(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -234,8 +219,7 @@ class _BottomButtonRow extends StatelessWidget {
               padding: EdgeInsets.only(left: 2),
               child: Text(
                 rightTitle ?? '',
-                style: TextStyle(
-                    color: ColorUtils.textUserNameColor, fontSize: 10),
+                style: TextStyle(color: ColorUtils.textUserNameColor, fontSize: 10),
               ),
             )
           ],

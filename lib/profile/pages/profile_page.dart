@@ -15,27 +15,31 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   // 头像 + 昵称
   Widget header() => Container(
-      padding: EdgeInsets.only(top: 25, left: 15, right: 15, bottom: 25),
-      child: Row(children: <Widget>[
-        Container(
-            child: CircleAvatar(backgroundColor: Colors.orange, radius: 40),
-            padding: EdgeInsets.only(left: 15, right: 15)),
-        Column(
+        padding: EdgeInsets.only(top: 25, left: 15, right: 15, bottom: 25),
+        child: Row(
           children: <Widget>[
-            Text(
-              'CrazyCoderShi',
-              style: TextStyle(fontSize: 20, fontFamily: 'PingFang'),
-            ),
-            GestureDetector(
-              child: Text(
-                '点击查看个人主页',
-                style: TextStyle(fontSize: 14, color: ColorUtils.textGreyColor),
-              ),
+            Container(
+                child: CircleAvatar(backgroundColor: Colors.orange, radius: 40),
+                padding: EdgeInsets.only(left: 15, right: 15)),
+            Column(
+              children: <Widget>[
+                Text(
+                  'CrazyCoderShi',
+                  style: TextStyle(fontSize: 20, fontFamily: 'PingFang'),
+                ),
+                GestureDetector(
+                  child: Text(
+                    '点击查看个人主页',
+                    style: TextStyle(
+                        fontSize: 14, color: ColorUtils.textGreyColor),
+                  ),
+                ),
+              ],
+              crossAxisAlignment: CrossAxisAlignment.start,
             ),
           ],
-          crossAxisAlignment: CrossAxisAlignment.start,
-        )
-      ]));
+        ),
+      );
 
   // 订阅-句子-喜欢
   Widget subscribe() => Container(

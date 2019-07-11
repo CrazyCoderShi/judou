@@ -1,17 +1,3 @@
-/** 
- * {
-		"id": 252270,
-		"name": "教徒收藏夹",
-		"is_default": false,
-		"is_self": false,
-		"type": "collection",
-		"description": "教徒收藏夹",
-		"sentences_count": "",
-		"cover": "http:\/\/judou.b0.upaiyun.com\/image\/collection\/2019\/01\/03\/qnyssjc6gddkvgu7klff2h2ps5rfkx08.jpg"
-	}
- * 
-*/
-
 class CollectionModel {
   final int id;
   final String name;
