@@ -108,6 +108,7 @@ class _IndexPageItemState extends State<IndexPageItem>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return GestureDetector(
       onTap: widget.onTap,
       child: Column(

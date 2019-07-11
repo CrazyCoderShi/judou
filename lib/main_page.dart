@@ -34,6 +34,7 @@ class _MainPageState extends State<MainPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: IndexedStack(
         index: _selectedIndex,

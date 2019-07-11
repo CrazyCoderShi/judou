@@ -2,6 +2,7 @@ import '../models/topic_model.dart';
 import '../../network/network.dart';
 import '../../index/models/tag_model.dart';
 import '../../index/models/judou_model.dart';
+import 'dart:async';
 
 class DiscoveryBloc implements BlocBase {
   final _discoverySubject = PublishSubject<Map<String, dynamic>>();

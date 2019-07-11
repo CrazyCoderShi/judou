@@ -73,11 +73,11 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
       (item) {
         return ListView.builder(
           itemBuilder: (context, index) => JuDouCell(
-                model: tagListData[index],
-                divider: Blank(height: 10),
-                tag: 'discovery$index',
-                isCell: true,
-              ),
+            model: tagListData[index],
+            divider: Blank(height: 10),
+            tag: 'discovery$index',
+            isCell: true,
+          ),
           itemCount: tagListData.length,
           physics: AlwaysScrollableScrollPhysics(),
           controller: _scrollController,
@@ -88,6 +88,7 @@ class _DiscoveryWidgetState extends State<DiscoveryWidget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return StreamBuilder(
       stream: _bloc.stream,
       builder: (context, snapshot) {

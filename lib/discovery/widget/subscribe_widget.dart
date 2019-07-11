@@ -42,6 +42,7 @@ class _SubscribeWidgetState extends State<SubscribeWidget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return StreamBuilder(
       stream: bloc.stream,
       builder: (context, AsyncSnapshot<List<JuDouModel>> snapshot) {
@@ -54,11 +55,11 @@ class _SubscribeWidgetState extends State<SubscribeWidget>
 
         return ListView.builder(
           itemBuilder: (context, index) => JuDouCell(
-                model: dataList[index],
-                tag: 'DiscoveryPageSubscribe$index',
-                divider: Blank(),
-                isCell: true,
-              ),
+            model: dataList[index],
+            tag: 'DiscoveryPageSubscribe$index',
+            divider: Blank(),
+            isCell: true,
+          ),
           itemCount: dataList.length,
           physics: AlwaysScrollableScrollPhysics(),
         );

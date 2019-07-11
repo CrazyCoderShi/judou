@@ -43,13 +43,13 @@ class _IndexWidgetState extends State<IndexWidget>
     });
   }
 
-  void _test() {
-    print('-------1-');
-    var platform = MethodChannel('judou.test');
-    platform.invokeMethod('getString').then((result) {
-      print('------- $result');
-    });
-  }
+  // void _test() {
+  //   print('-------1-');
+  //   var platform = MethodChannel('judou.test');
+  //   platform.invokeMethod('getString').then((result) {
+  //     print('------- $result');
+  //   });
+  // }
 
   @override
   void dispose() {
@@ -119,6 +119,7 @@ class _IndexWidgetState extends State<IndexWidget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return StreamBuilder(
       stream: indexBloc.dailyStream,
       builder:

@@ -42,6 +42,7 @@ class _DiscoveryPageState extends State<DiscoveryPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

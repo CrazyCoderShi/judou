@@ -1,3 +1,4 @@
+import 'dart:async';
 import '../../network/network.dart';
 import '../../index/pages/detail_page.dart';
 import 'package:flutter/material.dart';

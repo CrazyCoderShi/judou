@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/judou_model.dart';
 import '../../index/pages/detail_page.dart';
 import '../../network/network.dart';
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
+import 'dart:async';
 
 class IndexBloc implements BlocBase {
   /// 存放所有的model

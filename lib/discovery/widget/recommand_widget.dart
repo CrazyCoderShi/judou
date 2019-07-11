@@ -51,6 +51,7 @@ class _RecommandWidgetState extends State<RecommandWidget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return StreamBuilder(
       stream: bloc.stream,
       builder: (context, snapshot) {
