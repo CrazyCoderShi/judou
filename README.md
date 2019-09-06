@@ -11,7 +11,7 @@
 
 ## JuDou
 
-Judou is my favorite app，so I implemented it with flutter
+Judou is my favorite app，so I implemented it in flutter
 
 ## UI
 
